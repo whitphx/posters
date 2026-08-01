@@ -1,0 +1,138 @@
+---
+import type { Orientation, PaperSize } from "../../lib/paper";
+import { getPaperDimensions } from "../../lib/paper";
+import "./foundation.css";
+
+interface Props {
+  title: string;
+  slug: string;
+  language: string;
+  paper: {
+    size: PaperSize;
+    orientation: Orientation;
+  };
+}
+
+const { title, slug, language, paper } = Astro.props;
+const { widthMm, heightMm } = getPaperDimensions(paper.size, paper.orientation);
+const widthPx = (widthMm * 96) / 25.4;
+const heightPx = (heightMm * 96) / 25.4;
+const pageCss = `@page { size: ${widthMm}mm ${heightMm}mm; margin: 0; }`;
+const dimensions = `--paper-width:${widthMm}mm;--paper-height:${heightMm}mm;--paper-width-px:${widthPx}px;--paper-height-px:${heightPx}px`;
+---
+
+<!doctype html>
+<html lang={language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="poster-slug" content={slug} />
+    <title>{title} poster preview</title>
+    <style is:global set:html={pageCss}></style>
+  </head>
+  <body style={dimensions} data-preview-scale="fit" data-paper-tone="white">
+    <header class="preview-toolbar">
+      <a class="preview-toolbar__home" href="/">Posters</a>
+      <div
+        class="preview-toolbar__group"
+        role="group"
+        aria-label="Preview scale"
+      >
+        <span class="preview-toolbar__label">Scale</span>
+        <button type="button" data-scale="fit" aria-pressed="true">Fit</button>
+        <button type="button" data-scale="0.25" aria-pressed="false">25%</button
+        >
+        <button type="button" data-scale="0.5" aria-pressed="false">50%</button>
+      </div>
+      <div
+        class="preview-toolbar__group"
+        role="group"
+        aria-label="Paper preview color"
+      >
+        <span class="preview-toolbar__label">Paper</span>
+        <button type="button" data-paper-tone="white" aria-pressed="true">
+          White
+        </button>
+        <button type="button" data-paper-tone="cool" aria-pressed="false">
+          Cool
+        </button>
+        <button type="button" data-paper-tone="warm" aria-pressed="false">
+          Warm
+        </button>
+      </div>
+      <button type="button" data-print>Print</button>
+    </header>
+    <main class="poster-preview">
+      <div class="poster-stage">
+        <article class="poster-frame" aria-label={`${title} poster`}>
+          <slot />
+        </article>
+      </div>
+    </main>
+    <script>
+      const root = document.body;
+      const scaleButtons = Array.from(
+        document.querySelectorAll<HTMLButtonElement>("[data-scale]"),
+      );
+      const paperToneButtons = Array.from(
+        document.querySelectorAll<HTMLButtonElement>("[data-paper-tone]"),
+      );
+
+      function setScale(requestedScale: string) {
+        const width = Number.parseFloat(
+          getComputedStyle(root).getPropertyValue("--paper-width-px"),
+        );
+        const available = Math.max(window.innerWidth - 48, 240);
+        const scale =
+          requestedScale === "fit"
+            ? Math.min(0.5, available / width)
+            : Number.parseFloat(requestedScale);
+
+        root.style.setProperty("--preview-scale", String(scale));
+        root.dataset.previewScale = requestedScale;
+        scaleButtons.forEach((button) => {
+          button.setAttribute(
+            "aria-pressed",
+            String(button.dataset.scale === requestedScale),
+          );
+        });
+      }
+
+      scaleButtons.forEach((button) => {
+        button.addEventListener("click", () =>
+          setScale(button.dataset.scale ?? "fit"),
+        );
+      });
+
+      function setPaperTone(paperTone: string) {
+        root.dataset.paperTone = paperTone;
+        paperToneButtons.forEach((button) => {
+          button.setAttribute(
+            "aria-pressed",
+            String(button.dataset.paperTone === paperTone),
+          );
+        });
+      }
+
+      paperToneButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          setPaperTone(button.dataset.paperTone ?? "white");
+        });
+      });
+
+      document
+        .querySelector<HTMLButtonElement>("[data-print]")
+        ?.addEventListener("click", () => {
+          window.print();
+        });
+
+      window.addEventListener("resize", () => {
+        if (root.dataset.previewScale === "fit") setScale("fit");
+      });
+
+      setScale("fit");
+      setPaperTone("white");
+    </script>
+  </body>
+</html>

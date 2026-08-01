@@ -1,0 +1,50 @@
+name: Verify posters
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Install Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Install PDF inspection tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes poppler-utils
+
+      - name: Check source
+        run: |
+          pnpm format:check
+          pnpm check
+
+      - name: Export posters
+        run: pnpm export
+
+      - name: Upload poster PDFs
+        uses: actions/upload-artifact@v6
+        with:
+          name: poster-pdfs
+          path: output/pdf/*.pdf
+          if-no-files-found: error

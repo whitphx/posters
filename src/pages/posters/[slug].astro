@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import PosterShell from "../../renderers/v1/PosterShell.astro";
+
+export async function getStaticPaths() {
+  const posters = await getCollection("posters");
+
+  return posters.map((poster) => ({
+    params: { slug: poster.id.replace(/\/poster$/, "") },
+    props: { poster },
+  }));
+}
+
+interface Props {
+  poster: CollectionEntry<"posters">;
+}
+
+const { poster } = Astro.props;
+const slug = poster.id.replace(/\/poster$/, "");
+const { Content } = await render(poster);
+---
+
+<PosterShell
+  title={poster.data.title}
+  slug={slug}
+  language={poster.data.language}
+  paper={poster.data.paper}
+>
+  <Content />
+</PosterShell>

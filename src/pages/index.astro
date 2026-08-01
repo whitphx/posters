@@ -1,0 +1,146 @@
+---
+import { getCollection } from "astro:content";
+import { getPaperDimensions } from "../lib/paper";
+
+const posters = await getCollection("posters");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Posters</title>
+    <style>
+      :global(*) {
+        box-sizing: border-box;
+      }
+
+      :global(body) {
+        background: #eef3f8;
+        color: #16283b;
+        font-family: system-ui, sans-serif;
+        margin: 0;
+      }
+
+      main {
+        margin: 0 auto;
+        max-width: 72rem;
+        padding: clamp(2rem, 6vw, 6rem) 1.5rem;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 7vw, 5.5rem);
+        letter-spacing: -0.05em;
+        margin: 0;
+      }
+
+      .intro {
+        color: #51657b;
+        font-size: 1.15rem;
+        line-height: 1.6;
+        margin: 1rem 0 3rem;
+        max-width: 43rem;
+      }
+
+      ul {
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      a {
+        background: #fff;
+        border: 1px solid #d1dce7;
+        border-radius: 1rem;
+        color: inherit;
+        display: block;
+        min-height: 14rem;
+        padding: 1.5rem;
+        text-decoration: none;
+        transition:
+          border-color 160ms ease,
+          transform 160ms ease;
+      }
+
+      a:hover {
+        border-color: #2d70e2;
+        transform: translateY(-0.2rem);
+      }
+
+      a:focus-visible {
+        outline: 4px solid #2d70e2;
+        outline-offset: 4px;
+      }
+
+      .status {
+        color: #d73748;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        font-size: 1.7rem;
+        margin: 1rem 0 0.65rem;
+      }
+
+      .summary {
+        color: #51657b;
+        line-height: 1.5;
+      }
+
+      .format {
+        color: #2e5579;
+        font-family: ui-monospace, monospace;
+        font-size: 0.85rem;
+        margin-top: 1.5rem;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        a {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Technical posters</h1>
+      <p class="intro">
+        Markdown-authored conference posters with versioned renderers and
+        verified physical output.
+      </p>
+      <ul>
+        {
+          posters.map((poster) => {
+            const slug = poster.id.replace(/\/poster$/, "");
+            const dimensions = getPaperDimensions(
+              poster.data.paper.size,
+              poster.data.paper.orientation,
+            );
+
+            return (
+              <li>
+                <a href={`/posters/${slug}/`}>
+                  <span class="status">{poster.data.status}</span>
+                  <h2>{poster.data.title}</h2>
+                  <p class="summary">{poster.data.summary}</p>
+                  <p class="format">
+                    {poster.data.paper.size} {poster.data.paper.orientation} ·{" "}
+                    {dimensions.widthMm} x {dimensions.heightMm} mm
+                  </p>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </main>
+  </body>
+</html>

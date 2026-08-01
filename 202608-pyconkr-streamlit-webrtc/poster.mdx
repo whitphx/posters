@@ -1,0 +1,227 @@
+---
+title: Streamlit WebRTC
+summary: Real-time audio and video processing in Python-only Streamlit apps.
+event: PyCon Korea 2026
+renderer: v1
+paper:
+  size: A1
+  orientation: portrait
+language: en
+status: draft
+---
+
+import "./poster.css";
+import QrLink from "../src/renderers/v1/QrLink.astro";
+
+<div className="streamlit-webrtc-poster">
+<header className="poster-header">
+  <div className="poster-header__meta">
+    <span>PyCon Korea 2026</span>
+    <span className="live-signal">
+      <i></i>
+      {"Live media / Python"}
+    </span>
+  </div>
+  <div className="poster-header__title-row">
+    <div>
+      <p className="poster-header__eyebrow">Streamlit component</p>
+      <h1>streamlit-webrtc</h1>
+    </div>
+    <p className="poster-header__version">
+      {"audio"}
+      <br />
+      {"+ video"}
+    </p>
+  </div>
+  <p className="poster-header__thesis">
+    {"Capture in the browser. "}
+    <strong>Process in Python.</strong>
+    {" Return the stream live."}
+  </p>
+</header>
+
+  <section className="hero" aria-labelledby="hero-title">
+    <div className="section-label">
+      <span>Start here</span>
+      <h2 id="hero-title">A live video filter in one callback</h2>
+    </div>
+
+    <div className="hero__comparison">
+      <figure className="code-panel">
+        <div className="panel-bar">
+          <span>app.py</span>
+          <span>Python</span>
+        </div>
+
+```python
+import av
+import cv2
+import streamlit as st
+from streamlit_webrtc import webrtc_streamer
+
+effect = st.selectbox(
+    "Effect", ["Edges", "Mirror"]
+)
+
+def process(frame: av.VideoFrame):
+    image = frame.to_ndarray(format="bgr24")
+    if effect == "Edges":
+        image = cv2.Canny(image, 100, 200)
+        image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
+    else:
+        image = cv2.flip(image, 1)
+    return av.VideoFrame.from_ndarray(
+        image, format="bgr24"
+    )
+
+webrtc_streamer(
+    key="demo", video_frame_callback=process
+)
+```
+
+        <figcaption>
+          Based on the <a href="https://github.com/whitphx/streamlit-webrtc#quick-tutorial">project quick tutorial</a>.
+        </figcaption>
+      </figure>
+
+      <figure className="app-panel">
+        <div className="panel-bar panel-bar--light">
+          <span className="streamlit-mark">S</span>
+          <span>Live video filter</span>
+          <span className="panel-menu">•••</span>
+        </div>
+        <div className="app-panel__body">
+          <div className="effect-control">
+            <span>Effect</span>
+            <strong>Edges <b>⌄</b></strong>
+          </div>
+          <div className="camera-output">
+            <svg viewBox="0 0 640 420" role="img" aria-label="Illustration of an edge-detection video result">
+              <defs>
+                <linearGradient id="camera-bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#102a43" />
+                  <stop offset="1" stop-color="#154f70" />
+                </linearGradient>
+              </defs>
+              <rect width="640" height="420" rx="18" fill="url(#camera-bg)" />
+              <path d="M70 350 C130 280 166 303 216 260 S312 197 355 245 S438 307 570 241" fill="none" stroke="#00c2b8" stroke-width="9" />
+              <path d="M95 382 C172 315 203 340 255 296 S344 232 394 284 S480 349 592 278" fill="none" stroke="#2d8cff" stroke-width="5" />
+              <ellipse cx="326" cy="164" rx="83" ry="101" fill="none" stroke="#f7fafc" stroke-width="7" />
+              <path d="M276 156 Q326 190 376 156 M294 215 Q326 232 359 215 M284 121 L304 112 M348 112 L369 121" fill="none" stroke="#f7fafc" stroke-width="6" stroke-linecap="round" />
+              <path d="M200 398 Q211 285 326 278 Q442 285 456 398" fill="none" stroke="#ff4b4b" stroke-width="10" />
+              <circle cx="326" cy="164" r="115" fill="none" stroke="#2d8cff" stroke-width="3" stroke-dasharray="9 14" />
+              <text x="32" y="47" fill="#f7fafc" font-size="22" font-family="IBM Plex Mono">LIVE · 24 FPS</text>
+            </svg>
+          </div>
+          <div className="app-panel__status">
+            <span><i></i> streaming</span>
+            <span className="stop-control">STOP</span>
+          </div>
+        </div>
+        <figcaption>Illustrative app preview. Replace with the final conference-demo capture.</figcaption>
+      </figure>
+    </div>
+
+  </section>
+
+<section className="under-the-hood" aria-labelledby="how-title">
+  <div className="section-label section-label--inline">
+    <span>Under the hood</span>
+    <h2 id="how-title">Why a Python callback can feel live</h2>
+  </div>
+  <p className="under-the-hood__intro">
+    {
+      "Streamlit owns the app. WebRTC carries low-latency media. The component joins them and hands each frame to your server-side Python."
+    }
+  </p>
+  <ol className="media-path">
+    <li>
+      <span className="media-path__number">1</span>
+      <strong>Camera + mic</strong>
+      <small>The browser captures media with permission.</small>
+    </li>
+    <li>
+      <span className="media-path__number">2</span>
+      <strong>WebRTC transport</strong>
+      <small>Audio and video travel as real-time tracks.</small>
+    </li>
+    <li className="media-path__focus">
+      <span className="media-path__number">3</span>
+      <strong>Python callback</strong>
+      <small>Inspect, transform, recognize, mix, or generate.</small>
+    </li>
+    <li>
+      <span className="media-path__number">4</span>
+      <strong>Returned output</strong>
+      <small>The processed track appears in the Streamlit app.</small>
+    </li>
+  </ol>
+</section>
+
+<section className="patterns" aria-labelledby="patterns-title">
+  <div className="section-label section-label--inline">
+    <span>Compose the tracks</span>
+    <h2 id="patterns-title">One callback is only the beginning</h2>
+  </div>
+  <div className="pattern-grid">
+    <article>
+      <span className="pattern-icon">A → A</span>
+      <h3>Loop back</h3>
+      <p>
+        {"Return the incoming track unchanged for the smallest live-media app."}
+      </p>
+      <code>return frame</code>
+    </article>
+    <article>
+      <span className="pattern-icon">A → ƒ → A′</span>
+      <h3>Filter or recognize</h3>
+      <p>Insert OpenCV, MediaPipe, transcription, or your own model.</p>
+      <code>video_frame_callback=process</code>
+    </article>
+    <article>
+      <span className="pattern-icon">∅ → G</span>
+      <h3>Replace the source</h3>
+      <p>Send generated or prerecorded media instead of device input.</p>
+      <code>create_video_source_track(...)</code>
+    </article>
+    <article>
+      <span className="pattern-icon">A ⇄ B</span>
+      <h3>Route peers</h3>
+      <p>Deliver Client A's input to Client B and return B to A.</p>
+      <code>source_video_track=peer_track</code>
+    </article>
+    <article>
+      <span className="pattern-icon">A + B → M</span>
+      <h3>Mix streams</h3>
+      <p>Combine participants into one shared audio or video output.</p>
+      <code>create_mix_track(...)</code>
+    </article>
+    <article>
+      <span className="pattern-icon pattern-icon--split">video ╱ audio</span>
+      <h3>Compose independently</h3>
+      <p>Process audio and video with separate callbacks and output paths.</p>
+      <code>audio_frame_callback=listen</code>
+    </article>
+  </div>
+</section>
+
+  <footer className="poster-footer">
+    <div className="poster-footer__statement">
+      <span>Build the interface in Streamlit.</span>
+      <strong>Make the media path yours.</strong>
+      <p>Open source · MIT licensed · Python</p>
+    </div>
+    <div className="poster-footer__links">
+      <QrLink
+        href="https://github.com/whitphx/streamlit-webrtc"
+        label="Source"
+        detail="github.com/whitphx/streamlit-webrtc"
+      />
+      <QrLink
+        href="https://whitphx.github.io/streamlit-webrtc/"
+        label="Docs + demos"
+        detail="whitphx.github.io/streamlit-webrtc"
+      />
+    </div>
+  </footer>
+</div>

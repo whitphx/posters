@@ -1,0 +1,25 @@
+---
+import QRCode from "qrcode";
+
+interface Props {
+  href: string;
+  label: string;
+  detail: string;
+}
+
+const { href, label, detail } = Astro.props;
+const svg = await QRCode.toString(href, {
+  type: "svg",
+  margin: 1,
+  errorCorrectionLevel: "M",
+  color: { dark: "#102A43", light: "#FFFFFF" },
+});
+---
+
+<a class="qr-link" href={href} aria-label={`${label}: ${href}`}>
+  <span class="qr-link__code" aria-hidden="true" set:html={svg} />
+  <span class="qr-link__copy">
+    <strong>{label}</strong>
+    <span>{detail}</span>
+  </span>
+</a>
