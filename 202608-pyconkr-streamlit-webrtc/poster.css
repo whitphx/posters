@@ -91,7 +91,7 @@
   }
 
   .hero {
-    flex: 0 0 250mm;
+    flex: 0 0 232mm;
   }
 
   .hero__comparison {
@@ -153,14 +153,84 @@
     width: 100%;
   }
 
+  .get-started {
+    align-items: center;
+    border-bottom: 0.5mm solid var(--line);
+    border-top: 0.5mm solid var(--line);
+    display: grid;
+    flex: 0 0 48mm;
+    gap: 7mm;
+    grid-template-columns: 78mm minmax(0, 1fr);
+    padding: 4mm 0;
+  }
+
+  .get-started__heading > span {
+    background: var(--ink);
+    color: #fff;
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9pt;
+    letter-spacing: 0.08em;
+    padding: 1.5mm 2.5mm;
+    text-transform: uppercase;
+  }
+
+  .get-started__heading h2 {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-size: 21pt;
+    line-height: 1;
+    margin-top: 2mm;
+  }
+
+  .get-started__answers {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 0;
+  }
+
+  .get-started__answers > div {
+    min-width: 0;
+    padding: 0 5mm;
+  }
+
+  .get-started__answers > div + div {
+    border-left: 0.4mm solid var(--line);
+  }
+
+  .get-started__answers dt {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-size: 14pt;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 2mm;
+  }
+
+  .get-started__answers dd {
+    color: #536a80;
+    font-size: 10.5pt;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .get-started__answers code {
+    background: #eaf1f7;
+    border-radius: 1.5mm;
+    color: #264d70;
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10pt;
+    padding: 2mm 2.5mm;
+    white-space: nowrap;
+  }
+
   .under-the-hood {
-    flex: 0 0 110mm;
+    flex: 0 0 90mm;
   }
 
   .under-the-hood__intro {
-    font-size: 16pt;
-    line-height: 1.4;
-    margin-bottom: 5mm !important;
+    font-size: 13.5pt;
+    line-height: 1.3;
+    margin-bottom: 3mm !important;
     max-width: 525mm;
   }
 
@@ -202,8 +272,8 @@
     background: rgba(255, 255, 255, 0.94);
     border: 0.45mm solid var(--line);
     border-radius: 3mm;
-    min-height: 66mm;
-    padding: 5mm;
+    min-height: 55mm;
+    padding: 4mm;
     position: relative;
     z-index: 1;
   }
@@ -223,7 +293,7 @@
     font-size: 10pt;
     height: 9mm;
     justify-content: center;
-    margin-bottom: 14mm;
+    margin-bottom: 7mm;
     width: 9mm;
   }
 
@@ -233,20 +303,20 @@
   }
 
   .media-path strong {
-    font-size: 16pt;
-    margin-bottom: 2mm;
+    font-size: 14pt;
+    margin-bottom: 1.5mm;
   }
 
   .media-path small {
     color: #536a80;
-    font-size: 12pt;
-    line-height: 1.35;
+    font-size: 10.5pt;
+    line-height: 1.3;
   }
 
   .patterns {
     display: flex;
     flex-direction: column;
-    flex: 0 0 190mm;
+    flex: 0 0 180mm;
     min-height: 0;
   }
 
@@ -332,7 +402,7 @@
   }
 
   .applications {
-    flex: 0 0 105mm;
+    flex: 0 0 99mm;
     min-height: 0;
   }
 

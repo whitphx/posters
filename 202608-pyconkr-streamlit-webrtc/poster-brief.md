@@ -12,9 +12,10 @@ Build a complete real-time audio and video web app using only Python. A small am
 
 1. Product name and primary message
 2. Python example beside its application result
-3. Browser-to-Python media path
-4. Advanced input, processing, routing, mixing, and output patterns
-5. Project and documentation QR codes
+3. What the component is, what Streamlit is, and how to install it
+4. Browser-to-Python media path
+5. Advanced input, processing, routing, mixing, and output patterns
+6. Project and documentation QR codes
 
 ## Format
 
@@ -29,6 +30,10 @@ Build a complete real-time audio and video web app using only Python. A small am
 ### Hero
 
 Show approximately twenty lines of Python beside the resulting Streamlit application. The comparison should make the leverage explicit: a small amount of code, one language, and a complete user-facing result.
+
+### Get started
+
+Explain that Streamlit-WebRTC is a custom component for existing Streamlit apps. Define Streamlit as a Python web UI framework for building interactive applications without frontend code. Show `pip install streamlit-webrtc` as the installation command, while leaving detailed setup to the linked documentation.
 
 ### How it works
 
