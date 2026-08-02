@@ -77,6 +77,7 @@ Astro's content collection discovers `20*/poster.mdx`, validates this metadata, 
 │   │   └── posters/[slug].astro
 │   ├── renderers/
 │   │   └── v1/
+│   │       ├── MacWindow.astro
 │   │       ├── PosterShell.astro
 │   │       ├── QrLink.astro
 │   │       └── foundation.css
@@ -87,6 +88,12 @@ Astro's content collection discovers `20*/poster.mdx`, validates this metadata, 
 ```
 
 The shared renderer owns paper dimensions, preview controls, print reset rules, and QR generation. It does not own poster colors, typography, or section geometry. The preview can simulate white, cool, or warm paper without changing the exported poster.
+
+`MacWindow.astro` provides a reusable screenshot frame with a macOS-style title bar. Its wrapper pattern is adapted from `whitphx/slidev-addon-window-mockup`; poster-specific image sizing remains in each poster's CSS and MDX.
+
+## Editorial standards
+
+Every visible phrase must explain a capability, limitation, action, provenance, or destination. Do not add taglines, slogans, buzzwords, or other filler solely to balance a layout or make it appear polished. When a composition needs more visual weight, change the geometry or add useful technical content instead of inventing copy.
 
 ## Export pipeline
 
@@ -176,4 +183,5 @@ The first implementation is a content-complete visual prototype. Its application
 - [CSS `@page`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/%40page)
 - [Slidev canvas sizing](https://sli.dev/features/canvas-size)
 - [Slidev exporting](https://sli.dev/guide/exporting.html)
+- [Slidev Addon Window Mockup](https://github.com/whitphx/slidev-addon-window-mockup)
 - [Streamlit WebRTC quick tutorial](https://github.com/whitphx/streamlit-webrtc#quick-tutorial)

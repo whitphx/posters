@@ -1,6 +1,6 @@
 ---
-title: Streamlit WebRTC
-summary: Real-time audio and video processing in Python-only Streamlit apps.
+title: Streamlit-WebRTC
+summary: Build complete real-time audio and video web apps using only Python.
 event: PyCon Korea 2026
 renderer: v1
 paper:
@@ -11,32 +11,30 @@ status: draft
 ---
 
 import "./poster.css";
+import applicationGeneration from "./assets/application-generation.svg";
+import applicationInspection from "./assets/application-inspection.svg";
+import applicationTranscription from "./assets/application-transcription.svg";
+import heroVideoFilter from "./assets/hero-video-filter.svg";
+import patternCompose from "./assets/pattern-compose.svg";
+import patternFilter from "./assets/pattern-filter.svg";
+import patternLoopback from "./assets/pattern-loopback.svg";
+import patternMix from "./assets/pattern-mix.svg";
+import patternPeer from "./assets/pattern-peer.svg";
+import patternReplace from "./assets/pattern-replace.svg";
+import MacWindow from "../src/renderers/v1/MacWindow.astro";
 import QrLink from "../src/renderers/v1/QrLink.astro";
 
 <div className="streamlit-webrtc-poster">
 <header className="poster-header">
-  <div className="poster-header__meta">
-    <span>PyCon Korea 2026</span>
-    <span className="live-signal">
-      <i></i>
-      {"Live media / Python"}
-    </span>
-  </div>
-  <div className="poster-header__title-row">
-    <div>
-      <p className="poster-header__eyebrow">Streamlit component</p>
-      <h1>streamlit-webrtc</h1>
-    </div>
-    <p className="poster-header__version">
-      {"audio"}
-      <br />
-      {"+ video"}
-    </p>
-  </div>
-  <p className="poster-header__thesis">
-    {"Capture in the browser. "}
-    <strong>Process in Python.</strong>
-    {" Return the stream live."}
+  <h1>Streamlit-WebRTC</h1>
+  <p className="poster-header__value">
+    {"Build a complete real-time audio and video web app. "}
+    <strong>Using only Python.</strong>
+  </p>
+  <p className="poster-header__abstract">
+    {
+      "Add live camera and microphone input to a Streamlit app, process it in Python, and return video, audio, text, or other results. Everything lives in one Python script, with no frontend code. Streamlit-WebRTC supplies the browser component and handles WebRTC transport."
+    }
   </p>
 </header>
 
@@ -79,47 +77,17 @@ webrtc_streamer(
 )
 ```
 
-        <figcaption>
-          Based on the <a href="https://github.com/whitphx/streamlit-webrtc#quick-tutorial">project quick tutorial</a>.
-        </figcaption>
       </figure>
 
-      <figure className="app-panel">
-        <div className="panel-bar panel-bar--light">
-          <span className="streamlit-mark">S</span>
-          <span>Live video filter</span>
-          <span className="panel-menu">•••</span>
-        </div>
-        <div className="app-panel__body">
-          <div className="effect-control">
-            <span>Effect</span>
-            <strong>Edges <b>⌄</b></strong>
-          </div>
-          <div className="camera-output">
-            <svg viewBox="0 0 640 420" role="img" aria-label="Illustration of an edge-detection video result">
-              <defs>
-                <linearGradient id="camera-bg" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#102a43" />
-                  <stop offset="1" stop-color="#154f70" />
-                </linearGradient>
-              </defs>
-              <rect width="640" height="420" rx="18" fill="url(#camera-bg)" />
-              <path d="M70 350 C130 280 166 303 216 260 S312 197 355 245 S438 307 570 241" fill="none" stroke="#00c2b8" stroke-width="9" />
-              <path d="M95 382 C172 315 203 340 255 296 S344 232 394 284 S480 349 592 278" fill="none" stroke="#2d8cff" stroke-width="5" />
-              <ellipse cx="326" cy="164" rx="83" ry="101" fill="none" stroke="#f7fafc" stroke-width="7" />
-              <path d="M276 156 Q326 190 376 156 M294 215 Q326 232 359 215 M284 121 L304 112 M348 112 L369 121" fill="none" stroke="#f7fafc" stroke-width="6" stroke-linecap="round" />
-              <path d="M200 398 Q211 285 326 278 Q442 285 456 398" fill="none" stroke="#ff4b4b" stroke-width="10" />
-              <circle cx="326" cy="164" r="115" fill="none" stroke="#2d8cff" stroke-width="3" stroke-dasharray="9 14" />
-              <text x="32" y="47" fill="#f7fafc" font-size="22" font-family="IBM Plex Mono">LIVE · 24 FPS</text>
-            </svg>
-          </div>
-          <div className="app-panel__status">
-            <span><i></i> streaming</span>
-            <span className="stop-control">STOP</span>
-          </div>
-        </div>
-        <figcaption>Illustrative app preview. Replace with the final conference-demo capture.</figcaption>
-      </figure>
+      <MacWindow title="Live video filter" class="hero-window">
+        <img
+          className="hero-window__image"
+          src={heroVideoFilter.src}
+          width="960"
+          height="720"
+          alt="Placeholder for the live video filter application screenshot"
+        />
+      </MacWindow>
     </div>
 
   </section>
@@ -127,11 +95,15 @@ webrtc_streamer(
 <section className="under-the-hood" aria-labelledby="how-title">
   <div className="section-label section-label--inline">
     <span>Under the hood</span>
-    <h2 id="how-title">Why a Python callback can feel live</h2>
+    <h2 id="how-title">How Python reaches the browser in real time</h2>
   </div>
   <p className="under-the-hood__intro">
+    <strong>
+      Turn Python models into user-facing apps without adding a second language
+      or implementing WebRTC.
+    </strong>{" "}
     {
-      "Streamlit owns the app. WebRTC carries low-latency media. The component joins them and hands each frame to your server-side Python."
+      "Use input-only apps to return metadata or text, transform and return live streams, generate output-only media, or combine both directions."
     }
   </p>
   <ol className="media-path">
@@ -165,52 +137,167 @@ webrtc_streamer(
   </div>
   <div className="pattern-grid">
     <article>
-      <span className="pattern-icon">A → A</span>
-      <h3>Loop back</h3>
-      <p>
-        {"Return the incoming track unchanged for the smallest live-media app."}
-      </p>
-      <code>return frame</code>
+      <img
+        src={patternLoopback.src}
+        width="640"
+        height="300"
+        alt="Placeholder for a camera diagnostics application screenshot"
+      />
+      <div className="pattern-card__body">
+        <span className="pattern-icon">A → A</span>
+        <h3>Loop back</h3>
+        <p>Return the incoming track unchanged.</p>
+        <p className="pattern-example">
+          <strong>App:</strong> camera and microphone diagnostics
+        </p>
+        <code>return frame</code>
+      </div>
     </article>
     <article>
-      <span className="pattern-icon">A → ƒ → A′</span>
-      <h3>Filter or recognize</h3>
-      <p>Insert OpenCV, MediaPipe, transcription, or your own model.</p>
-      <code>video_frame_callback=process</code>
+      <img
+        src={patternFilter.src}
+        width="640"
+        height="300"
+        alt="Placeholder for an object detection application screenshot"
+      />
+      <div className="pattern-card__body">
+        <span className="pattern-icon">A → ƒ → A′</span>
+        <h3>Filter or recognize</h3>
+        <p>Run OpenCV, MediaPipe, transcription, or your own model.</p>
+        <p className="pattern-example">
+          <strong>App:</strong> object detection or live captions
+        </p>
+        <code>video_frame_callback=process</code>
+      </div>
     </article>
     <article>
-      <span className="pattern-icon">∅ → G</span>
-      <h3>Replace the source</h3>
-      <p>Send generated or prerecorded media instead of device input.</p>
-      <code>create_video_source_track(...)</code>
+      <img
+        src={patternReplace.src}
+        width="640"
+        height="300"
+        alt="Placeholder for a generated presenter application screenshot"
+      />
+      <div className="pattern-card__body">
+        <span className="pattern-icon">∅ → G</span>
+        <h3>Replace the source</h3>
+        <p>Send generated or prerecorded media instead of device input.</p>
+        <p className="pattern-example">
+          <strong>App:</strong> generated presenter or scheduled playback
+        </p>
+        <code>create_video_source_track(...)</code>
+      </div>
     </article>
     <article>
-      <span className="pattern-icon">A ⇄ B</span>
-      <h3>Route peers</h3>
-      <p>Deliver Client A's input to Client B and return B to A.</p>
-      <code>source_video_track=peer_track</code>
+      <img
+        src={patternPeer.src}
+        width="640"
+        height="300"
+        alt="Placeholder for a one-to-one video chat screenshot"
+      />
+      <div className="pattern-card__body">
+        <span className="pattern-icon">A ⇄ B</span>
+        <h3>Route peers</h3>
+        <p>Deliver Client A's input to Client B and return B to A.</p>
+        <p className="pattern-example">
+          <strong>App:</strong> one-to-one video chat
+        </p>
+        <code>source_video_track=peer_track</code>
+      </div>
     </article>
     <article>
-      <span className="pattern-icon">A + B → M</span>
-      <h3>Mix streams</h3>
-      <p>Combine participants into one shared audio or video output.</p>
-      <code>create_mix_track(...)</code>
+      <img
+        src={patternMix.src}
+        width="640"
+        height="300"
+        alt="Placeholder for a group call mixer screenshot"
+      />
+      <div className="pattern-card__body">
+        <span className="pattern-icon">A + B → M</span>
+        <h3>Mix streams</h3>
+        <p>Combine participants into one shared audio or video output.</p>
+        <p className="pattern-example">
+          <strong>App:</strong> group call or monitoring wall
+        </p>
+        <code>create_mix_track(...)</code>
+      </div>
     </article>
     <article>
-      <span className="pattern-icon pattern-icon--split">video ╱ audio</span>
-      <h3>Compose independently</h3>
-      <p>Process audio and video with separate callbacks and output paths.</p>
-      <code>audio_frame_callback=listen</code>
+      <img
+        src={patternCompose.src}
+        width="640"
+        height="300"
+        alt="Placeholder for a translated call application screenshot"
+      />
+      <div className="pattern-card__body">
+        <span className="pattern-icon pattern-icon--split">video ╱ audio</span>
+        <h3>Compose independently</h3>
+        <p>Process audio and video with separate callbacks and paths.</p>
+        <p className="pattern-example">
+          <strong>App:</strong> translated call with separate media effects
+        </p>
+        <code>audio_frame_callback=listen</code>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section className="applications" aria-labelledby="applications-title">
+  <div className="section-label section-label--inline">
+    <span>Applications</span>
+    <h2 id="applications-title">
+      Applications built with live media in Python
+    </h2>
+  </div>
+  <div className="application-grid">
+    <article>
+      <img
+        src={applicationTranscription.src}
+        width="640"
+        height="360"
+        alt="Placeholder for a live transcription application screenshot"
+      />
+      <div>
+        <h3>Live transcription</h3>
+        <p>
+          Stream microphone audio into Python and update a transcript as speech
+          arrives.
+        </p>
+      </div>
+    </article>
+    <article>
+      <img
+        src={applicationInspection.src}
+        width="640"
+        height="360"
+        alt="Placeholder for a remote inspection application screenshot"
+      />
+      <div>
+        <h3>Remote inspection</h3>
+        <p>
+          Run a camera feed through a server-side vision pipeline while an
+          operator watches.
+        </p>
+      </div>
+    </article>
+    <article>
+      <img
+        src={applicationGeneration.src}
+        width="640"
+        height="360"
+        alt="Placeholder for an interactive media generation application screenshot"
+      />
+      <div>
+        <h3>Interactive media generation</h3>
+        <p>
+          Publish Python-generated audio or video as a live track inside the
+          Streamlit app.
+        </p>
+      </div>
     </article>
   </div>
 </section>
 
   <footer className="poster-footer">
-    <div className="poster-footer__statement">
-      <span>Build the interface in Streamlit.</span>
-      <strong>Make the media path yours.</strong>
-      <p>Open source · MIT licensed · Python</p>
-    </div>
     <div className="poster-footer__links">
       <QrLink
         href="https://github.com/whitphx/streamlit-webrtc"

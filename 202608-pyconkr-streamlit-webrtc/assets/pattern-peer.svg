@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img" aria-labelledby="title">
+  <title id="title">Video chat screenshot placeholder</title>
+  <rect width="640" height="300" fill="#f5f8fb"/>
+  <rect x="18" y="18" width="604" height="264" rx="12" fill="none" stroke="#9eb1c2" stroke-width="3" stroke-dasharray="10 9"/>
+</svg>

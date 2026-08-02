@@ -1,4 +1,4 @@
-# Streamlit WebRTC poster brief
+# Streamlit-WebRTC poster brief
 
 ## Audience
 
@@ -6,7 +6,7 @@ Python developers at PyCon Korea who know how quickly Streamlit creates data app
 
 ## Primary message
 
-Build a real-time audio or video application with a small amount of Python. Streamlit WebRTC handles the browser connection and media transport while Python callbacks control what happens to each frame.
+Build a complete real-time audio and video web app using only Python. A small amount of code defines the interface and media processing in one language, with no frontend implementation. Streamlit-WebRTC supplies the browser component and handles WebRTC transport.
 
 ## Reading order
 
@@ -28,11 +28,11 @@ Build a real-time audio or video application with a small amount of Python. Stre
 
 ### Hero
 
-Show approximately twenty lines of Python beside the resulting Streamlit application. The comparison should make the implementation feel immediately achievable.
+Show approximately twenty lines of Python beside the resulting Streamlit application. The comparison should make the leverage explicit: a small amount of code, one language, and a complete user-facing result.
 
 ### How it works
 
-Explain that the browser captures camera or microphone input, WebRTC transports the media, and server-side Python callbacks receive and return audio or video frames. Streamlit and the custom component manage the front-end communication.
+Explain that the browser captures camera or microphone input, WebRTC transports the media, and server-side Python callbacks receive and return audio or video frames. Streamlit and Streamlit-WebRTC manage the frontend communication, so researchers can turn computer vision, audio, and AI models into user-facing apps without building a JavaScript frontend or WebRTC stack. Cover input-only apps that return metadata or text, transformed bidirectional streams, output-only generated media, and combinations of these modes.
 
 ### Advanced patterns
 
@@ -49,6 +49,8 @@ Include QR codes and readable URLs for the project repository and documentation.
 
 ## Assets still required
 
-- Final conference-demo application screenshot
+- Final conference-demo screenshot for the hero
+- Final screenshots for the six feature examples
+- Final screenshots for the three application examples
 - Confirmed PyCon Korea logo usage, if desired
 - Confirmed event print-shop requirements
