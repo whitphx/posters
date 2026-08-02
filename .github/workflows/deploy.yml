@@ -1,0 +1,169 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - "**"
+  # Pushes already deploy every branch; this trigger only covers PRs that are
+  # opened (or reopened) after their branch was last pushed, so the preview
+  # comment still gets posted.
+  pull_request:
+    types: [opened, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: cloudflare-pages-${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+env:
+  CLOUDFLARE_PROJECT_NAME: posters
+  PRODUCTION_BRANCH: main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Deploys need repository secrets, which fork PRs cannot access.
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          # For pull_request events, deploy the branch head itself instead of
+          # the merge commit so the deployment matches push-triggered ones.
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.ref }}
+
+      - name: Resolve deployment metadata
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "DEPLOY_BRANCH=${{ github.head_ref }}" >> "$GITHUB_ENV"
+            echo "DEPLOY_COMMIT=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_ENV"
+          else
+            echo "DEPLOY_BRANCH=${{ github.ref_name }}" >> "$GITHUB_ENV"
+            echo "DEPLOY_COMMIT=${{ github.sha }}" >> "$GITHUB_ENV"
+          fi
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Install Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build site
+        run: pnpm build
+
+      - name: Ensure Cloudflare Pages project exists
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set +e
+          output=$(pnpm dlx wrangler@4 pages project create "$CLOUDFLARE_PROJECT_NAME" \
+            --production-branch "$PRODUCTION_BRANCH" 2>&1)
+          status=$?
+          set -e
+          echo "$output"
+          if [ $status -ne 0 ]; then
+            # Creating an already-existing project fails; that is the normal
+            # steady state, so only fail on other errors.
+            echo "$output" | grep -qi "already exists" || exit $status
+          fi
+
+      - name: Deploy to Cloudflare Pages
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: >-
+            pages deploy dist
+            --project-name=${{ env.CLOUDFLARE_PROJECT_NAME }}
+            --branch=${{ env.DEPLOY_BRANCH }}
+            --commit-hash=${{ env.DEPLOY_COMMIT }}
+            --commit-dirty=true
+
+      - name: Report deployment URLs
+        run: |
+          {
+            echo "### Cloudflare Pages deployment"
+            echo ""
+            echo "- Branch: \`$DEPLOY_BRANCH\`"
+            echo "- Unique deployment: ${{ steps.deploy.outputs.deployment-url }}"
+            echo "- Branch alias: ${{ steps.deploy.outputs.pages-deployment-alias-url }}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Comment preview URL on pull request
+        if: env.DEPLOY_BRANCH != env.PRODUCTION_BRANCH
+        uses: actions/github-script@v8
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+          ALIAS_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+        with:
+          script: |
+            const marker = "<!-- cloudflare-pages-preview -->";
+            const branch = process.env.DEPLOY_BRANCH;
+            const commit = process.env.DEPLOY_COMMIT;
+
+            let prNumbers = [];
+            if (context.eventName === "pull_request") {
+              prNumbers = [context.payload.pull_request.number];
+            } else {
+              const { data: prs } = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: "open",
+                head: `${context.repo.owner}:${branch}`,
+              });
+              prNumbers = prs.map((pr) => pr.number);
+            }
+            if (prNumbers.length === 0) {
+              core.info(`No open pull request for branch ${branch}; skipping comment.`);
+              return;
+            }
+
+            const body = [
+              marker,
+              "### ☁️ Cloudflare Pages preview",
+              "",
+              "| | |",
+              "| --- | --- |",
+              `| **Branch preview** | ${process.env.ALIAS_URL} |`,
+              `| **This deployment** | ${process.env.DEPLOYMENT_URL} |`,
+              `| **Branch** | \`${branch}\` |`,
+              `| **Commit** | ${commit} |`,
+              "",
+              "The branch preview URL always points at the latest deployment of this branch.",
+            ].join("\n");
+
+            for (const prNumber of prNumbers) {
+              const { data: comments } = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                per_page: 100,
+              });
+              const existing = comments.find((comment) => comment.body?.includes(marker));
+              if (existing) {
+                await github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: existing.id,
+                  body,
+                });
+              } else {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: prNumber,
+                  body,
+                });
+              }
+            }
