@@ -98,6 +98,7 @@
     display: grid;
     gap: 7mm;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    position: relative;
   }
 
   .code-panel {
@@ -136,6 +137,168 @@
 
   .code-panel code {
     font-family: "IBM Plex Mono", monospace;
+  }
+
+  .code-panel pre.astro-code .line:nth-child(n + 6):nth-child(-n + 9),
+  .code-panel pre.astro-code .line:nth-child(11),
+  .code-panel pre.astro-code .line:nth-child(n + 14):nth-child(-n + 20),
+  .code-panel pre.astro-code .line:nth-child(n + 22):nth-child(-n + 26) {
+    background: rgba(255, 75, 75, 0.13);
+    box-sizing: border-box;
+    display: inline-block;
+    margin-left: -5mm;
+    padding: 0 5mm;
+    width: calc(100% + 10mm);
+  }
+
+  .code-callout {
+    background: #fff;
+    border: 0.6mm solid var(--streamlit);
+    border-radius: 2.5mm;
+    box-shadow: 0 2mm 5mm rgba(11, 24, 48, 0.18);
+    color: var(--ink);
+    padding: 3.5mm 4mm;
+    position: absolute;
+    z-index: 2;
+  }
+
+  .code-callout--builtins {
+    left: 143mm;
+    top: 44mm;
+    width: 150mm;
+  }
+
+  .code-callout--callback {
+    left: 148mm;
+    top: 90mm;
+    width: 150mm;
+  }
+
+  .code-callout--streamer {
+    left: 149mm;
+    top: 170mm;
+    width: 150mm;
+  }
+
+  .code-callout strong {
+    color: #c92f3d;
+    display: block;
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-size: 19pt;
+    line-height: 1.05;
+    white-space: nowrap;
+  }
+
+  .code-callout__detail {
+    display: block;
+    font-size: 9.5pt;
+    line-height: 1.25;
+    margin-top: 1.5mm;
+  }
+
+  .code-callout__arrow {
+    fill: none;
+    overflow: visible;
+    pointer-events: none;
+    position: absolute;
+    stroke: var(--streamlit);
+    stroke-linecap: round;
+    stroke-width: 10;
+    z-index: 1;
+  }
+
+  .code-callout__arrow > path {
+    vector-effect: non-scaling-stroke;
+  }
+
+  .code-callout__endpoint {
+    background: var(--streamlit);
+    border-radius: 50%;
+    box-sizing: border-box;
+    height: 5.25mm;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 5.25mm;
+    z-index: 4;
+  }
+
+  .code-callout__endpoint--builtins-selectbox {
+    left: 112mm;
+    top: 61.6mm;
+  }
+
+  .code-callout__endpoint--builtins-spinner {
+    left: 68mm;
+    top: 101mm;
+  }
+
+  .code-callout__endpoint--builtins-preview {
+    left: 309.2mm;
+    top: 31.5mm;
+  }
+
+  .code-callout__endpoint--callback-code {
+    left: 140.5mm;
+    top: 125.4mm;
+  }
+
+  .code-callout__endpoint--streamer-code {
+    left: 142mm;
+    top: 206mm;
+  }
+
+  .code-callout__endpoint--media-preview {
+    left: 317.1mm;
+    top: 126.1mm;
+  }
+
+  .code-callout__arrow--builtins {
+    height: 60mm;
+    left: 158mm;
+    top: 37mm;
+    width: 46mm;
+  }
+
+  .code-callout__arrow--callback,
+  .code-callout__arrow--streamer {
+    height: 40mm;
+    left: 158mm;
+    width: 15mm;
+  }
+
+  .code-callout__arrow--callback {
+    left: 177mm;
+    top: 98mm;
+  }
+
+  .code-callout__arrow--streamer {
+    top: 176mm;
+  }
+
+  .code-callout__arrow--preview {
+    z-index: 3;
+  }
+
+  .code-callout__arrow--builtins-preview {
+    height: 30mm;
+    left: 293mm;
+    top: 24mm;
+    width: 146.2mm;
+  }
+
+  .code-callout__arrow--callback-preview {
+    height: 38.9mm;
+    left: 298mm;
+    top: 93mm;
+    width: 19.1mm;
+  }
+
+  .code-callout__arrow--streamer-preview {
+    height: 69.4mm;
+    left: 299mm;
+    top: 119.2mm;
+    width: 18.1mm;
   }
 
   .hero-window {

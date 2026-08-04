@@ -82,6 +82,105 @@ webrtc_streamer(
 
       </figure>
 
+      <aside className="code-callout code-callout--builtins">
+        <strong>You can use built-in Streamlit widgets</strong>
+        <span className="code-callout__detail">
+          Use Streamlit's standard widgets for the general web app, then add
+          real-time media with Streamlit-WebRTC. It stays one composable part of
+          the larger app.
+        </span>
+      </aside>
+      <svg
+        className="code-callout__arrow code-callout__arrow--builtins"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path d="M -25.91 31.33 C -45 31.33, -70 41, -100 41" />
+        <path d="M -25.91 41.33 C -65 41.33, -152.65 106.67, -195.65 106.67" />
+      </svg>
+      <span
+        className="code-callout__endpoint code-callout__endpoint--builtins-selectbox"
+        aria-hidden="true"
+      />
+      <span
+        className="code-callout__endpoint code-callout__endpoint--builtins-spinner"
+        aria-hidden="true"
+      />
+
+      <aside className="code-callout code-callout--callback">
+        <strong>Process each frame in Python</strong>
+        <span className="code-callout__detail">
+          The callback receives a frame and returns a frame. Everything between
+          those points is your Python code.
+        </span>
+      </aside>
+      <svg
+        className="code-callout__arrow code-callout__arrow--callback"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path d="M -182 15 C -200 15, -225 68.5, -243.33 68.5" />
+      </svg>
+      <span
+        className="code-callout__endpoint code-callout__endpoint--callback-code"
+        aria-hidden="true"
+      />
+
+      <aside className="code-callout code-callout--streamer">
+        <strong>Pass callbacks to the WebRTC streamer</strong>
+        <span className="code-callout__detail">
+          Pass the media callbacks your app needs. The component handles browser
+          capture, WebRTC transport, and returning the resulting audio or video.
+        </span>
+      </aside>
+      <svg
+        className="code-callout__arrow code-callout__arrow--streamer"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path d="M -48.67 15 C -65 15, -90 75, -106.67 75" />
+      </svg>
+      <span
+        className="code-callout__endpoint code-callout__endpoint--streamer-code"
+        aria-hidden="true"
+      />
+
+      <svg
+        className="code-callout__arrow code-callout__arrow--preview code-callout__arrow--builtins-preview"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path d="M 0 121.67 C 4 121.67, 7 25, 11.08 25" />
+      </svg>
+      <span
+        className="code-callout__endpoint code-callout__endpoint--builtins-preview"
+        aria-hidden="true"
+      />
+      <svg
+        className="code-callout__arrow code-callout__arrow--preview code-callout__arrow--callback-preview"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path d="M 0 20 C 40 20, 60 85.09, 100 85.09" />
+      </svg>
+      <svg
+        className="code-callout__arrow code-callout__arrow--preview code-callout__arrow--streamer-preview"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path d="M 0 95 C 40 95, 60 9.94, 100 9.94" />
+      </svg>
+      <span
+        className="code-callout__endpoint code-callout__endpoint--media-preview"
+        aria-hidden="true"
+      />
+
       <MacWindow title="Real-time object detection" class="hero-window">
         <img
           className="hero-window__image"

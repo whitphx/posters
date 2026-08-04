@@ -29,7 +29,7 @@ Build a complete real-time audio and video web app using only Python. A small am
 
 ### Hero
 
-Show approximately twenty lines of Python beside a real-time YOLO object detection application. Keep Streamlit's built-in model dropdown and the full callback contract visible: the `av.VideoFrame` argument, conversion to an image array, model invocation, annotated frame conversion, return value, and `video_frame_callback` registration. `demo/app.py` remains aligned with the poster snippet and closely follows the two examples in `whitphx/ultralytics-streamlit-realtime`. This comparison should make the leverage explicit: a small amount of application code, one language, a native Streamlit widget, and a complete user-facing result.
+Show approximately twenty lines of Python beside a real-time YOLO object detection application. Keep Streamlit's built-in model dropdown and the full callback contract visible: the `av.VideoFrame` argument, conversion to an image array, model invocation, annotated frame conversion, return value, and `video_frame_callback` registration. Use arrowed callouts to connect explanations directly to the built-in Streamlit elements, the freely programmable frame callback, and the callback registration that lets Streamlit-WebRTC handle media exchange. Continue each callout across to its visible result: built-in elements point to the screenshot's dropdown, while the callback and streamer point to the live-video region. `demo/app.py` remains aligned with the poster snippet and closely follows the two examples in `whitphx/ultralytics-streamlit-realtime`. This comparison should make the leverage explicit: a small amount of application code, one language, a native Streamlit widget, and a complete user-facing result.
 
 ### Get started
 
