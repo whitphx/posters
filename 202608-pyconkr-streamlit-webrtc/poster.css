@@ -8,6 +8,7 @@
     --code: #0b1830;
     --ink: #102a43;
     --line: #c6d5e3;
+    --minimum-text-size: 18pt;
     --streamlit: #ff4b4b;
     --video: #2d70e2;
     background: transparent;
@@ -53,7 +54,7 @@
   }
 
   .poster-header__abstract {
-    font-size: 15.5pt;
+    font-size: var(--minimum-text-size);
     line-height: 1.35;
     max-width: 525mm;
     padding-top: 3.5mm;
@@ -71,7 +72,7 @@
     background: var(--ink);
     color: #fff;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 10pt;
+    font-size: var(--minimum-text-size);
     letter-spacing: 0.08em;
     padding: 2mm 3mm;
     text-transform: uppercase;
@@ -118,7 +119,7 @@
     color: #b8c9db;
     display: flex;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 9.5pt;
+    font-size: var(--minimum-text-size);
     justify-content: space-between;
     letter-spacing: 0.04em;
     min-height: 12mm;
@@ -127,7 +128,7 @@
 
   .code-panel pre.astro-code {
     background: var(--code) !important;
-    font-size: 19pt;
+    font-size: var(--minimum-text-size);
     line-height: 1.16;
     margin: 0;
     min-height: 197mm;
@@ -165,33 +166,33 @@
   .code-callout--builtins {
     left: 143mm;
     top: 44mm;
-    width: 150mm;
+    width: 160mm;
   }
 
   .code-callout--callback {
     left: 148mm;
-    top: 90mm;
-    width: 150mm;
+    top: 85mm;
+    width: 174mm;
   }
 
   .code-callout--streamer {
     left: 149mm;
     top: 170mm;
-    width: 150mm;
+    width: 160mm;
   }
 
   .code-callout strong {
     color: #c92f3d;
     display: block;
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: 19pt;
+    font-size: var(--minimum-text-size);
     line-height: 1.05;
     white-space: nowrap;
   }
 
   .code-callout__detail {
     display: block;
-    font-size: 9.5pt;
+    font-size: var(--minimum-text-size);
     line-height: 1.25;
     margin-top: 1.5mm;
   }
@@ -224,13 +225,13 @@
   }
 
   .code-callout__endpoint--builtins-selectbox {
-    left: 112mm;
-    top: 61.6mm;
+    left: 108mm;
+    top: 58mm;
   }
 
   .code-callout__endpoint--builtins-spinner {
-    left: 68mm;
-    top: 101mm;
+    left: 66mm;
+    top: 92mm;
   }
 
   .code-callout__endpoint--builtins-preview {
@@ -239,18 +240,18 @@
   }
 
   .code-callout__endpoint--callback-code {
-    left: 140.5mm;
-    top: 125.4mm;
+    left: 133mm;
+    top: 116mm;
   }
 
   .code-callout__endpoint--streamer-code {
-    left: 142mm;
-    top: 206mm;
+    left: 136mm;
+    top: 192mm;
   }
 
   .code-callout__endpoint--media-preview {
-    left: 317.1mm;
-    top: 126.1mm;
+    left: 347.1mm;
+    top: 120.5mm;
   }
 
   .code-callout__arrow--builtins {
@@ -282,27 +283,34 @@
 
   .code-callout__arrow--builtins-preview {
     height: 30mm;
-    left: 293mm;
+    left: 303mm;
     top: 24mm;
-    width: 146.2mm;
+    width: 6.2mm;
   }
 
   .code-callout__arrow--callback-preview {
     height: 38.9mm;
-    left: 298mm;
+    left: 322mm;
     top: 93mm;
-    width: 19.1mm;
+    width: 25.1mm;
   }
 
   .code-callout__arrow--streamer-preview {
     height: 69.4mm;
-    left: 299mm;
+    left: 309mm;
     top: 119.2mm;
-    width: 18.1mm;
+    width: 38.1mm;
   }
 
   .hero-window {
     min-width: 0;
+  }
+
+  .streamlit-webrtc-poster
+    .hero-window.mac-window
+    .mac-window__titlebar
+    strong {
+    font-size: var(--minimum-text-size);
   }
 
   .hero-window__image {
@@ -328,7 +336,7 @@
     color: #fff;
     display: inline-block;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 9pt;
+    font-size: var(--minimum-text-size);
     letter-spacing: 0.08em;
     padding: 1.5mm 2.5mm;
     text-transform: uppercase;
@@ -358,7 +366,7 @@
 
   .get-started__answers dt {
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: 14pt;
+    font-size: var(--minimum-text-size);
     font-weight: 700;
     line-height: 1;
     margin-bottom: 2mm;
@@ -366,7 +374,7 @@
 
   .get-started__answers dd {
     color: #536a80;
-    font-size: 10.5pt;
+    font-size: var(--minimum-text-size);
     line-height: 1.3;
     margin: 0;
   }
@@ -377,7 +385,7 @@
     color: #264d70;
     display: inline-block;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 10pt;
+    font-size: var(--minimum-text-size);
     padding: 2mm 2.5mm;
     white-space: nowrap;
   }
@@ -387,7 +395,7 @@
   }
 
   .under-the-hood__intro {
-    font-size: 13.5pt;
+    font-size: var(--minimum-text-size);
     line-height: 1.3;
     margin-bottom: 3mm !important;
     max-width: 525mm;
@@ -449,7 +457,7 @@
     color: #fff;
     display: flex;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 10pt;
+    font-size: var(--minimum-text-size);
     height: 9mm;
     justify-content: center;
     margin-bottom: 7mm;
@@ -462,13 +470,13 @@
   }
 
   .media-path strong {
-    font-size: 14pt;
+    font-size: var(--minimum-text-size);
     margin-bottom: 1.5mm;
   }
 
   .media-path small {
     color: #536a80;
-    font-size: 10.5pt;
+    font-size: var(--minimum-text-size);
     line-height: 1.3;
   }
 
@@ -517,7 +525,7 @@
     color: var(--video);
     display: block;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 9.5pt;
+    font-size: var(--minimum-text-size);
     font-weight: 500;
     margin-bottom: 1.5mm;
   }
@@ -528,21 +536,21 @@
 
   .pattern-grid h3 {
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: 16pt;
+    font-size: var(--minimum-text-size);
     line-height: 1;
     margin-bottom: 1.5mm;
   }
 
   .pattern-grid p {
     color: #536a80;
-    font-size: 10.5pt;
+    font-size: var(--minimum-text-size);
     line-height: 1.25;
     min-height: 0;
   }
 
   .pattern-grid .pattern-example {
     color: var(--ink);
-    font-size: 9.5pt;
+    font-size: var(--minimum-text-size);
     margin-top: 1.5mm !important;
   }
 
@@ -552,7 +560,7 @@
     color: #264d70;
     display: block;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 8.5pt;
+    font-size: var(--minimum-text-size);
     margin-top: auto;
     overflow: hidden;
     padding: 1.6mm 2mm;
@@ -596,14 +604,14 @@
 
   .application-grid h3 {
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: 17pt;
+    font-size: var(--minimum-text-size);
     line-height: 1.05;
     margin-bottom: 2mm;
   }
 
   .application-grid p {
     color: #536a80;
-    font-size: 10.5pt;
+    font-size: var(--minimum-text-size);
     line-height: 1.3;
   }
 
@@ -650,13 +658,13 @@
 
   .qr-link__copy strong {
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: 15pt;
+    font-size: var(--minimum-text-size);
   }
 
   .qr-link__copy span {
     color: #536a80;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 10.5pt;
+    font-size: var(--minimum-text-size);
     line-height: 1.35;
     margin-top: 1.5mm;
     white-space: nowrap;

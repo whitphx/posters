@@ -83,11 +83,10 @@ webrtc_streamer(
       </figure>
 
       <aside className="code-callout code-callout--builtins">
-        <strong>You can use built-in Streamlit widgets</strong>
+        <strong>Use built-in Streamlit widgets</strong>
         <span className="code-callout__detail">
-          Use Streamlit's standard widgets for the general web app, then add
-          real-time media with Streamlit-WebRTC. It stays one composable part of
-          the larger app.
+          Build the app with Streamlit's standard widgets, then add real-time
+          media with Streamlit-WebRTC.
         </span>
       </aside>
       <svg
@@ -96,8 +95,8 @@ webrtc_streamer(
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <path d="M -25.91 31.33 C -45 31.33, -70 41, -100 41" />
-        <path d="M -25.91 41.33 C -65 41.33, -152.65 106.67, -195.65 106.67" />
+        <path d="M -32.61 31.33 C -55 31.33, -85 35, -108.7 35" />
+        <path d="M -32.61 41.33 C -75 41.33, -155 91.67, -200 91.67" />
       </svg>
       <span
         className="code-callout__endpoint code-callout__endpoint--builtins-selectbox"
@@ -111,8 +110,7 @@ webrtc_streamer(
       <aside className="code-callout code-callout--callback">
         <strong>Process each frame in Python</strong>
         <span className="code-callout__detail">
-          The callback receives a frame and returns a frame. Everything between
-          those points is your Python code.
+          Receive a frame, run any Python code, and return a frame.
         </span>
       </aside>
       <svg
@@ -121,7 +119,7 @@ webrtc_streamer(
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <path d="M -182 15 C -200 15, -225 68.5, -243.33 68.5" />
+        <path d="M -193.33 15 C -220 15, -270 45, -293.33 45" />
       </svg>
       <span
         className="code-callout__endpoint code-callout__endpoint--callback-code"
@@ -129,10 +127,10 @@ webrtc_streamer(
       />
 
       <aside className="code-callout code-callout--streamer">
-        <strong>Pass callbacks to the WebRTC streamer</strong>
+        <strong>Pass callbacks to the streamer</strong>
         <span className="code-callout__detail">
-          Pass the media callbacks your app needs. The component handles browser
-          capture, WebRTC transport, and returning the resulting audio or video.
+          The component handles browser capture, WebRTC transport, and returning
+          the result.
         </span>
       </aside>
       <svg
@@ -141,7 +139,7 @@ webrtc_streamer(
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <path d="M -48.67 15 C -65 15, -90 75, -106.67 75" />
+        <path d="M -60 15 C -80 15, -125 40, -146.67 40" />
       </svg>
       <span
         className="code-callout__endpoint code-callout__endpoint--streamer-code"
@@ -154,7 +152,7 @@ webrtc_streamer(
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <path d="M 0 121.67 C 4 121.67, 7 25, 11.08 25" />
+        <path d="M 0 121.67 C 35 121.67, 70 25, 100 25" />
       </svg>
       <span
         className="code-callout__endpoint code-callout__endpoint--builtins-preview"
@@ -166,7 +164,7 @@ webrtc_streamer(
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <path d="M 0 20 C 40 20, 60 85.09, 100 85.09" />
+        <path d="M 0 20 C 40 20, 60 70.69, 100 70.69" />
       </svg>
       <svg
         className="code-callout__arrow code-callout__arrow--preview code-callout__arrow--streamer-preview"
@@ -174,7 +172,7 @@ webrtc_streamer(
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <path d="M 0 95 C 40 95, 60 9.94, 100 9.94" />
+        <path d="M 0 95 C 40 95, 60 1.87, 100 1.87" />
       </svg>
       <span
         className="code-callout__endpoint code-callout__endpoint--media-preview"
@@ -226,12 +224,15 @@ webrtc_streamer(
     <h2 id="how-title">How Python reaches the browser in real time</h2>
   </div>
   <p className="under-the-hood__intro">
-    <strong>
-      Turn Python models into user-facing apps without adding a second language
-      or implementing WebRTC.
-    </strong>{" "}
     {
-      "Use input-only apps to return metadata or text, transform and return live streams, generate output-only media, or combine both directions."
+      <>
+        <strong>
+          Turn Python models into user-facing apps without adding a second
+          language or implementing WebRTC.
+        </strong>{" "}
+        Use input-only apps to return metadata or text, transform and return
+        live streams, generate output-only media, or combine both directions.
+      </>
     }
   </p>
   <ol className="media-path">
