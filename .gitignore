@@ -8,6 +8,10 @@ tmp/
 
 # dependencies
 node_modules/
+.venv/
+__pycache__/
+*.py[cod]
+202608-pyconkr-streamlit-webrtc/demo/*.pt
 
 # logs
 npm-debug.log*

@@ -1,0 +1,249 @@
+---
+title: StLite
+summary: Run a complete Streamlit app inside the browser, with no application server.
+event: PyCon Korea 2026
+renderer: v1
+paper:
+  size: A1
+  orientation: portrait
+language: en
+status: draft
+---
+
+import "./poster.css";
+import QrLink from "../src/renderers/v1/QrLink.astro";
+
+<div className="stlite-poster">
+  <header className="poster-header">
+    <div className="poster-header__title">
+      <span className="stlite-mark" aria-hidden="true">
+        <i></i><i></i><i></i>
+      </span>
+      <h1>StLite</h1>
+    </div>
+    <p className="poster-header__value">
+      <strong>Streamlit, running inside your browser.</strong>{" "}
+      {"No application server required."}
+    </p>
+    <p className="poster-header__abstract">
+      {
+        "StLite brings Python and Streamlit to the web page with Pyodide and WebAssembly. Publish a static site, open it in a browser, and the visitor's device runs the app."
+      }
+    </p>
+  </header>
+
+  <section className="hero" aria-labelledby="hero-title">
+    <div className="section-heading section-heading--hero">
+      <span>Same Python</span>
+      <h2 id="hero-title">The browser becomes the Streamlit runtime</h2>
+    </div>
+
+    <div className="browser-stage">
+      <div className="browser-stage__bar" aria-hidden="true">
+        <span className="browser-stage__lights"><i></i><i></i><i></i></span>
+        <span className="browser-stage__address">example.github.io/my-app</span>
+        <span className="browser-stage__status">static page</span>
+      </div>
+      <div className="browser-stage__body">
+        <figure className="code-panel">
+          <figcaption>
+            <span>streamlit_app.py</span>
+            <span>Python</span>
+          </figcaption>
+
+```python
+import pandas as pd
+import streamlit as st
+
+st.title("Seoul bike trips")
+
+hour = st.slider("Hour", 0, 23, 8)
+trips = pd.read_csv("trips.csv")
+selected = trips[trips.hour == hour]
+
+st.metric("Trips", len(selected))
+st.map(selected, latitude="lat", longitude="lon")
+```
+
+        </figure>
+
+        <figure className="app-mock" aria-label="Illustration of the resulting Streamlit application">
+          <div className="app-mock__sidebar">
+            <span className="app-mock__eyebrow">Hour</span>
+            <strong>08:00</strong>
+            <div className="mock-slider"><i></i></div>
+            <small>Runs on this device</small>
+          </div>
+          <div className="app-mock__main">
+            <span className="draft-label">Illustrative UI</span>
+            <h3>Seoul bike trips</h3>
+            <div className="app-mock__metric">
+              <span>Trips</span>
+              <strong>2,418</strong>
+            </div>
+            <div className="mock-map" aria-hidden="true">
+              <span className="mock-map__river"></span>
+              <i style="--x: 12%; --y: 62%; --s: 8mm"></i>
+              <i style="--x: 25%; --y: 34%; --s: 5mm"></i>
+              <i style="--x: 41%; --y: 71%; --s: 10mm"></i>
+              <i style="--x: 54%; --y: 28%; --s: 7mm"></i>
+              <i style="--x: 68%; --y: 58%; --s: 12mm"></i>
+              <i style="--x: 82%; --y: 40%; --s: 6mm"></i>
+            </div>
+          </div>
+        </figure>
+      </div>
+      <p className="browser-stage__foot">
+        {
+          "Python execution, session state, and the virtual file system stay in the browser tab."
+        }
+      </p>
+    </div>
+
+  </section>
+
+<section className="runtime" aria-labelledby="runtime-title">
+  <div className="section-heading section-heading--inline">
+    <span>What runs where</span>
+    <h2 id="runtime-title">A Streamlit session without an app server</h2>
+  </div>
+  <ol className="runtime-path">
+    <li>
+      <span className="runtime-path__number">1</span>
+      <strong>Static host</strong>
+      <small>Serves HTML, app files, and the StLite runtime.</small>
+    </li>
+    <li>
+      <span className="runtime-path__number">2</span>
+      <strong>Browser page</strong>
+      <small>Loads the Streamlit interface and starts a worker.</small>
+    </li>
+    <li className="runtime-path__focus">
+      <span className="runtime-path__number">3</span>
+      <strong>Pyodide worker</strong>
+      <small>Runs Python and Streamlit through WebAssembly.</small>
+    </li>
+    <li>
+      <span className="runtime-path__number">4</span>
+      <strong>Local session</strong>
+      <small>Widgets rerun the app on the visitor's device.</small>
+    </li>
+  </ol>
+</section>
+
+<section className="fit" aria-labelledby="fit-title">
+  <div className="section-heading section-heading--inline">
+    <span>Choose it deliberately</span>
+    <h2 id="fit-title">What the browser makes possible, and what it changes</h2>
+  </div>
+  <div className="fit-grid">
+    <article className="fit-card fit-card--good">
+      <span className="fit-card__label">Good fit</span>
+      <h3>Static-hosted apps</h3>
+      <p>
+        {
+          "Deploy an interactive Python app to a CDN, GitHub Pages, or any static host."
+        }
+      </p>
+    </article>
+    <article className="fit-card fit-card--good">
+      <span className="fit-card__label">Good fit</span>
+      <h3>Teaching and examples</h3>
+      <p>
+        {
+          "Put executable Streamlit examples next to documentation, workshops, and notebooks."
+        }
+      </p>
+    </article>
+    <article className="fit-card fit-card--good">
+      <span className="fit-card__label">Good fit</span>
+      <h3>On-device processing</h3>
+      <p>Keep app execution and uploaded data off an application server.</p>
+    </article>
+    <article className="fit-card fit-card--boundary">
+      <span className="fit-card__label">Browser boundary</span>
+      <h3>Package compatibility</h3>
+      <p>
+        {
+          "Dependencies need to work in Pyodide or provide browser-compatible wheels."
+        }
+      </p>
+    </article>
+    <article className="fit-card fit-card--boundary">
+      <span className="fit-card__label">Browser boundary</span>
+      <h3>Startup and resources</h3>
+      <p>
+        {
+          "Runtime downloads, package size, CPU, and memory affect the visitor directly."
+        }
+      </p>
+    </article>
+    <article className="fit-card fit-card--boundary">
+      <span className="fit-card__label">Browser boundary</span>
+      <h3>No hidden secrets</h3>
+      <p>
+        {
+          "Client-delivered code and credentials are visible. Keep secrets behind an API."
+        }
+      </p>
+    </article>
+  </div>
+</section>
+
+  <section className="launch" aria-labelledby="launch-title">
+    <div className="section-heading section-heading--inline">
+      <span>Start here</span>
+      <h2 id="launch-title">Share first, or embed it in your own page</h2>
+    </div>
+    <div className="launch-grid">
+      <article>
+        <div>
+          <span className="launch-grid__step">Fastest path</span>
+          <h3>StLite Sharing</h3>
+          <p>
+            {
+              "Edit Python in the browser, run it immediately, and share the result as a link."
+            }
+          </p>
+        </div>
+        <code>edit.share.stlite.net</code>
+      </article>
+      <article>
+        <div>
+          <span className="launch-grid__step">Own the page</span>
+          <h3><code>@stlite/browser</code></h3>
+          <p>
+            {
+              "Load the runtime on a static page and point the custom element at your app."
+            }
+          </p>
+        </div>
+
+```html
+<streamlit-app src="./streamlit_app.py"> </streamlit-app>
+```
+
+      </article>
+    </div>
+
+  </section>
+
+  <footer className="poster-footer">
+    <div className="poster-footer__intro">
+      <strong>Open the source. Try it in a browser.</strong>
+      <span>Apache-2.0 · Python + WebAssembly · No application server</span>
+    </div>
+    <div className="poster-footer__links">
+      <QrLink
+        href="https://github.com/whitphx/stlite"
+        label="Source"
+        detail="github.com/whitphx/stlite"
+      />
+      <QrLink
+        href="https://stlite.net/"
+        label="Docs"
+        detail="stlite.net"
+      />
+    </div>
+  </footer>
+</div>

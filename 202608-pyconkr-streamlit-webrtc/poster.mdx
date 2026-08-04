@@ -14,7 +14,7 @@ import "./poster.css";
 import applicationGeneration from "./assets/application-generation.svg";
 import applicationInspection from "./assets/application-inspection.svg";
 import applicationTranscription from "./assets/application-transcription.svg";
-import heroVideoFilter from "./assets/hero-video-filter.svg";
+import heroYoloDetection from "./assets/hero-yolo-detection.png";
 import patternCompose from "./assets/pattern-compose.svg";
 import patternFilter from "./assets/pattern-filter.svg";
 import patternLoopback from "./assets/pattern-loopback.svg";
@@ -41,7 +41,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
   <section className="hero" aria-labelledby="hero-title">
     <div className="section-label">
       <span>Start here</span>
-      <h2 id="hero-title">A live video filter in one callback</h2>
+      <h2 id="hero-title">Real-time object detection in one callback</h2>
     </div>
 
     <div className="hero__comparison">
@@ -53,39 +53,42 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
 
 ```python
 import av
-import cv2
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer
+from ultralytics import YOLO
 
-effect = st.selectbox(
-    "Effect", ["Edges", "Mirror"]
+model_name = st.selectbox(
+    "YOLO model",
+    ["yolo11n.pt", "yolo11s.pt", "yolov8n.pt"],
 )
 
-def process(frame: av.VideoFrame):
+with st.spinner(f"Loading {model_name}..."):
+    model = YOLO(model_name)
+
+def process(frame: av.VideoFrame) -> av.VideoFrame:
     image = frame.to_ndarray(format="bgr24")
-    if effect == "Edges":
-        image = cv2.Canny(image, 100, 200)
-        image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
-    else:
-        image = cv2.flip(image, 1)
+    result = model(image, verbose=False)[0]
+    annotated = result.plot()
     return av.VideoFrame.from_ndarray(
-        image, format="bgr24"
+        annotated, format="bgr24"
     )
 
 webrtc_streamer(
-    key="demo", video_frame_callback=process
+    key="detection",
+    video_frame_callback=process,
+    media_stream_constraints={"video": True, "audio": False},
 )
 ```
 
       </figure>
 
-      <MacWindow title="Live video filter" class="hero-window">
+      <MacWindow title="Real-time object detection" class="hero-window">
         <img
           className="hero-window__image"
-          src={heroVideoFilter.src}
-          width="960"
-          height="720"
-          alt="Placeholder for the live video filter application screenshot"
+          src={heroYoloDetection.src}
+          width="2344"
+          height="1768"
+          alt="Streamlit application showing YOLO model selection and object detection boxes over a live webcam feed"
         />
       </MacWindow>
     </div>

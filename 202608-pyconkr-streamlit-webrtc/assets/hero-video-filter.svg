@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" role="img" aria-labelledby="title desc">
-  <title id="title">Video filter demo screenshot placeholder</title>
-  <desc id="desc">Empty placeholder to be replaced with the final Streamlit application screenshot.</desc>
-  <rect width="960" height="720" fill="#f7f9fb"/>
-  <rect x="36" y="36" width="888" height="648" rx="18" fill="none" stroke="#aebdcb" stroke-width="4" stroke-dasharray="14 12"/>
-  <path d="M390 302h180v116H390z M430 272h100l24 30H406z" fill="none" stroke="#536a80" stroke-width="8" stroke-linejoin="round"/>
-  <circle cx="480" cy="360" r="28" fill="none" stroke="#536a80" stroke-width="8"/>
-</svg>

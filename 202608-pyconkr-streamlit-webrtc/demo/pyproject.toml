@@ -1,0 +1,17 @@
+[project]
+name = "streamlit-webrtc-yolo-demo"
+version = "0.1.0"
+description = "Runnable YOLO object detection demo for the Streamlit-WebRTC poster"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "av>=17.1.0",
+    "opencv-python-headless>=4.12.0.88",
+    "streamlit>=1.60.0",
+    "streamlit-webrtc>=0.76.3",
+    "ultralytics>=8.3.174",
+]
+
+[tool.uv]
+# Keep Ultralytics from installing the GUI-enabled OpenCV wheel alongside the headless wheel.
+override-dependencies = ["opencv-python; python_version < '0'"]

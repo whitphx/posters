@@ -142,13 +142,9 @@
     min-width: 0;
   }
 
-  .hero-window .mac-window__content {
-    height: 197mm;
-  }
-
   .hero-window__image {
     display: block;
-    height: 197mm;
+    height: 100%;
     object-fit: cover;
     width: 100%;
   }
