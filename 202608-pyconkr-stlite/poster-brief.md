@@ -1,21 +1,101 @@
-# StLite poster brief
+# Stlite poster brief
+
+## Current state
+
+The first complete content draft is on the printable canvas. Its central figure compares standard Streamlit with Stlite as vertically aligned stacks, making the runtime substitution and transport adaptation visible without suggesting that the application or Streamlit layers have been rewritten.
 
 ## Audience
 
-Python developers at PyCon Korea who know Streamlit as a server-hosted Python web app framework but may not know that a Streamlit app can run inside a browser.
+Python developers at PyCon Korea who know Streamlit as a framework for building interactive apps in Python, but may assume every Streamlit app needs a remotely hosted Python server.
 
-## Primary message
+## Working tagline
 
-Run a Streamlit app entirely in the browser. StLite uses Pyodide to execute Python and Streamlit in a Web Worker, so a static website can provide an interactive Python app without an application server.
+Streamlit-Lite, in-browser Streamlit.
 
-## Reading order
+## Central idea
 
-1. Product name and primary message
-2. Familiar Streamlit code beside the resulting in-browser app
-3. Browser, Web Worker, Pyodide, and Streamlit execution path
-4. Good fits and practical browser boundaries
-5. StLite Sharing and static-site starting points
-6. Project and documentation QR codes
+Stlite is a WebAssembly port of Streamlit that moves the Streamlit Python server from a remote machine into the web browser. Pyodide supplies the CPython runtime. The Streamlit frontend and Python server then run together on the visitor's device, while the remote web server only has to serve static files.
+
+This architectural move is the subject of the poster. The benefits, applications, and constraints should be presented as consequences of moving the runtime across that boundary, not as an unrelated feature list.
+
+## Why the architecture is interesting
+
+### Original Streamlit
+
+A Streamlit app normally starts a Python web server. Its browser frontend continuously communicates with that server, and user events trigger server-side Python execution that updates the frontend.
+
+### Stlite
+
+Stlite mounts the Streamlit frontend into a page, loads Pyodide, and launches the Streamlit Python server inside the browser. The application remains recognizably Streamlit, including reruns, widgets, file watching, multipage apps, and Python packages that are compatible with Pyodide.
+
+### Consequences of moving the runtime
+
+- Offline capability: after the required resources have loaded, the application can continue running without a server connection.
+- Data privacy: files selected through the app can be processed locally without being sent to a remote application server.
+- Scalability: Python computation is distributed across visitors' devices instead of concentrating on one server.
+- Static deployment: HTML, JavaScript, CSS, Python source, data, and other assets can be served from a static host.
+- Browser-native authoring: a live editor can write into the virtual file system and use Streamlit's file-change and rerun behavior for immediate preview.
+- Multi-platform packaging: the same browser runtime can support web apps, installable PWAs, and Electron desktop applications.
+
+## Applications and use cases
+
+### Stlite Sharing
+
+Stlite Sharing combines an online file editor with a live Streamlit preview. An app's source and data can be encoded in the URL fragment, making the app shareable without storing that content on the service's server. The same encoded state can be reopened in the editor.
+
+### Self-hosted static apps
+
+`@stlite/browser` can launch a Streamlit app from a `<streamlit-app>` element or the `mount()` API. A static site can provide multiple files, requirements, configuration, archives, and an isolated virtual file system.
+
+### Local data tools
+
+Data exploration, image processing, statistics, teaching materials, reproducible examples, and internal utilities can benefit when computation and selected files remain on the user's device.
+
+### Desktop and installable apps
+
+Because the runtime already lives in a browser environment, a Stlite application can be packaged with Electron or delivered as an installable web application.
+
+## Trade-offs to explain
+
+- Packages with native extensions need Pyodide-compatible builds.
+- The initial payload includes a Python runtime and required packages.
+- Browser networking rules such as CORS still apply.
+- Source code and hosted data are delivered to the visitor, so secrets cannot live in the app bundle.
+- Browser CPU, memory, threading, and API constraints differ from a normal server environment.
+
+## Layout blueprint
+
+The page explains one transformation: the Python server moves from the remote side of the network into the browser. All other material attaches to that transformation.
+
+```text
++------------------------------------------------------+
+| Stlite                                               |
+| Streamlit-Lite, in-browser Streamlit.                |
+| concise statement of the architectural move          |
++------------------------------------------------------+
+|                                                      |
+| STANDARD STREAMLIT                  STLITE            |
+| [app script]         same           [app script]      |
+| [Streamlit server]   same           [Streamlit server]|
+| [CPython]            replaced by    [Pyodide]         |
+|       |                                      |        |
+| HTTP + WebSocket     adapted to     Worker messages   |
+|       |                                      |        |
+| [browser frontend]   same           [browser frontend]|
+|                                      ^               |
+|                                static files          |
+|                                                      |
+| Privacy, offline operation, and distributed compute  |
+| attach directly to the moved runtime.                |
++------------------------------------------------------+
+| Stlite Sharing  | static hosting | desktop / PWA     |
+| concrete application examples and screenshots        |
++------------------------------------------------------+
+| Browser constraints                    project links  |
++------------------------------------------------------+
+```
+
+The architecture comparison is the primary visual and should occupy most of the poster. Lines and arrows are appropriate only inside this diagram because they express communication and movement. The benefits should be positioned next to the part of the architecture that causes them. Application examples should use real screenshots or assets, not decorative cards or illustrations.
 
 ## Format
 
@@ -25,49 +105,25 @@ Run a Streamlit app entirely in the browser. StLite uses Pyodide to execute Pyth
 - Unprinted white paper background
 - RGB browser PDF unless the printer specifies a different prepress format
 
-## Required content
+## Assets to select
 
-### Hero
+- Stlite Sharing editor and preview screenshot
+- A privacy-sensitive or offline-capable application example, such as local OpenCV image processing
+- Optional desktop application screenshot if desktop packaging remains in scope
+- Stlite project logo, subject to final placement and attribution handling
 
-Make the central claim visible before any architecture detail: familiar Streamlit Python runs in the visitor's browser, with no application server. Pair a concise Python example with a browser-framed result. The first draft uses an illustrative application UI rather than a product screenshot.
+## Decisions still open
 
-### How it runs
+- Which one or two application examples best communicate potential beyond the architecture
+- Whether desktop and PWA packaging belong on the main poster or only in supporting copy
+- How much of the current `@stlite/browser` custom-element API should appear
+- PyCon Korea logo usage and print-shop requirements
 
-Show the page loading StLite, the app starting in a Web Worker, Pyodide providing Python through WebAssembly, and Streamlit rendering the interface. Explain that the browser owns the session and virtual file system.
+## Primary sources
 
-### Good fits
-
-- Interactive documentation and reproducible examples
-- Static-hosted data explorers and teaching tools
-- Local processing where input does not need to be sent to an application server
-
-### Boundaries
-
-- Python dependencies need browser-compatible packages or Pyodide-compatible wheels.
-- Startup downloads and the browser's CPU and memory budget matter.
-- Code and credentials delivered to the browser are visible to the visitor, so secrets need a server-side boundary.
-
-### Start paths
-
-- StLite Sharing for editing and sharing from the browser
-- `@stlite/browser` for embedding an app in a static web page
-
-### Footer
-
-Include QR codes and readable URLs for the project repository and documentation.
-
-## Rough-draft decisions to revisit
-
-- Confirm whether the displayed product name should follow the repository's “Stlite” capitalization or use “StLite” for the conference poster.
-- Replace the illustrative application UI with a final screenshot or selected demo.
-- Decide whether the final poster should cover only `@stlite/browser` or give more space to React, desktop, and Cloudflare targets.
-- Confirm PyCon Korea logo usage and event print-shop requirements.
-- Review the limitations against the release selected for the conference.
-
-## Sources
-
-- [StLite repository](https://github.com/whitphx/stlite)
-- [StLite documentation](https://stlite.net/)
+- [Stlite repository and current README](https://github.com/whitphx/stlite)
+- [Streamlit meets WebAssembly, Stlite](https://www.whitphx.info/posts/20221104-streamlit-wasm-stlite/)
+- [Stlite documentation](https://stlite.net/)
 - [`@stlite/browser` documentation](https://stlite.net/browser/)
-- [StLite Sharing](https://edit.share.stlite.net/)
+- [Stlite Sharing](https://edit.share.stlite.net/)
 - [Pyodide](https://pyodide.org/)
