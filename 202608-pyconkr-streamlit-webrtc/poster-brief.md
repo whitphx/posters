@@ -33,7 +33,7 @@ Show approximately twenty lines of Python beside a real-time YOLO object detecti
 
 ### Get started
 
-Explain that Streamlit-WebRTC is a custom component for existing Streamlit apps. Define Streamlit as a Python web UI framework for building interactive applications without frontend code. Show `pip install streamlit-webrtc` as the installation command, while leaving detailed setup to the linked documentation.
+Explain that Streamlit-WebRTC is a custom component for existing Streamlit apps. Define Streamlit as a Python web UI framework for building interactive applications without frontend code. Show `uv add streamlit streamlit-webrtc` as the installation command, while leaving detailed setup to the linked documentation.
 
 ### How it works
 
