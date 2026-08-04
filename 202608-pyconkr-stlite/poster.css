@@ -14,6 +14,7 @@
     --runtime-soft: #eee7fa;
     --bridge: #087f8c;
     --bridge-soft: #e2f4f3;
+    --minimum-font-size: 18px;
     background: #fff;
     color: var(--ink);
     display: grid;
@@ -117,7 +118,7 @@
   .standard-intro p,
   .section-heading p {
     color: var(--muted);
-    font-size: 12.5pt;
+    font-size: var(--minimum-font-size);
     line-height: 1.34;
     margin-top: 3mm;
     max-width: 420mm;
@@ -155,7 +156,7 @@
 
   .architecture figcaption span {
     color: var(--muted);
-    font-size: 13pt;
+    font-size: var(--minimum-font-size);
   }
 
   .architecture__comparison {
@@ -195,7 +196,7 @@
   .worker-boundary__label {
     color: var(--muted);
     font-family: "IBM Plex Mono", monospace;
-    font-size: 8.5pt;
+    font-size: var(--minimum-font-size);
     left: 4mm;
     letter-spacing: 0.04em;
     line-height: 1;
@@ -224,8 +225,38 @@
   .frontend-layer strong,
   .static-host strong,
   .transport strong {
-    font-size: 12.5pt;
+    font-size: var(--minimum-font-size);
     line-height: 1.08;
+  }
+
+  .stack-layer__identity {
+    align-items: center;
+    display: flex;
+    gap: 3mm;
+    justify-content: center;
+  }
+
+  .stack-layer__logo {
+    display: block;
+    flex: 0 0 auto;
+    height: 9mm;
+    object-fit: contain;
+    width: 9mm;
+  }
+
+  .stack-layer__logo--python {
+    height: 10mm;
+    width: 8.5mm;
+  }
+
+  .stack-layer__logo--streamlit {
+    height: 8mm;
+    width: 14mm;
+  }
+
+  .stack-layer__logo--pyodide {
+    height: 11mm;
+    width: 11mm;
   }
 
   .stack-layer span,
@@ -233,7 +264,7 @@
   .static-host span,
   .transport span:not(.transport__arrow) {
     color: var(--muted);
-    font-size: 8.5pt;
+    font-size: var(--minimum-font-size);
     line-height: 1.15;
     margin-top: 1.4mm;
   }
@@ -289,7 +320,7 @@
     color: var(--muted);
     display: grid;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 9.2pt;
+    font-size: var(--minimum-font-size);
     grid-template-rows: 19mm 47mm 37mm 37mm 37mm 36mm 49mm;
     line-height: 1.15;
     padding-inline: 2mm;
@@ -300,6 +331,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
+    padding-inline: 9mm;
     position: relative;
   }
 
@@ -310,7 +342,7 @@
     height: 0.35mm;
     position: absolute;
     top: 50%;
-    width: 9mm;
+    width: 7mm;
   }
 
   .mapping-label::before {
@@ -353,6 +385,21 @@
     margin: 0 17mm 7mm;
     position: relative;
     text-align: center;
+  }
+
+  .static-host__identity {
+    align-items: center;
+    display: flex;
+    gap: 3mm;
+    justify-content: center;
+  }
+
+  .static-host__icon {
+    color: var(--muted);
+    display: block;
+    height: 11mm;
+    stroke-width: 1.7;
+    width: 11mm;
   }
 
   .static-host__arrow {
@@ -424,7 +471,7 @@
 
   .possibilities__list dd {
     color: var(--muted);
-    font-size: 10.5pt;
+    font-size: var(--minimum-font-size);
     line-height: 1.3;
   }
 
@@ -441,7 +488,7 @@
 
   .start-here > p {
     color: var(--muted);
-    font-size: 11.5pt;
+    font-size: var(--minimum-font-size);
     line-height: 1.35;
     margin-top: 3mm;
   }
@@ -462,19 +509,19 @@
   .embed-example > code {
     color: #4e2a84;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 10.5pt;
+    font-size: var(--minimum-font-size);
     white-space: nowrap;
   }
 
   .embed-example > span {
     color: var(--muted);
-    font-size: 10pt;
+    font-size: var(--minimum-font-size);
     line-height: 1.25;
   }
 
   .embed-example span code {
     font-family: "IBM Plex Mono", monospace;
-    font-size: 0.92em;
+    font-size: var(--minimum-font-size);
   }
 
   .constraints {
@@ -484,7 +531,7 @@
 
   .constraints ul {
     color: var(--muted);
-    font-size: 11pt;
+    font-size: var(--minimum-font-size);
     line-height: 1.3;
     margin-top: 4mm;
     padding-left: 6mm;
@@ -500,9 +547,9 @@
 
   .poster-footer {
     display: grid;
-    gap: 6mm 12mm;
+    gap: 3mm 12mm;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 22mm 1fr;
+    grid-template-rows: 18mm 52mm 8mm;
     padding: 8mm;
   }
 
@@ -521,7 +568,7 @@
 
   .poster-footer__lead span {
     color: var(--muted);
-    font-size: 11pt;
+    font-size: var(--minimum-font-size);
   }
 
   .poster-footer .qr-link {
@@ -547,15 +594,22 @@
   }
 
   .poster-footer .qr-link__copy strong {
-    font-size: 12.5pt;
+    font-size: var(--minimum-font-size);
     line-height: 1.12;
   }
 
   .poster-footer .qr-link__copy span {
     color: var(--muted);
-    font-size: 8.5pt;
+    font-size: var(--minimum-font-size);
     line-height: 1.15;
     margin-top: 1.5mm;
     overflow-wrap: anywhere;
+  }
+
+  .poster-footer__credits {
+    color: var(--muted);
+    font-size: var(--minimum-font-size);
+    grid-column: 1 / -1;
+    line-height: 1.25;
   }
 }

@@ -23,7 +23,9 @@
     "@fontsource-variable/ibm-plex-sans": "5.3.0",
     "@fontsource/ibm-plex-mono": "5.3.0",
     "@fontsource/ibm-plex-sans-condensed": "5.3.0",
+    "@iconify-json/lucide": "1.2.121",
     "astro": "7.1.6",
+    "astro-icon": "1.1.5",
     "qrcode": "1.5.4"
   },
   "devDependencies": {

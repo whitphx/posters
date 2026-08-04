@@ -11,6 +11,10 @@ status: draft
 ---
 
 import "./poster.css";
+import pyodideLogo from "./assets/pyodide-logo.svg";
+import pythonLogo from "./assets/python-logo.svg";
+import streamlitMark from "./assets/streamlit-mark.svg";
+import { Icon } from "astro-icon/components";
 import QrLink from "../src/renderers/v1/QrLink.astro";
 
 <div className="stlite-poster">
@@ -65,15 +69,24 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
             <div className="environment environment--server">
               <span className="environment__label">Remote server</span>
               <div className="stack-layer stack-layer--app">
-                <strong>Your app script</strong>
+                <div className="stack-layer__identity">
+                  <img className="stack-layer__logo stack-layer__logo--python" src={pythonLogo.src} alt="" aria-hidden="true" />
+                  <strong>Your app script</strong>
+                </div>
                 <span>Python</span>
               </div>
               <div className="stack-layer stack-layer--streamlit">
-                <strong>Streamlit server</strong>
+                <div className="stack-layer__identity">
+                  <img className="stack-layer__logo stack-layer__logo--streamlit" src={streamlitMark.src} alt="" aria-hidden="true" />
+                  <strong>Streamlit server</strong>
+                </div>
                 <span>ScriptRunner and app state</span>
               </div>
               <div className="stack-layer stack-layer--runtime">
-                <strong>CPython</strong>
+                <div className="stack-layer__identity">
+                  <img className="stack-layer__logo stack-layer__logo--python" src={pythonLogo.src} alt="" aria-hidden="true" />
+                  <strong>CPython</strong>
+                </div>
                 <span>Host operating system process</span>
               </div>
             </div>
@@ -87,7 +100,10 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
             <div className="environment environment--browser">
               <span className="environment__label">Web browser</span>
               <div className="frontend-layer">
-                <strong>Streamlit frontend</strong>
+                <div className="stack-layer__identity">
+                  <img className="stack-layer__logo stack-layer__logo--streamlit" src={streamlitMark.src} alt="" aria-hidden="true" />
+                  <strong>Streamlit frontend</strong>
+                </div>
                 <span>React user interface</span>
               </div>
             </div>
@@ -105,7 +121,10 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
             <h3 id="stlite-stack-title">Stlite</h3>
 
             <div className="static-host">
-              <strong>Static file server</strong>
+              <div className="static-host__identity">
+                <Icon name="lucide:database" class="static-host__icon" aria-hidden="true" />
+                <strong>Static file server</strong>
+              </div>
               <span>delivers HTML, JavaScript, Python, and data</span>
               <span className="static-host__arrow" aria-hidden="true">↓</span>
             </div>
@@ -116,15 +135,24 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
               <div className="worker-boundary">
                 <span className="worker-boundary__label">Web Worker</span>
                 <div className="stack-layer stack-layer--app">
-                  <strong>Your app script</strong>
+                  <div className="stack-layer__identity">
+                    <img className="stack-layer__logo stack-layer__logo--python" src={pythonLogo.src} alt="" aria-hidden="true" />
+                    <strong>Your app script</strong>
+                  </div>
                   <span>Python</span>
                 </div>
                 <div className="stack-layer stack-layer--streamlit">
-                  <strong>Streamlit server</strong>
+                  <div className="stack-layer__identity">
+                    <img className="stack-layer__logo stack-layer__logo--streamlit" src={streamlitMark.src} alt="" aria-hidden="true" />
+                    <strong>Streamlit server</strong>
+                  </div>
                   <span>ScriptRunner and app state</span>
                 </div>
                 <div className="stack-layer stack-layer--pyodide">
-                  <strong>Pyodide</strong>
+                  <div className="stack-layer__identity">
+                    <img className="stack-layer__logo stack-layer__logo--pyodide" src={pyodideLogo.src} alt="" aria-hidden="true" />
+                    <strong>Pyodide</strong>
+                  </div>
                   <span>CPython compiled to WebAssembly</span>
                 </div>
               </div>
@@ -136,7 +164,10 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
               </div>
 
               <div className="frontend-layer">
-                <strong>Streamlit frontend</strong>
+                <div className="stack-layer__identity">
+                  <img className="stack-layer__logo stack-layer__logo--streamlit" src={streamlitMark.src} alt="" aria-hidden="true" />
+                  <strong>Streamlit frontend</strong>
+                </div>
                 <span>React user interface</span>
               </div>
             </div>
@@ -218,5 +249,10 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
       label="Read the docs"
       detail="stlite.net"
     />
+    <p className="poster-footer__credits">
+      {
+        "Streamlit logo used under its brand terms. Pyodide logo by the Pyodide project, CC BY 4.0. “Python” and the Python logo are trademarks of the Python Software Foundation."
+      }
+    </p>
   </footer>
 </div>
