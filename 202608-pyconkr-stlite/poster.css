@@ -19,7 +19,7 @@
     color: var(--ink);
     display: grid;
     font-family: "IBM Plex Sans Variable", sans-serif;
-    grid-template-rows: 65mm 646mm 100mm;
+    grid-template-rows: 60mm 651mm 100mm;
     height: 841mm;
     overflow: hidden;
     padding: 16mm 18mm 14mm;
@@ -72,7 +72,7 @@
 
   .poster-title__summary {
     color: var(--muted);
-    font-size: 13.5pt;
+    font-size: 14pt;
     grid-column: 2;
     grid-row: 2;
     line-height: 1.28;
@@ -83,7 +83,7 @@
   .stlite-poster main {
     display: grid;
     gap: 5mm;
-    grid-template-rows: 57mm 354mm 125mm 95mm;
+    grid-template-rows: 47mm 354mm 140mm 95mm;
   }
 
   .standard-intro,
@@ -95,7 +95,7 @@
   .standard-intro {
     align-items: start;
     background: var(--soft);
-    padding: 8mm 10mm 7mm 8mm;
+    padding: 7mm 10mm 6mm 8mm;
   }
 
   .section-number {
@@ -599,10 +599,11 @@
   }
 
   .use-cases {
+    align-content: start;
     background: var(--streamlit-soft);
     display: grid;
     gap: 3mm;
-    grid-template-rows: 24mm 1fr 18mm;
+    grid-template-rows: 24mm 22mm 18mm;
     padding: 8mm;
   }
 
