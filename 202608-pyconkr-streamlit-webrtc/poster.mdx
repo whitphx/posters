@@ -192,72 +192,166 @@ webrtc_streamer(
 
   </section>
 
-<section className="get-started" aria-labelledby="get-started-title">
-  <div className="get-started__heading">
-    <span>Get started</span>
-    <h2 id="get-started-title">Start with a Streamlit app</h2>
-  </div>
-  <dl className="get-started__answers">
-    <div>
-      <dt>What is it?</dt>
-      <dd>A custom component that plugs into an existing Streamlit app.</dd>
+<div className="orientation-row">
+  <section className="get-started" aria-labelledby="get-started-title">
+    <div className="get-started__heading">
+      <span>Get started</span>
+      <h2 id="get-started-title">Start with a Streamlit app</h2>
     </div>
-    <div>
-      <dt>What is Streamlit?</dt>
-      <dd>
-        A Python web UI framework for building interactive apps without frontend
-        code.
-      </dd>
-    </div>
-    <div>
-      <dt>Install</dt>
-      <dd>
-        <code>uv add streamlit streamlit-webrtc</code>
-      </dd>
-    </div>
-  </dl>
-</section>
+    <dl className="get-started__answers">
+      <div>
+        <dt>What is it?</dt>
+        <dd>A custom component that plugs into an existing Streamlit app.</dd>
+      </div>
+      <div>
+        <dt>What is Streamlit?</dt>
+        <dd>
+          A Python web UI framework for building interactive apps without
+          frontend code.
+        </dd>
+      </div>
+      <div className="get-started__install">
+        <dt>Install</dt>
+        <dd>
+          <code>uv add streamlit streamlit-webrtc</code>
+        </dd>
+      </div>
+    </dl>
+  </section>
 
-<section className="under-the-hood" aria-labelledby="how-title">
-  <div className="section-label section-label--inline">
-    <span>Under the hood</span>
-    <h2 id="how-title">How Python reaches the browser in real time</h2>
-  </div>
-  <p className="under-the-hood__intro">
-    {
-      <>
-        <strong>
-          Turn Python models into user-facing apps without adding a second
-          language or implementing WebRTC.
-        </strong>{" "}
-        Use input-only apps to return metadata or text, transform and return
-        live streams, generate output-only media, or combine both directions.
-      </>
-    }
-  </p>
-  <ol className="media-path">
-    <li>
-      <span className="media-path__number">1</span>
-      <strong>Camera + mic</strong>
-      <small>The browser captures media with permission.</small>
-    </li>
-    <li>
-      <span className="media-path__number">2</span>
-      <strong>WebRTC transport</strong>
-      <small>Audio and video travel as real-time tracks.</small>
-    </li>
-    <li className="media-path__focus">
-      <span className="media-path__number">3</span>
-      <strong>Python callback</strong>
-      <small>Inspect, transform, recognize, mix, or generate.</small>
-    </li>
-    <li>
-      <span className="media-path__number">4</span>
-      <strong>Returned output</strong>
-      <small>The processed track appears in the Streamlit app.</small>
-    </li>
-  </ol>
-</section>
+  <section className="under-the-hood" aria-labelledby="how-title">
+    <div className="section-label section-label--inline">
+      <span>Under the hood</span>
+      <h2 id="how-title">How Python reaches the browser in real time</h2>
+    </div>
+    <p className="under-the-hood__intro">
+      {
+        <>
+          <strong>
+            Turn Python models into user-facing apps without adding a second
+            language or implementing WebRTC.
+          </strong>{" "}
+          Use input-only apps to return metadata or text, transform and return
+          live streams, generate output-only media, or combine both directions.
+        </>
+      }
+    </p>
+    <figure className="media-routing">
+      <svg
+        viewBox="0 0 1000 270"
+        role="img"
+        aria-labelledby="media-routing-title media-routing-description"
+      >
+        <title id="media-routing-title">
+          {"Streamlit-WebRTC media routing architecture"}
+        </title>
+        <desc id="media-routing-description">
+          {
+            "The frontend has one input and one output. On the Python backend, Sink, Filter, and Source are arranged in parallel. The input branches to Sink and Filter. Output from Filter and Source merges before returning to the frontend."
+          }
+        </desc>
+        <defs>
+          <marker
+            id="input-arrow"
+            viewBox="0 0 10 10"
+            refX="8"
+            refY="5"
+            markerWidth="14"
+            markerHeight="14"
+            markerUnits="userSpaceOnUse"
+            orient="auto-start-reverse"
+          >
+            <path d="M 0 0 L 10 5 L 0 10 z" />
+          </marker>
+          <marker
+            id="output-arrow"
+            viewBox="0 0 10 10"
+            refX="8"
+            refY="5"
+            markerWidth="14"
+            markerHeight="14"
+            markerUnits="userSpaceOnUse"
+            orient="auto-start-reverse"
+          >
+            <path d="M 0 0 L 10 5 L 0 10 z" />
+          </marker>
+        </defs>
+
+        <text className="media-routing__zone-label" x="24" y="25">
+          {"FRONTEND"}
+        </text>
+        <text className="media-routing__zone-label" x="320" y="25">
+          {"BACKEND · PYTHON"}
+        </text>
+        <line className="media-routing__boundary" x1="290" y1="8" x2="290" y2="260" />
+
+        <rect className="media-routing__endpoint" x="24" y="48" width="210" height="40" rx="8" />
+        <text className="media-routing__endpoint-title" x="40" y="74">
+          {"INPUT"}
+        </text>
+        <text className="media-routing__endpoint-detail" x="105" y="74">
+          {"camera / mic"}
+        </text>
+
+        <rect className="media-routing__endpoint" x="24" y="212" width="210" height="40" rx="8" />
+        <text className="media-routing__endpoint-title" x="40" y="238">
+          {"OUTPUT"}
+        </text>
+        <text className="media-routing__endpoint-detail" x="120" y="238">
+          {"player"}
+        </text>
+
+        <path className="media-routing__input-path" d="M 234 68 H 320" />
+        <circle className="media-routing__input-junction" cx="320" cy="68" r="5" />
+        <path className="media-routing__input-path" d="M 320 68 H 640" />
+        <path className="media-routing__input-path media-routing__input-path--arrow" d="M 420 68 V 105" />
+        <path className="media-routing__input-path media-routing__input-path--arrow" d="M 640 68 V 105" />
+
+        <rect className="media-routing__role media-routing__role--sink" x="320" y="105" width="200" height="84" rx="10" />
+        <text className="media-routing__role-title" x="338" y="133">
+          {"SINK"}
+        </text>
+        <text className="media-routing__role-code" x="338" y="156">
+          {"sink_*_track"}
+        </text>
+        <text className="media-routing__role-detail" x="338" y="176">
+          {"input only"}
+        </text>
+
+        <rect className="media-routing__role media-routing__role--filter" x="540" y="105" width="200" height="84" rx="10" />
+        <text className="media-routing__role-title" x="558" y="133">
+          {"FILTER"}
+        </text>
+        <text className="media-routing__role-code" x="558" y="156">
+          {"frame_callback"}
+        </text>
+        <text className="media-routing__role-detail" x="558" y="176">
+          {"input → output"}
+        </text>
+
+        <rect className="media-routing__role media-routing__role--source" x="760" y="105" width="200" height="84" rx="10" />
+        <text className="media-routing__role-title" x="778" y="133">
+          {"SOURCE"}
+        </text>
+        <text className="media-routing__role-code" x="778" y="156">
+          {"source_*_track"}
+        </text>
+        <text className="media-routing__role-detail" x="778" y="176">
+          {"output only"}
+        </text>
+
+        <path className="media-routing__output-path media-routing__output-path--arrow" d="M 640 189 V 232" />
+        <path className="media-routing__output-path media-routing__output-path--arrow" d="M 860 189 V 232" />
+        <path className="media-routing__output-path" d="M 860 232 H 320" />
+        <circle className="media-routing__output-junction" cx="320" cy="232" r="5" />
+        <path className="media-routing__output-path media-routing__output-path--arrow" d="M 320 232 H 234" />
+      </svg>
+      <figcaption>
+        {"Sink, filter, and source can be combined independently for audio and video."}
+      </figcaption>
+    </figure>
+  </section>
+</div>
 
 <section className="patterns" aria-labelledby="patterns-title">
   <div className="section-label section-label--inline">
