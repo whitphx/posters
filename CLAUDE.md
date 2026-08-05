@@ -1,9 +1,14 @@
 # Project instructions
 
+## Poster design
+
+- Every visual element must communicate content, hierarchy, grouping, a relationship, or a flow. When an element has no informational purpose, omit it.
+- Do not add decorative kicker text, rules, rails, patterns, shapes, or marks solely to create visual interest or fill space.
+- Do not use a line as a substitute for clear typography and spacing. Add one only when it separates content, defines a container, or expresses a relationship.
+
 ## Poster production
 
 - Treat the physical paper as the default white page. Do not add a full-page background fill unless a poster brief explicitly requires one. Preview paper colors must not appear in print output.
-- Do not add decorative page rails, background patterns, or divider lines. Lines are appropriate only when they separate sections, define containers, or show a relationship or flow.
 - Use section numbering only when order or sequence carries semantic meaning. Do not add 01/02/03-style markers as decoration.
 - Keep screenshot placeholders as local, individually replaceable assets. Do not print asset replacement notes or placeholder explanations on the poster.
 - Size body text, code, labels, URLs, and screenshots for reading at conference-poster distance.
