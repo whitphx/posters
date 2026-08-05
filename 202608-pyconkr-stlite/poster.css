@@ -15,7 +15,7 @@
     --bridge: #087f8c;
     --bridge-soft: #e2f4f3;
     --minimum-font-size: 18pt;
-    background: #fff;
+    background: transparent;
     color: var(--ink);
     display: grid;
     font-family: "IBM Plex Sans Variable", sans-serif;
@@ -399,10 +399,14 @@
 
   .transport__arrow {
     color: var(--bridge);
-    font-family: "IBM Plex Sans", sans-serif;
-    font-size: 25pt;
-    font-weight: 650;
-    line-height: 0.8;
+    display: flex;
+    justify-content: center;
+  }
+
+  .transport__arrow svg {
+    height: 8.8mm;
+    stroke-width: 2;
+    width: 8.8mm;
   }
 
   .environment--browser:not(.environment--browser-full) {
@@ -539,8 +543,9 @@
     border-inline: 0.7mm solid #8dc6c5;
   }
 
-  .transport--bridge .transport__arrow {
-    font-size: 19pt;
+  .transport--bridge .transport__arrow svg {
+    height: 6.7mm;
+    width: 6.7mm;
   }
 
   .architecture__column--stlite .frontend-layer {
@@ -695,10 +700,20 @@
   }
 
   .deployment-path__arrow {
+    align-items: center;
     color: var(--bridge);
+    display: flex;
     font-family: "IBM Plex Mono", monospace;
     font-size: var(--minimum-font-size);
+    gap: 1.5mm;
     line-height: 1;
+  }
+
+  .deployment-path__arrow svg {
+    flex: 0 0 auto;
+    height: 6mm;
+    stroke-width: 1.7;
+    width: 6mm;
   }
 
   .deployment-path--desktop .deployment-path__arrow {

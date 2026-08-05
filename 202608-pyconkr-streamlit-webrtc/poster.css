@@ -347,13 +347,6 @@
     min-width: 0;
   }
 
-  .streamlit-webrtc-poster
-    .hero-window.mac-window
-    .mac-window__titlebar
-    strong {
-    font-size: var(--minimum-text-size);
-  }
-
   .hero-window__image {
     display: block;
     height: 100%;
@@ -589,10 +582,15 @@
     margin-top: 1mm;
   }
 
+  /* The fixed section heights above this one overrun their declared bases by
+     13.4mm between them, and the poster root clips rather than shrinks, so the
+     overrun would come out of the bottom margin. The gallery gives the space
+     back: most previews are landscape inside a portrait cell and letterbox
+     anyway, so a shorter row costs them nothing. */
   .examples {
     display: flex;
     flex-direction: column;
-    flex: 0 0 273mm;
+    flex: 0 0 259.5mm;
     min-height: 0;
   }
 
