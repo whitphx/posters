@@ -21,6 +21,7 @@ import patternLoopback from "./assets/pattern-loopback.svg";
 import patternMix from "./assets/pattern-mix.svg";
 import patternPeer from "./assets/pattern-peer.svg";
 import patternReplace from "./assets/pattern-replace.svg";
+import pythonLogo from "./assets/python-logo.svg";
 import MacWindow from "../src/renderers/v1/MacWindow.astro";
 import QrLink from "../src/renderers/v1/QrLink.astro";
 
@@ -280,7 +281,16 @@ webrtc_streamer(
         <text className="media-routing__zone-label" x="24" y="25">
           {"FRONTEND"}
         </text>
-        <text className="media-routing__zone-label" x="320" y="25">
+        <image
+          href={pythonLogo.src}
+          x="320"
+          y="1"
+          width="22"
+          height="27"
+          preserveAspectRatio="xMidYMid meet"
+          aria-hidden="true"
+        />
+        <text className="media-routing__zone-label" x="354" y="25">
           {"BACKEND · PYTHON"}
         </text>
         <line className="media-routing__boundary" x1="290" y1="8" x2="290" y2="260" />
@@ -323,7 +333,7 @@ webrtc_streamer(
           {"FILTER"}
         </text>
         <text className="media-routing__role-code" x="558" y="156">
-          {"frame_callback"}
+          {"*_frame_callback"}
         </text>
         <text className="media-routing__role-detail" x="558" y="176">
           {"input → output"}
