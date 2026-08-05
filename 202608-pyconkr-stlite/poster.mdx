@@ -112,7 +112,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
             </div>
 
             <div className="transport transport--network">
-              <span className="transport__arrow" aria-hidden="true"><Icon name="lucide:arrow-up-down" /></span>
+              <span className="transport__arrow" aria-hidden="true">↕</span>
               <strong>HTTP + WebSocket</strong>
               <span>over the network</span>
             </div>
@@ -183,7 +183,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
               </div>
 
               <div className="transport transport--bridge">
-                <span className="transport__arrow" aria-hidden="true"><Icon name="lucide:arrow-up-down" /></span>
+                <span className="transport__arrow" aria-hidden="true">↕</span>
                 <strong>In-browser transport bridge</strong>
                 <span>Worker messages carrying HTTP + WebSocket traffic</span>
               </div>
@@ -271,7 +271,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
 
           <div className="deployment-path deployment-path--cloudflare" aria-label="The browser frontend communicates with a Streamlit server on Cloudflare Workers">
             <span>Browser frontend</span>
-            <span className="deployment-path__arrow" aria-hidden="true"><Icon name="lucide:arrow-up-down" />WebSocket</span>
+            <span className="deployment-path__arrow" aria-hidden="true">↕ WebSocket</span>
             <span><Icon name="lucide:server-cog" class="deployment-path__icon" aria-hidden="true" />Streamlit on Pyodide in a Python Worker</span>
           </div>
 

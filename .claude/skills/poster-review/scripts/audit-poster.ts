@@ -163,16 +163,16 @@ async function settle(page: Page) {
  * pictographs, so a mark like an arrow or a heart comes from the exporting
  * machine's fonts, and rewording copy or importing an icon set to avoid one
  * costs more than it protects. So this is reported as an inventory rather than
- * as a finding — the author needs to know which glyphs are machine-dependent
- * and confirm them in the archived PDF, not be told to remove them.
+ * as a finding. The author needs to know which glyphs are machine-dependent so
+ * they can be confirmed in the archived PDF, not be told to remove them.
  *
  * This has to come from the browser's own answer rather than from measuring
  * glyph widths. A width comparison against a deliberately absent family looks
  * like it should work and does not: `"IBM Plex Sans Variable", sans-serif` and a
  * nonexistent family resolve to different host fallbacks, so the two widths
  * differ and the glyph reads as supplied when nothing supplied it. That gives
- * false negatives on exactly the glyphs most likely to be missing — the arrows
- * and symbols a poster sets in prose — and a check that quietly passes is worse
+ * false negatives on exactly the glyphs most likely to be missing, the arrows
+ * and symbols a poster sets in prose, and a check that quietly passes is worse
  * than no check. `CSS.getPlatformFontsForNode` reports the faces that actually
  * rendered, which is the same thing `pdffonts` later shows embedded in the PDF.
  *
@@ -202,9 +202,20 @@ async function substitutedFonts(page: Page): Promise<Substitution[]> {
       selector: ".poster-frame [data-audit-text]",
     })) as { nodeIds: number[] };
 
+    // measure() tags the text carriers this walks. Failing loudly beats
+    // returning an empty inventory that reads as "no substitutions".
+    if (!nodeIds.length) {
+      throw new Error(
+        "no [data-audit-text] nodes; substitutedFonts() must run after measure()",
+      );
+    }
+
     // Chromium names the face it used ("IBM Plex Mono Medium") where the
     // @font-face rule names the family ("IBM Plex Mono"), so neither string
-    // contains the other reliably in one direction.
+    // contains the other reliably in one direction. The prefix match leaves one
+    // ambiguity: a developer machine with Plex installed system-wide reports the
+    // same name as the packaged face, so a genuine substitution there reads as
+    // packaged. `font-family-not-shipped` is what covers that case.
     const isLocked = (family: string) =>
       locked.some(
         (own) =>
@@ -213,7 +224,7 @@ async function substitutedFonts(page: Page): Promise<Substitution[]> {
           own.replace(/ Variable$/, "") === family,
       );
 
-    const grouped = new Map<string, { glyphs: Set<string>; sample: string }>();
+    const grouped = new Map<string, { glyphs: Set<string> }>();
 
     for (const nodeId of nodeIds) {
       let fonts: { fonts?: { familyName: string; glyphCount: number }[] };
@@ -261,10 +272,7 @@ async function substitutedFonts(page: Page): Promise<Substitution[]> {
 
       for (const font of host) {
         const key = `${region}|${font.familyName}`;
-        const entry = grouped.get(key) ?? {
-          glyphs: new Set<string>(),
-          sample: own,
-        };
+        const entry = grouped.get(key) ?? { glyphs: new Set<string>() };
         // Only non-Latin runs realistically fall through, so showing them names
         // the offending character instead of the whole label.
         for (const glyph of own) {
@@ -281,6 +289,10 @@ async function substitutedFonts(page: Page): Promise<Substitution[]> {
 
     for (const [key, entry] of grouped) {
       const [region, family] = key.split("|");
+      // Nothing nameable means the face drew Latin text, which is the webfonts
+      // having failed to load rather than one symbol falling through, and a line
+      // per element would bury the symbols this is meant to surface.
+      if (!entry.glyphs.size) continue;
       substitutions.push({
         selector: region,
         family,
@@ -341,8 +353,8 @@ async function measure(
        * Screen pixels per unit of the element's own font-size.
        *
        * SVG font-size is expressed in user units, so a `font-size: 20px` label
-       * inside a viewBox prints at whatever the viewBox-to-layout ratio makes it
-       * — a number a CSS grep cannot predict. The screen CTM resolves that.
+       * inside a viewBox prints at whatever the viewBox-to-layout ratio makes
+       * it, a number a CSS grep cannot predict. The screen CTM resolves that.
        * HTML font-size is already in CSS pixels, needing only the frame scale.
        */
       function fontScale(element: Element): number {
@@ -697,8 +709,8 @@ async function measure(
             bottom: box.bottom - rect.bottom,
           };
 
-          // A band that meets both opposite edges is full-bleed by construction
-          // — a footer rule, a highlighted code line, a section background. Its
+          // A band meeting both opposite edges is full-bleed by construction: a
+          // footer rule, a highlighted code line, a section background. Its
           // position on that axis says nothing about whether content is
           // crowded, though its extent on the other axis still does.
           const spansWidth = reach.left >= -1 && reach.right >= -1;
@@ -737,23 +749,26 @@ async function measure(
           }
         }
 
-        if (!Number.isFinite(past.top)) continue;
+        const sides = ["top", "right", "bottom", "left"] as const;
+
+        // A side stays infinite when every ink descendant was skipped on that
+        // axis, which the full-bleed and negative-margin rules do routinely.
+        // The other sides are still measured, so only give up when none is.
+        if (!sides.some((side) => Number.isFinite(past[side]))) continue;
 
         const asMm = (px: number) => Math.round(px * mmPerPx * 10) / 10;
 
-        // A fixed-size box clipping an oversized image is the crop idiom, not a
-        // layout failure, so saying "content is lost" there would be wrong.
+        // A small box holding an image is the crop idiom rather than a layout
+        // failure, so reporting lost content there would be wrong. Declared size
+        // cannot be part of the test: computed width and height resolve to used
+        // pixel values for any rendered element, never "auto".
         const looksLikeCrop =
-          style.width !== "auto" &&
-          style.height !== "auto" &&
           descendants.length <= 3 &&
           descendants.some((descendant) =>
             ["img", "svg", "picture", "video"].includes(
               descendant.tagName.toLowerCase(),
             ),
           );
-
-        const sides = ["top", "right", "bottom", "left"] as const;
 
         const lost = sides.filter((side) => past[side] > 1);
         if (lost.length && !looksLikeCrop) {
@@ -849,7 +864,7 @@ async function measure(
       /**
        * Borders as printed rather than as declared. Chromium resolves a border
        * width to whole CSS pixels, so 0.5mm (1.89px) is used as 1px, which is
-       * 0.75pt on paper — thin enough that large-format printing can break or
+       * 0.75pt on paper, thin enough that large-format printing can break or
        * drop the line. The declaration reads reassuringly and the used value is
        * the one that gets inked.
        */
@@ -1004,7 +1019,7 @@ async function main() {
       }
 
       console.log(
-        `\n${poster.slug} — ${poster.widthMm} x ${poster.heightMm} mm`,
+        `\n${poster.slug}: ${poster.widthMm} x ${poster.heightMm} mm`,
       );
       console.log(
         `  smallest rendered type: ${result.typeScale[0]?.pt ?? "n/a"}pt` +

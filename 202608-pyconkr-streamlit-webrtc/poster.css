@@ -582,11 +582,10 @@
     margin-top: 1mm;
   }
 
-  /* The fixed section heights above this one overrun their declared bases by
-     13.4mm between them, and the poster root clips rather than shrinks, so the
-     overrun would come out of the bottom margin. The gallery gives the space
-     back: most previews are landscape inside a portrait cell and letterbox
-     anyway, so a shorter row costs them nothing. */
+  /* The header and hero grow past their fixed bases, and the poster root clips
+     rather than shrinks, so the excess would come out of the bottom margin. The
+     gallery gives the space back: most previews are landscape inside a portrait
+     cell and letterbox anyway, so a shorter row costs them nothing. */
   .examples {
     display: flex;
     flex-direction: column;

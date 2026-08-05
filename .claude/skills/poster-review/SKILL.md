@@ -5,7 +5,9 @@ description: Verify that a poster in this repository still holds up at its decla
 
 # Poster review
 
-`DESIGN.md` states the standards a poster must meet and each `poster-brief.md` states what one poster must say. Neither is enforced: `pnpm export` only checks PDF page count, paper dimensions, and whether the whole sheet overflows. Everything that decides whether a poster works on a wall three meters away sits in the gap between them.
+`DESIGN.md` states the standards a poster must meet and each `poster-brief.md` states what one poster must say. Almost none of it is enforced: `pnpm export` checks PDF page count, paper dimensions, whether the whole sheet overflows, and the paper frame's own print background. Everything that decides whether a poster works on a wall three meters away sits in the gap between them.
+
+The script here runs on demand rather than in CI, because it needs a browser, a dev server, and a reviewer to read what it reports. Treat `pnpm export` as the gate that blocks a broken build and this as the pass a person runs before sending a poster anywhere.
 
 This skill closes that gap in two passes. Measurement finds what is quantifiable and would otherwise be invisible. Looking finds what is not. Neither substitutes for the other, and the pass that gets skipped is usually the second one.
 
