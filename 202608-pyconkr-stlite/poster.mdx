@@ -176,55 +176,117 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
       </figure>
     </section>
 
-    <section className="possibilities" aria-labelledby="possibilities-title">
-      <div className="section-heading section-heading--compact">
+    <section className="deployment" aria-labelledby="deployment-title">
+      <div className="section-heading section-heading--compact deployment__heading">
         <div className="section-number" aria-hidden="true">03</div>
-        <h2 id="possibilities-title">What becomes possible?</h2>
+        <div>
+          <h2 id="deployment-title">One Streamlit app, three deployment targets</h2>
+          <p>Choose where Python runs and how people open the app.</p>
+        </div>
       </div>
-      <dl className="possibilities__list">
+
+      <div className="deployment__targets">
+        <article className="deployment-target deployment-target--browser">
+          <header className="deployment-target__header">
+            <Icon name="lucide:panels-top-left" class="deployment-target__icon" aria-hidden="true" />
+            <div>
+              <h3>Browser SPA</h3>
+              <p>Python runs on each visitor&apos;s device.</p>
+            </div>
+          </header>
+
+          <div className="browser-options">
+            <section>
+              <code>@stlite/browser</code>
+              <p>Mount an app in static HTML. The simplest path to a working SPA.</p>
+            </section>
+            <section>
+              <code>@stlite/react</code>
+              <p>Embed the Stlite runtime and app view in an existing React application.</p>
+            </section>
+            <section>
+              <strong>Stlite Sharing</strong>
+              <p>Put app files in a URL fragment for the Sharing page to decode and run locally.</p>
+            </section>
+          </div>
+
+          <p className="deployment-target__runtime"><strong>Host:</strong> any static file server</p>
+        </article>
+
+        <article className="deployment-target deployment-target--desktop">
+          <header className="deployment-target__header">
+            <Icon name="lucide:monitor-down" class="deployment-target__icon" aria-hidden="true" />
+            <div>
+              <h3>Desktop</h3>
+              <p>Package the browser runtime as an installable app.</p>
+            </div>
+          </header>
+
+          <div className="deployment-path deployment-path--desktop" aria-label="Electron contains the Stlite browser runtime">
+            <span>Electron shell</span>
+            <span className="deployment-path__arrow" aria-hidden="true">contains</span>
+            <span>Stlite browser runtime</span>
+          </div>
+
+          <code className="deployment-target__package">@stlite/desktop</code>
+          <p className="deployment-target__runtime"><strong>Runtime:</strong> the user&apos;s computer</p>
+        </article>
+
+        <article className="deployment-target deployment-target--cloudflare">
+          <header className="deployment-target__header">
+            <Icon name="lucide:cloud-cog" class="deployment-target__icon" aria-hidden="true" />
+            <div>
+              <div className="deployment-target__title-row">
+                <h3>Cloudflare Workers</h3>
+                <span>Experimental</span>
+              </div>
+              <p>Keep the familiar Streamlit client and server architecture.</p>
+            </div>
+          </header>
+
+          <div className="deployment-path deployment-path--cloudflare" aria-label="The browser frontend communicates with a Streamlit server on Cloudflare Workers">
+            <span>Browser frontend</span>
+            <span className="deployment-path__arrow" aria-hidden="true">↕ WebSocket</span>
+            <span>Streamlit on Pyodide<br />in a Python Worker</span>
+          </div>
+
+          <code className="deployment-target__package">@stlite/cloudflare</code>
+          <p className="deployment-target__runtime"><strong>Runtime:</strong> Cloudflare&apos;s edge</p>
+        </article>
+      </div>
+    </section>
+
+    <section className="use-cases" aria-labelledby="use-cases-title">
+      <div className="section-heading section-heading--compact use-cases__heading">
+        <div className="section-number" aria-hidden="true">04</div>
+        <div>
+          <h2 id="use-cases-title">When browser-run Stlite makes sense</h2>
+          <p>Use it when running Python on the visitor&apos;s device is part of the solution.</p>
+        </div>
+      </div>
+
+      <dl className="use-cases__list">
         <div>
           <dt>Private data tools</dt>
-          <dd>Process files locally without sending them to a remote application server.</dd>
+          <dd>Process selected files locally instead of sending them to an application server.</dd>
         </div>
         <div>
-          <dt>Offline use</dt>
-          <dd>Keep running after the runtime and app resources have loaded.</dd>
+          <dt>Offline apps</dt>
+          <dd>Keep working after the runtime, packages, and app resources have loaded.</dd>
         </div>
         <div>
           <dt>Scale with visitors</dt>
-          <dd>Run Python computation on each visitor&apos;s device instead of one central server.</dd>
+          <dd>Serve static files while each visitor supplies the Python compute.</dd>
         </div>
         <div>
           <dt>New delivery formats</dt>
-          <dd>Publish as a static site, installable web app, or Electron desktop app.</dd>
+          <dd>Place the same Streamlit experience in a web page, React app, or Electron shell.</dd>
         </div>
       </dl>
-    </section>
 
-    <section className="use-section" aria-labelledby="use-title">
-      <div className="start-here">
-        <h2 id="use-title">Try it, share it, host it</h2>
-        <p>
-          <strong>Stlite Sharing</strong>
-          {
-            " combines a browser editor with a live preview. App files can travel in the URL fragment, so the sharing service does not need to store them."
-          }
-        </p>
-        <div className="embed-example" aria-label="HTML example for embedding a Stlite app">
-          <code>&lt;streamlit-app src=&quot;./app.py&quot;&gt;&lt;/streamlit-app&gt;</code>
-          <span>Embed an app in a static page with <code>@stlite/browser</code>.</span>
-        </div>
-      </div>
-
-      <aside className="constraints" aria-labelledby="constraints-title">
-        <h2 id="constraints-title">The browser changes the limits</h2>
-        <ul>
-          <li>Packages need Pyodide-compatible builds.</li>
-          <li>The initial download includes Python and required packages.</li>
-          <li>Browser networking rules such as CORS still apply.</li>
-          <li>Source is visible, so secrets cannot live in the app bundle.</li>
-        </ul>
-      </aside>
+      <p className="use-cases__limits">
+        <strong>Check first:</strong> packages need Pyodide-compatible builds, the initial download includes Python, CORS still applies, and bundled source cannot contain secrets.
+      </p>
     </section>
 
   </main>

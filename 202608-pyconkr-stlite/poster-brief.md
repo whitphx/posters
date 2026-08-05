@@ -55,6 +55,16 @@ Data exploration, image processing, statistics, teaching materials, reproducible
 
 Because the runtime already lives in a browser environment, a Stlite application can be packaged with Electron or delivered as an installable web application.
 
+## Deployment targets
+
+The poster groups Stlite deployment by where Python runs rather than by package name alone.
+
+- Browser SPA: `@stlite/browser` mounts an app in a static page, `@stlite/react` embeds it in an existing React application, and Stlite Sharing transfers app files in a URL fragment for local decoding and execution.
+- Desktop: `@stlite/desktop` packages the browser runtime in an Electron application.
+- Cloudflare Workers (experimental): `@stlite/cloudflare` runs the Stlite-patched Streamlit runtime on Pyodide in Cloudflare Python Workers. The normal browser frontend communicates with the edge-hosted server over WebSocket, preserving Streamlit's client and server architecture.
+
+The deployment map must not replace the explanation of why browser-run Stlite is useful. Keep the local-runtime benefits and their decision context visible: private local file processing, offline operation, visitor-supplied compute for public demos, and reuse across embedded web and desktop targets. Pair those benefits with the browser constraints so the poster also explains when another target is the better choice.
+
 ## Trade-offs to explain
 
 - Packages with native extensions need Pyodide-compatible builds.
@@ -88,8 +98,8 @@ The page explains one transformation: the Python server moves from the remote si
 | Privacy, offline operation, and distributed compute  |
 | attach directly to the moved runtime.                |
 +------------------------------------------------------+
-| Stlite Sharing  | static hosting | desktop / PWA     |
-| concrete application examples and screenshots        |
+| BROWSER SPA              | DESKTOP       | WORKERS  |
+| browser / React / Sharing| Electron      | edge     |
 +------------------------------------------------------+
 | Browser constraints                    project links  |
 +------------------------------------------------------+
@@ -115,8 +125,6 @@ The architecture comparison is the primary visual and should occupy most of the 
 ## Decisions still open
 
 - Which one or two application examples best communicate potential beyond the architecture
-- Whether desktop and PWA packaging belong on the main poster or only in supporting copy
-- How much of the current `@stlite/browser` custom-element API should appear
 - PyCon Korea logo usage and print-shop requirements
 
 ## Primary sources
@@ -125,5 +133,8 @@ The architecture comparison is the primary visual and should occupy most of the 
 - [Streamlit meets WebAssembly, Stlite](https://www.whitphx.info/posts/20221104-streamlit-wasm-stlite/)
 - [Stlite documentation](https://stlite.net/)
 - [`@stlite/browser` documentation](https://stlite.net/browser/)
+- [`@stlite/react` documentation](https://stlite.net/react/)
+- [`@stlite/desktop` documentation](https://stlite.net/desktop/)
+- [`@stlite/cloudflare` documentation](https://github.com/whitphx/stlite/blob/main/docs/src/content/docs/cloudflare.mdx)
 - [Stlite Sharing](https://edit.share.stlite.net/)
 - [Pyodide](https://pyodide.org/)
