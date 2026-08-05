@@ -1,7 +1,10 @@
 # Asset attribution and licensing
 
 - `python-logo.svg`: Python logo device from the [Python Software Foundation](https://www.python.org/community/logos/), subject to the [PSF Trademark Usage Policy](https://www.python.org/psf/trademarks/). “Python” and the Python logo are trademarks of the Python Software Foundation.
-  The application previews remain the work of their respective creators and identify the cited public demonstrations. They were retrieved on August 5, 2026.
+- `streamlit-mark.svg`: Official color mark from the [Streamlit brand page](https://streamlit.io/brand), used to identify Streamlit in accordance with the usage terms published there.
+- `webrtc-logo.svg`: Official vertical logo from the [WebRTC press kit](https://webrtc.github.io/webrtc-org/press/), which provides the asset for web and print communications.
+
+The application previews remain the work of their respective creators and identify the cited public demonstrations. They were retrieved on August 5, 2026.
 
 - `example-programmable-audio.jpg`: Crop of the running application at 12 seconds in the video from [Yuichiro's programmable audio source post](https://x.com/whitphx/status/1937168598646366590).
 - `example-emotion-music.jpg`: Crop of the second image from [Pavankumar Mhaske's emotion-based music recommendation post](https://x.com/P1kumarMhaske/status/1785549913800990776).

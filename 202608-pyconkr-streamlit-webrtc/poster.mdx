@@ -22,6 +22,8 @@ import exampleVideoChat from "./assets/example-video-chat.jpg";
 import exampleVoiceChatgpt from "./assets/example-voice-chatgpt.jpg";
 import heroYoloDetection from "./assets/hero-yolo-detection.png";
 import pythonLogo from "./assets/python-logo.svg";
+import streamlitMark from "./assets/streamlit-mark.svg";
+import webrtcLogo from "./assets/webrtc-logo.svg";
 import MacWindow from "../src/renderers/v1/MacWindow.astro";
 import QrLink from "../src/renderers/v1/QrLink.astro";
 import PostCitation from "./PostCitation.astro";
@@ -37,6 +39,13 @@ import PostCitation from "./PostCitation.astro";
       "Add live camera and microphone input to a Streamlit app, process it in Python, and return video, audio, text, or other results. Everything lives in one Python script, with no frontend code. Streamlit-WebRTC supplies the browser component and handles WebRTC transport."
     }
   </p>
+  <figure className="poster-header__logos">
+    <img src={streamlitMark.src} alt="Streamlit logo" />
+    <span role="img" aria-label="combined with">
+      ❤️
+    </span>
+    <img src={webrtcLogo.src} alt="WebRTC logo" />
+  </figure>
 </header>
 
   <section className="hero" aria-labelledby="hero-title">

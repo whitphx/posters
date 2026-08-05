@@ -33,6 +33,7 @@
 
   .poster-header {
     flex: 0 0 70mm;
+    position: relative;
   }
 
   .poster-header h1 {
@@ -54,6 +55,31 @@
     line-height: 1.35;
     max-width: 525mm;
     padding-top: 3.5mm;
+  }
+
+  .poster-header__logos {
+    align-items: center;
+    display: flex;
+    gap: 7mm;
+    height: 36mm;
+    position: absolute;
+    right: 1mm;
+    top: -1mm;
+  }
+
+  .poster-header__logos img:first-child {
+    height: 28mm;
+    width: auto;
+  }
+
+  .poster-header__logos span {
+    font-size: 42pt;
+    line-height: 1;
+  }
+
+  .poster-header__logos img:last-child {
+    height: 35mm;
+    width: auto;
   }
 
   .section-label {
