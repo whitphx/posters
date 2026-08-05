@@ -219,29 +219,38 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
 
           <div className="browser-options">
             <section>
-              <div className="browser-options__label">
+              <header className="browser-options__header">
                 <Icon name="lucide:code-xml" class="browser-options__icon" aria-hidden="true" />
-                <code>@stlite/browser</code>
-              </div>
-              <p>Mount an app in static HTML. The simplest path to a working SPA.</p>
+                <div>
+                  <code>@stlite/browser</code>
+                </div>
+              </header>
+              <p className="browser-options__tagline">Self-host static HTML</p>
+              <p>Publish the runtime and app files from any static file server.</p>
             </section>
             <section>
-              <div className="browser-options__label">
+              <header className="browser-options__header">
                 <Icon name="lucide:component" class="browser-options__icon" aria-hidden="true" />
-                <code>@stlite/react</code>
-              </div>
-              <p>Embed the Stlite runtime and app view in an existing React application.</p>
+                <div>
+                  <code>@stlite/react</code>
+                </div>
+              </header>
+              <p className="browser-options__tagline">Embed in a React app</p>
+              <p>Mount a Stlite-powered Streamlit view inside the React UI you already have.</p>
             </section>
             <section>
-              <div className="browser-options__label">
+              <header className="browser-options__header">
                 <Icon name="lucide:share-2" class="browser-options__icon" aria-hidden="true" />
-                <strong>Stlite Sharing</strong>
-              </div>
-              <p>Put app files in a URL fragment for the Sharing page to decode and run locally.</p>
+                <div>
+                  <h4>Stlite Sharing</h4>
+                </div>
+              </header>
+              <p className="browser-options__tagline">Write and share online</p>
+              <p>Use the hosted editor to serialize app files into a URL and share them without self-hosting.</p>
             </section>
           </div>
 
-          <p className="deployment-target__runtime"><strong>Host:</strong> any static file server</p>
+          <p className="deployment-target__runtime"><strong>Runtime:</strong> each visitor&apos;s browser</p>
         </article>
 
         <article className="deployment-target deployment-target--desktop">
@@ -322,7 +331,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
 
   </main>
 
-  <footer className="poster-footer" aria-label="Stlite project links">
+  <footer className="poster-footer" aria-label="Stlite links and related talk">
     <p className="poster-footer__lead">
       <strong>Open Stlite in your browser.</strong>
       <span>No Python installation or application server required.</span>
@@ -341,6 +350,11 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
       href="https://stlite.net/"
       label="Read the docs"
       detail="stlite.net"
+    />
+    <QrLink
+      href="https://ep2025.europython.eu/session/democratize-serverless-web-ai-apps-for-python-devs"
+      label="EuroPython 2025 talk"
+      detail="Democratize serverless web AI apps for Python devs"
     />
     <p className="poster-footer__credits">
       {

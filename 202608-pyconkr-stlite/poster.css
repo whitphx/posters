@@ -36,6 +36,7 @@
   .stlite-poster h1,
   .stlite-poster h2,
   .stlite-poster h3,
+  .stlite-poster h4,
   .stlite-poster p,
   .stlite-poster figure,
   .stlite-poster figcaption,
@@ -624,11 +625,12 @@
 
   .browser-options section {
     border-top: 0.5mm solid var(--line);
+    display: grid;
+    grid-template-rows: 12mm 16mm 1fr;
     padding: 4mm 3mm 0 0;
   }
 
   .browser-options code,
-  .browser-options strong,
   .deployment-target__package {
     color: #4e2a84;
     font-family: "IBM Plex Mono", monospace;
@@ -637,10 +639,17 @@
     line-height: 1.15;
   }
 
-  .browser-options__label {
+  .browser-options__header {
     align-items: center;
     display: flex;
     gap: 2mm;
+  }
+
+  .browser-options__header h4 {
+    font-family: "IBM Plex Sans Variable", sans-serif;
+    font-size: var(--minimum-font-size);
+    font-weight: 500;
+    line-height: 1.15;
   }
 
   .browser-options__icon {
@@ -653,6 +662,15 @@
 
   .browser-options p {
     margin-top: 2mm;
+  }
+
+  .browser-options .browser-options__tagline {
+    color: var(--ink);
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-size: var(--minimum-font-size);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-top: 4mm;
   }
 
   .deployment-path {
@@ -793,7 +811,7 @@
   .poster-footer {
     display: grid;
     gap: 3mm 12mm;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 16mm 46mm 16mm;
     padding: 8mm;
   }
