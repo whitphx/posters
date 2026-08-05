@@ -334,6 +334,8 @@
   }
 
   .get-started {
+    --get-started-heading-size: 31.5pt;
+    --get-started-text-size: 27pt;
     display: flex;
     flex-direction: column;
   }
@@ -352,7 +354,7 @@
     color: #fff;
     display: inline-block;
     font-family: "IBM Plex Mono", monospace;
-    font-size: var(--minimum-text-size);
+    font-size: var(--get-started-text-size);
     letter-spacing: 0.08em;
     padding: 1.5mm 2.5mm;
     text-transform: uppercase;
@@ -360,14 +362,14 @@
 
   .get-started__heading h2 {
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: 21pt;
+    font-size: var(--get-started-heading-size);
     line-height: 1;
   }
 
   .get-started__answers {
     display: grid;
-    gap: 6mm 5mm;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6mm;
+    grid-template-columns: minmax(0, 1fr);
     margin: 0;
   }
 
@@ -378,7 +380,7 @@
 
   .get-started__answers dt {
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: var(--minimum-text-size);
+    font-size: var(--get-started-text-size);
     font-weight: 700;
     line-height: 1;
     margin-bottom: 2mm;
@@ -386,7 +388,7 @@
 
   .get-started__answers dd {
     color: #536a80;
-    font-size: var(--minimum-text-size);
+    font-size: var(--get-started-text-size);
     line-height: 1.3;
     margin: 0;
   }
@@ -397,13 +399,9 @@
     color: #264d70;
     display: inline-block;
     font-family: "IBM Plex Mono", monospace;
-    font-size: var(--minimum-text-size);
+    font-size: var(--get-started-text-size);
     padding: 2mm 2.5mm;
     white-space: nowrap;
-  }
-
-  .get-started__install {
-    grid-column: 1 / -1;
   }
 
   .under-the-hood {
