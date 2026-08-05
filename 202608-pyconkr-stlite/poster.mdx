@@ -42,27 +42,21 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
     <section className="intro-showcase" aria-label="From Streamlit to Stlite">
       <div className="intro-showcase__copy">
         <article className="intro-point intro-point--standard" aria-labelledby="standard-title">
-          <div className="section-number" aria-hidden="true">01</div>
-          <div>
-            <h2 id="standard-title">Streamlit turns a Python script into a web app</h2>
-            <p>
-              {
-                "Streamlit turns a Python script into an interactive web app and handles communication between its server-side Python process and browser interface behind the scenes."
-              }
-            </p>
-          </div>
+          <h2 id="standard-title">Streamlit turns a Python script into a web app</h2>
+          <p>
+            {
+              "Behind the scenes, Streamlit starts a Python server, serves the frontend SPA, and maintains continuous network communication between them to power interactivity."
+            }
+          </p>
         </article>
 
         <article className="intro-point intro-point--stlite" aria-labelledby="architecture-title">
-          <div className="section-number" aria-hidden="true">02</div>
-          <div>
-            <h2 id="architecture-title">Stlite moves the Python server into the browser</h2>
-            <p>
-              {
-                "Pyodide brings Python into the browser’s JavaScript environment through WebAssembly, preserving Streamlit’s familiar Python model without a remote application server."
-              }
-            </p>
-          </div>
+          <h2 id="architecture-title">Stlite moves the Python server into the browser</h2>
+          <p>
+            {
+              "Stlite replaces native CPython with Pyodide, a WebAssembly build of CPython, so the Streamlit server can run inside the browser while its familiar Python programming model remains intact."
+            }
+          </p>
         </article>
       </div>
 
@@ -200,11 +194,8 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
 
     <section className="deployment" aria-labelledby="deployment-title">
       <div className="section-heading section-heading--compact deployment__heading">
-        <div className="section-number" aria-hidden="true">03</div>
-        <div>
-          <h2 id="deployment-title">Choose where Python runs</h2>
-          <p>Choose where Python runs and how people open the app.</p>
-        </div>
+        <h2 id="deployment-title">Choose where Python runs</h2>
+        <p>Target a browser SPA, desktop package, or experimental edge worker.</p>
       </div>
 
       <div className="deployment__targets">
@@ -219,34 +210,19 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
 
           <div className="browser-options">
             <section>
-              <header className="browser-options__header">
-                <Icon name="lucide:code-xml" class="browser-options__icon" aria-hidden="true" />
-                <div>
-                  <code>@stlite/browser</code>
-                </div>
-              </header>
               <p className="browser-options__tagline">Self-host static HTML</p>
               <p>Publish the runtime and app files from any static file server.</p>
+              <code className="browser-options__label">@stlite/browser</code>
             </section>
             <section>
-              <header className="browser-options__header">
-                <Icon name="lucide:component" class="browser-options__icon" aria-hidden="true" />
-                <div>
-                  <code>@stlite/react</code>
-                </div>
-              </header>
               <p className="browser-options__tagline">Embed in a React app</p>
-              <p>Mount a Stlite-powered Streamlit view inside the React UI you already have.</p>
+              <p>Mount a Stlite-powered Streamlit app inside the React UI you already have.</p>
+              <code className="browser-options__label">@stlite/react</code>
             </section>
             <section>
-              <header className="browser-options__header">
-                <Icon name="lucide:share-2" class="browser-options__icon" aria-hidden="true" />
-                <div>
-                  <h4>Stlite Sharing</h4>
-                </div>
-              </header>
               <p className="browser-options__tagline">Write and share online</p>
               <p>Use the hosted editor to serialize app files into a URL and share them without self-hosting.</p>
+              <span className="browser-options__label">Stlite Sharing</span>
             </section>
           </div>
 
@@ -287,7 +263,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
           <div className="deployment-path deployment-path--cloudflare" aria-label="The browser frontend communicates with a Streamlit server on Cloudflare Workers">
             <span>Browser frontend</span>
             <span className="deployment-path__arrow" aria-hidden="true">↕ WebSocket</span>
-            <span><Icon name="lucide:server-cog" class="deployment-path__icon" aria-hidden="true" />Streamlit on Pyodide<br />in a Python Worker</span>
+            <span><Icon name="lucide:server-cog" class="deployment-path__icon" aria-hidden="true" />Streamlit on Pyodide in a Python Worker</span>
           </div>
 
           <code className="deployment-target__package">@stlite/cloudflare</code>
@@ -298,11 +274,8 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
 
     <section className="use-cases" aria-labelledby="use-cases-title">
       <div className="section-heading section-heading--compact use-cases__heading">
-        <div className="section-number" aria-hidden="true">04</div>
-        <div>
-          <h2 id="use-cases-title">When browser-run Stlite makes sense</h2>
-          <p>Use it when running Python on the visitor&apos;s device is part of the solution.</p>
-        </div>
+        <h2 id="use-cases-title">When browser-run Stlite makes sense</h2>
+        <p>Use it when running Python on the visitor&apos;s device is part of the solution.</p>
       </div>
 
       <dl className="use-cases__list">
@@ -333,7 +306,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
 
   <footer className="poster-footer" aria-label="Stlite links and related talk">
     <p className="poster-footer__lead">
-      <strong>Open Stlite in your browser.</strong>
+      <strong>Explore Stlite</strong>
       <span>No Python installation or application server required.</span>
     </p>
     <QrLink
