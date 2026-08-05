@@ -7,4 +7,5 @@
 - Keep screenshot placeholders as local, individually replaceable assets. Do not print asset replacement notes or placeholder explanations on the poster.
 - Size body text, code, labels, URLs, and screenshots for reading at conference-poster distance.
 - Use window or device frames only when the poster brief explicitly requests them.
+- Do not use box shadows on printable poster elements. Some print pipelines render semi-transparent shadows as solid fills; use borders or spacing when separation is necessary. Preview-only shadows are acceptable when print styles remove them explicitly.
 - Validate the final poster for its declared physical dimensions, one-page output, overflow, font loading, image loading, and visual legibility.

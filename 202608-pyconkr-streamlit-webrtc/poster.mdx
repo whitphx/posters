@@ -63,7 +63,7 @@ import PostCitation from "./PostCitation.astro";
     <div className="section-label">
       <span>Quick demo</span>
       <h2 id="hero-title">
-        Build real-time object detection with one callback in ~20 lines of Python
+        Build real-time computer vision with one callback in ~20 lines of Python
       </h2>
     </div>
 
@@ -131,7 +131,7 @@ webrtc_streamer(
       />
 
       <aside className="code-callout code-callout--callback">
-        <strong>Process each frame in Python</strong>
+        <strong>Process each frame with a Python callback</strong>
         <span className="code-callout__detail">
           Receive a frame, run any Python code, and return a frame.
         </span>
@@ -150,10 +150,10 @@ webrtc_streamer(
       />
 
       <aside className="code-callout code-callout--streamer">
-        <strong>Pass callbacks to the streamer</strong>
+        <strong>Use the callback as a media filter</strong>
         <span className="code-callout__detail">
-          The component handles browser capture, WebRTC transport, and returning
-          the resulting media.
+          Pass it to the streamer. The component handles browser capture, WebRTC
+          transport, and returning the transformed media.
         </span>
       </aside>
       <svg
@@ -162,7 +162,7 @@ webrtc_streamer(
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <path d="M -60 0 C -80 0, -125 40, -146.67 40" />
+        <path d="M -60 0 C -77.78 0, -95.56 40, -113.33 40" />
       </svg>
       <span
         className="code-callout__endpoint code-callout__endpoint--streamer-code"
@@ -391,9 +391,6 @@ webrtc_streamer(
           {"WebRTC"}
         </text>
       </svg>
-      <figcaption>
-        {"Sink, filter, and source can be combined independently for audio and video."}
-      </figcaption>
     </figure>
 
   </section>

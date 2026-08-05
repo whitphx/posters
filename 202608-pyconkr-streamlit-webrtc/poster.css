@@ -197,7 +197,6 @@
     background: #fff;
     border: 0.6mm solid var(--streamlit);
     border-radius: 2.5mm;
-    box-shadow: 0 2mm 5mm rgba(11, 24, 48, 0.18);
     color: var(--ink);
     padding: 3.5mm 4mm;
     position: absolute;
@@ -217,9 +216,9 @@
   }
 
   .code-callout--streamer {
-    left: 149mm;
+    left: 144mm;
     top: 160mm;
-    width: 160mm;
+    width: 200mm;
   }
 
   .code-callout strong {
@@ -291,7 +290,7 @@
   }
 
   .code-callout__endpoint--media-preview {
-    left: 347.1mm;
+    left: 352.1mm;
     top: 120.5mm;
   }
 
@@ -315,6 +314,7 @@
   }
 
   .code-callout__arrow--streamer {
+    left: 153mm;
     top: 176mm;
   }
 
@@ -333,14 +333,14 @@
     height: 38.9mm;
     left: 322mm;
     top: 93mm;
-    width: 25.1mm;
+    width: 30.1mm;
   }
 
   .code-callout__arrow--streamer-preview {
     height: 69.4mm;
-    left: 309mm;
+    left: 344mm;
     top: 119.2mm;
-    width: 38.1mm;
+    width: 8.1mm;
   }
 
   .hero-window {
