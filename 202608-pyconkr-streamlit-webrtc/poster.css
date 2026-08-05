@@ -43,14 +43,14 @@
   }
 
   .poster-header__value {
-    font-size: 25pt;
+    font-size: 30pt;
     letter-spacing: -0.02em;
     line-height: 1.15;
     padding-top: 5mm;
   }
 
   .poster-header__abstract {
-    font-size: var(--minimum-text-size);
+    font-size: 22pt;
     line-height: 1.35;
     max-width: 525mm;
     padding-top: 3.5mm;
