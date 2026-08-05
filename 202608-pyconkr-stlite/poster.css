@@ -266,7 +266,7 @@
   }
 
   .architecture__column--standard {
-    grid-template-rows: 12mm 28mm 104mm 34mm 57mm;
+    grid-template-rows: 12mm 28mm 124mm 26mm 45mm;
   }
 
   .architecture__column--stlite {
@@ -294,7 +294,7 @@
 
   .environment--server {
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(4, minmax(0, 1fr));
   }
 
   .stack-layer,
@@ -362,8 +362,20 @@
     border: 0.7mm solid #f1b1aa;
   }
 
-  .stack-layer--app {
+  .stack-layer--app,
+  .stack-layer--streamlit,
+  .stack-layer--asgi {
     border-bottom: 0;
+  }
+
+  .stack-layer--asgi {
+    background: var(--bridge-soft);
+    border: 0.7mm solid #8dc6c5;
+    border-bottom: 0;
+  }
+
+  .stack-layer--asgi strong {
+    color: #04636d;
   }
 
   .stack-layer--runtime,
@@ -408,7 +420,7 @@
     display: grid;
     font-family: "IBM Plex Mono", monospace;
     font-size: var(--minimum-font-size);
-    grid-template-rows: 12mm 28mm 35mm 35mm 34mm 34mm 57mm;
+    grid-template-rows: 12mm 28mm 12mm repeat(4, 26mm) 7mm 26mm 12mm 26mm 8mm;
     line-height: 1.15;
     padding-inline: 2mm;
     text-align: center;
@@ -441,25 +453,36 @@
   }
 
   .mapping-label--same-one {
-    grid-row: 3;
+    grid-row: 4;
+    transform: translateY(5mm);
   }
 
   .mapping-label--same-two {
-    grid-row: 4;
+    grid-row: 5;
+    transform: translateY(5mm);
   }
 
   .mapping-label--runtime {
     color: var(--runtime);
-    grid-row: 5;
+    grid-row: 7;
+    transform: translateY(5mm);
+  }
+
+  .mapping-label--server {
+    color: var(--bridge);
+    grid-row: 6;
+    transform: translateY(5mm);
   }
 
   .mapping-label--transport {
     color: var(--bridge);
-    grid-row: 6;
+    grid-row: 9;
+    transform: translateY(6mm);
   }
 
   .mapping-label--same-three {
-    grid-row: 7;
+    grid-row: 11;
+    transform: translateY(1.5mm);
   }
 
   .static-host {
@@ -500,13 +523,13 @@
 
   .environment--browser-full {
     display: grid;
-    grid-template-rows: 104mm 34mm 38mm;
+    grid-template-rows: 124mm 26mm 26mm;
   }
 
   .worker-boundary {
     border: 0.7mm dashed #a69ca9;
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(4, minmax(0, 1fr));
     padding: 11mm 6mm 6mm;
     position: relative;
   }

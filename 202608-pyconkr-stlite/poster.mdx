@@ -73,7 +73,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
       <figure className="architecture">
         <figcaption>
           <h2 id="stack-title">Nearly the same Streamlit stack.</h2>
-          <span>The runtime and transport change.</span>
+          <span>The app and Streamlit stay; the supporting layers adapt.</span>
         </figcaption>
 
         <div className="architecture__comparison">
@@ -89,7 +89,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
                   <img className="stack-layer__logo stack-layer__logo--python" src={pythonLogo.src} alt="" aria-hidden="true" />
                   <strong>Your app script</strong>
                 </div>
-                <span>Python</span>
+                <span>Written in Python</span>
               </div>
               <div className="stack-layer stack-layer--streamlit">
                 <div className="stack-layer__identity">
@@ -98,12 +98,16 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
                 </div>
                 <span>ScriptRunner and app state</span>
               </div>
+              <div className="stack-layer stack-layer--asgi">
+                <strong>Uvicorn</strong>
+                <span>HTTP requests → ASGI calls</span>
+              </div>
               <div className="stack-layer stack-layer--runtime">
                 <div className="stack-layer__identity">
                   <img className="stack-layer__logo stack-layer__logo--python" src={pythonLogo.src} alt="" aria-hidden="true" />
                   <strong>CPython</strong>
                 </div>
-                <span>Host operating system process</span>
+                <span>Native process on the host OS</span>
               </div>
             </div>
 
@@ -126,11 +130,12 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
           </section>
 
           <div className="architecture__mapping" aria-label="What changes between the two stacks">
-            <span className="mapping-label mapping-label--same-one">same app</span>
+            <span className="mapping-label mapping-label--same-one">Same app</span>
             <span className="mapping-label mapping-label--same-two">Streamlit stays</span>
-            <span className="mapping-label mapping-label--runtime">runtime replacement</span>
-            <span className="mapping-label mapping-label--transport">transport adaptation</span>
-            <span className="mapping-label mapping-label--same-three">same frontend</span>
+            <span className="mapping-label mapping-label--server">Server adaptation</span>
+            <span className="mapping-label mapping-label--runtime">Runtime replacement</span>
+            <span className="mapping-label mapping-label--transport">Transport adaptation</span>
+            <span className="mapping-label mapping-label--same-three">Same frontend</span>
           </div>
 
           <section className="architecture__column architecture__column--stlite" aria-labelledby="stlite-stack-title">
@@ -141,7 +146,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
                 <Icon name="lucide:database" class="static-host__icon" aria-hidden="true" />
                 <strong>Static file server</strong>
               </div>
-              <span>delivers HTML, JavaScript, Python, and data</span>
+              <span>serves HTML, JavaScript, Python app code, and data</span>
               <span className="static-host__arrow" aria-hidden="true">↓</span>
             </div>
 
@@ -155,7 +160,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
                     <img className="stack-layer__logo stack-layer__logo--python" src={pythonLogo.src} alt="" aria-hidden="true" />
                     <strong>Your app script</strong>
                   </div>
-                  <span>Python</span>
+                  <span>Written in Python</span>
                 </div>
                 <div className="stack-layer stack-layer--streamlit">
                   <div className="stack-layer__identity">
@@ -163,6 +168,10 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
                     <strong>Streamlit server</strong>
                   </div>
                   <span>ScriptRunner and app state</span>
+                </div>
+                <div className="stack-layer stack-layer--asgi">
+                  <strong>Custom ASGI server</strong>
+                  <span>HTTP requests → ASGI calls</span>
                 </div>
                 <div className="stack-layer stack-layer--pyodide">
                   <div className="stack-layer__identity">
@@ -176,7 +185,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
               <div className="transport transport--bridge">
                 <span className="transport__arrow" aria-hidden="true">↕</span>
                 <strong>In-browser transport bridge</strong>
-                <span>ASGI + Worker messages</span>
+                <span>Worker messages carrying HTTP + WebSocket traffic</span>
               </div>
 
               <div className="frontend-layer">
@@ -298,7 +307,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
       </dl>
 
       <aside className="use-cases__limits">
-        <p><strong>Check first:</strong> Pyodide-compatible packages · larger initial download · browser CPU, memory, threading, and API limits · CORS · never bundle secrets</p>
+        <p><strong>Check first:</strong> Pyodide-compatible packages · larger initial download · browser CPU, memory, threading, and API limits · CORS restrictions on external API requests · never bundle secrets</p>
       </aside>
     </section>
 
@@ -307,7 +316,6 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
   <footer className="poster-footer" aria-label="Stlite links and related talk">
     <p className="poster-footer__lead">
       <strong>Explore Stlite</strong>
-      <span>No Python installation or application server required.</span>
     </p>
     <QrLink
       href="https://edit.share.stlite.net/"
