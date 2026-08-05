@@ -14,7 +14,7 @@ Build a complete real-time audio and video web app using only Python. A small am
 2. Python example beside its application result
 3. What the component is, what Streamlit is, and how to install it
 4. Browser-to-Python media path
-5. Advanced input, processing, routing, mixing, and output patterns
+5. Real projects shared by Streamlit-WebRTC users
 6. Project and documentation QR codes
 
 ## Format
@@ -39,14 +39,9 @@ Explain that Streamlit-WebRTC is a custom component for existing Streamlit apps.
 
 Explain that the browser captures camera or microphone input, WebRTC transports the media, and server-side Python callbacks receive and return audio or video frames. Streamlit and Streamlit-WebRTC manage the frontend communication, so researchers can turn computer vision, audio, and AI models into user-facing apps without building a JavaScript frontend or WebRTC stack. Cover input-only apps that return metadata or text, transformed bidirectional streams, output-only generated media, and combinations of these modes.
 
-### Advanced patterns
+### Project gallery
 
-- Direct loopback
-- Filtering or recognition inside a callback
-- Generating or replacing an output source
-- Routing Client A to Client B
-- Mixing multiple clients into shared outputs
-- Combining independent audio and video paths
+Use a three-column by three-row grid for nine real projects shown through media previews from their builders' public posts. Label the section “Applications” and explain that apps are built by composing video and audio inputs, processing, and outputs. Pair each preview with a source credit containing the builder's display name, source identity, date, and a QR code for the exact source URL. Keep the preview and credit clickable in digital output, and record the asset-to-permalink mapping and retrieval date in `assets/ATTRIBUTION.md`. Add a concise explanation of the application and an input → processing → output route that makes the modality composition explicit. The examples cover programmable audio generation, emotion-based music recommendation, StreamDiffusion, a voice interface using Whisper and ChatGPT, paper molecular-model recognition, a guitar tuner, local real-time speech-to-text, BitePulse eating-pace feedback, and an SFU / MCU video chat that routes or mixes tracks with face filters before delivery.
 
 ### Footer
 
@@ -54,7 +49,4 @@ Include QR codes and readable URLs for the project repository and documentation.
 
 ## Assets still required
 
-- Final screenshots for the six feature examples
-- Final screenshots for the three application examples
-- Confirmed PyCon Korea logo usage, if desired
 - Confirmed event print-shop requirements

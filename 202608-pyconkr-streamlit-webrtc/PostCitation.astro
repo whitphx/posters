@@ -1,0 +1,30 @@
+---
+import QRCode from "qrcode";
+
+interface Props {
+  date: string;
+  handle: string;
+  href: string;
+  name: string;
+}
+
+const { date, handle, href, name } = Astro.props;
+const svg = await QRCode.toString(href, {
+  type: "svg",
+  margin: 1,
+  errorCorrectionLevel: "M",
+  color: { dark: "#102A43", light: "#FFFFFF" },
+});
+---
+
+<a
+  class="post-citation"
+  href={href}
+  aria-label={`Open the cited source by ${name}`}
+>
+  <span class="post-citation__qr" aria-hidden="true" set:html={svg} />
+  <span class="post-citation__copy">
+    <strong>{name}</strong>
+    <span>{handle} · {date}</span>
+  </span>
+</a>
