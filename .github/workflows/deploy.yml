@@ -19,7 +19,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  CLOUDFLARE_PROJECT_NAME: posters
+  CLOUDFLARE_PROJECT_NAME: whitphx-info-posters
   PRODUCTION_BRANCH: main
 
 jobs:
