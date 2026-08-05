@@ -49,10 +49,6 @@
     padding-top: 5mm;
   }
 
-  .poster-header__value strong {
-    color: var(--streamlit);
-  }
-
   .poster-header__abstract {
     font-size: var(--minimum-text-size);
     line-height: 1.35;
@@ -589,13 +585,25 @@
     border-top: 0.35mm solid var(--line);
     display: grid;
     font-family: "IBM Plex Mono", monospace;
-    font-size: var(--minimum-text-size);
+    font-size: 16pt;
     gap: 2mm;
     grid-template-columns: 16mm minmax(0, 1fr);
     line-height: 1.15;
     margin-top: 1.5mm;
     padding: 1mm 1.5mm;
     text-decoration: none;
+  }
+
+  .post-citation:link,
+  .post-citation:visited,
+  .post-citation:hover,
+  .post-citation:active {
+    color: var(--ink);
+  }
+
+  .post-citation:focus-visible {
+    outline: 0.7mm solid var(--video);
+    outline-offset: 0.7mm;
   }
 
   .post-citation__qr,
@@ -609,6 +617,10 @@
     display: flex;
     flex-direction: column;
     min-width: 0;
+  }
+
+  .post-citation__copy strong {
+    color: var(--ink);
   }
 
   .post-citation__copy > span {
@@ -636,15 +648,21 @@
     line-height: 1.2;
   }
 
-  .example-grid .example-card__route {
+  .example-card__tags {
     background: #eaf1f7;
     border-radius: 1.5mm;
     color: #264d70;
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 500;
     line-height: 1.15;
     margin-top: auto;
     padding: 1.2mm 1.6mm;
+  }
+
+  .example-card__tags > span {
+    color: var(--ink);
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-size: 16pt;
+    font-weight: 700;
+    letter-spacing: 0.035em;
   }
 
   .poster-footer {

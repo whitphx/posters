@@ -391,9 +391,9 @@ webrtc_streamer(
       <div className="example-card__body">
         <h3>Generate audio in Python</h3>
         <p>Create audio programmatically and publish it as a live track.</p>
-        <p className="example-card__route">
-          Python generator → audio source → browser playback
-        </p>
+        <div className="example-card__tags">
+          <span>AUDIO · SOURCE</span>
+        </div>
         <PostCitation
           href="https://x.com/whitphx/status/1937168598646366590"
           name="Yuichiro"
@@ -420,9 +420,9 @@ webrtc_streamer(
         <p>
           Read face and hand landmarks, classify emotion, and recommend music.
         </p>
-        <p className="example-card__route">
-          camera → landmark model → music recommendation
-        </p>
+        <div className="example-card__tags">
+          <span>VIDEO · FILTER</span>
+        </div>
         <PostCitation
           href="https://x.com/P1kumarMhaske/status/1785549913800990776"
           name="Pavankumar Mhaske"
@@ -447,9 +447,9 @@ webrtc_streamer(
       <div className="example-card__body">
         <h3>StreamDiffusion camera</h3>
         <p>Transform a live camera feed with StreamDiffusion and TensorRT.</p>
-        <p className="example-card__route">
-          camera → StreamDiffusion → generated video
-        </p>
+        <div className="example-card__tags">
+          <span>VIDEO · FILTER</span>
+        </div>
         <PostCitation
           href="https://x.com/NuCode/status/1738420755879346536"
           name="Naoto Nakai"
@@ -474,9 +474,9 @@ webrtc_streamer(
       <div className="example-card__body">
         <h3>Voice conversation with ChatGPT</h3>
         <p>Transcribe microphone input and generate emotion-aware responses.</p>
-        <p className="example-card__route">
-          microphone → Whisper → ChatGPT response
-        </p>
+        <div className="example-card__tags">
+          <span>AUDIO · SINK</span>
+        </div>
         <PostCitation
           href="https://x.com/NuCode/status/1631861849645002752"
           name="Naoto Nakai"
@@ -504,9 +504,9 @@ webrtc_streamer(
           Recognize a paper model, then show its 3D form and chemical
           properties.
         </p>
-        <p className="example-card__route">
-          camera → molecule recognition → 3D model + properties
-        </p>
+        <div className="example-card__tags">
+          <span>VIDEO · FILTER + SIDE OUTPUT</span>
+        </div>
         <PostCitation
           href="https://x.com/yamnor/status/1559075433005862912"
           name="Nori Yamamoto"
@@ -533,9 +533,9 @@ webrtc_streamer(
         <p>
           Estimate pitch from live microphone audio and show the closest note.
         </p>
-        <p className="example-card__route">
-          microphone → pitch analysis → musical note
-        </p>
+        <div className="example-card__tags">
+          <span>AUDIO · SINK</span>
+        </div>
         <PostCitation
           href="https://x.com/GarsBar35Plus/status/1507387271426629636"
           name="@gar@gerardbentley.com"
@@ -559,10 +559,13 @@ webrtc_streamer(
       </a>
       <div className="example-card__body">
         <h3>Local real-time speech-to-text</h3>
-        <p>Stream microphone audio to DeepSpeech and update the transcript.</p>
-        <p className="example-card__route">
-          microphone → DeepSpeech → live text
+        <p>
+          Stream microphone audio to a local speech recognizer and update the
+          transcript.
         </p>
+        <div className="example-card__tags">
+          <span>AUDIO · SINK</span>
+        </div>
         <PostCitation
           href="https://x.com/whitphx/status/1392825388288544769"
           name="Yuichiro"
@@ -590,9 +593,9 @@ webrtc_streamer(
           Detect bites from webcam landmarks and report pace and session
           statistics.
         </p>
-        <p className="example-card__route">
-          camera → MediaPipe landmarks → bite events + pace
-        </p>
+        <div className="example-card__tags">
+          <span>VIDEO · FILTER + SIDE OUTPUT</span>
+        </div>
         <PostCitation
           href="https://discuss.streamlit.io/t/bitepulse-ai-real-time-eating-pace-feedback-from-meal-video/120767"
           name="Aktham Momani"
@@ -620,9 +623,9 @@ webrtc_streamer(
           Route peers separately or combine video into one view, with face
           filters before delivery.
         </p>
-        <p className="example-card__route">
-          peer tracks → route or mix + face filter → participants
-        </p>
+        <div className="example-card__tags">
+          <span>AUDIO + VIDEO · FILTER + MIX + SOURCE</span>
+        </div>
         <PostCitation
           href="https://github.com/whitphx/streamlit-video-chat-example"
           name="Yuichiro Tachibana"
