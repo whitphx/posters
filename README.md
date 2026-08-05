@@ -28,8 +28,8 @@ See [DESIGN.md](./DESIGN.md) for the content contract, renderer architecture, pr
 
 Every push deploys the built site to Cloudflare Pages via [`deploy.yml`](./.github/workflows/deploy.yml):
 
-- `main` deploys to production: `https://posters.pages.dev`
-- Every other branch deploys to a dedicated preview subdomain: `https://<branch>.posters.pages.dev` (branch names are normalized by Cloudflare, e.g. `feature/foo` becomes `feature-foo`)
+- `main` deploys to production: `https://whitphx-info-posters.pages.dev`
+- Every other branch deploys to a dedicated preview subdomain: `https://<branch>.whitphx-info-posters.pages.dev` (branch names are normalized by Cloudflare, e.g. `feature/foo` becomes `feature-foo`)
 - When a branch has an open pull request, the workflow posts the preview URLs as a sticky comment on it
 
 The workflow creates the Pages project automatically on first run. It requires two repository secrets:
