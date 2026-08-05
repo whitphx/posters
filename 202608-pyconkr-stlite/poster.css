@@ -141,7 +141,7 @@
   .stlite-poster main {
     display: grid;
     gap: 5mm;
-    grid-template-rows: 90mm 262mm 163mm 118mm;
+    grid-template-rows: 100mm 276mm 177mm 80mm;
   }
 
   .intro-showcase {
@@ -174,12 +174,12 @@
   }
 
   .intro-point h2 {
-    font-size: 34pt;
+    font-size: 40pt;
   }
 
   .stlite-poster h2 {
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: 25pt;
+    font-size: 30pt;
     letter-spacing: -0.025em;
     line-height: 1.02;
   }
@@ -222,7 +222,7 @@
   .architecture {
     background: #fbfafc;
     display: grid;
-    grid-template-rows: 16mm 1fr;
+    grid-template-rows: 20mm 1fr;
     min-height: 0;
     padding: 4mm 9mm 7mm;
   }
@@ -237,13 +237,13 @@
 
   .architecture figcaption h2 {
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: 22pt;
+    font-size: 30pt;
     letter-spacing: -0.02em;
   }
 
   .architecture figcaption span {
     color: var(--muted);
-    font-size: var(--minimum-font-size);
+    font-size: 22pt;
   }
 
   .architecture__comparison {
@@ -259,18 +259,18 @@
 
   .architecture__column h3 {
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: 22pt;
+    font-size: 29pt;
     letter-spacing: -0.01em;
     line-height: 1;
     text-align: center;
   }
 
   .architecture__column--standard {
-    grid-template-rows: 12mm 28mm 124mm 26mm 45mm;
+    grid-template-rows: 16mm 29mm 126mm 26mm 48mm;
   }
 
   .architecture__column--stlite {
-    grid-template-rows: 12mm 28mm 195mm;
+    grid-template-rows: 16mm 29mm 200mm;
   }
 
   .environment {
@@ -312,7 +312,7 @@
   .frontend-layer strong,
   .static-host strong,
   .transport strong {
-    font-size: var(--minimum-font-size);
+    font-size: 20pt;
     line-height: 1.08;
   }
 
@@ -420,7 +420,7 @@
     display: grid;
     font-family: "IBM Plex Mono", monospace;
     font-size: var(--minimum-font-size);
-    grid-template-rows: 12mm 28mm 12mm repeat(4, 26mm) 7mm 26mm 12mm 26mm 8mm;
+    grid-template-rows: 16mm 29mm 12mm repeat(4, 26mm) 7mm 26mm 12mm 29mm 13mm;
     line-height: 1.15;
     padding-inline: 2mm;
     text-align: center;
@@ -523,7 +523,7 @@
 
   .environment--browser-full {
     display: grid;
-    grid-template-rows: 124mm 26mm 26mm;
+    grid-template-rows: 126mm 26mm 29mm;
   }
 
   .worker-boundary {
@@ -561,13 +561,15 @@
   }
 
   .deployment__heading p {
+    font-size: 22pt;
+    line-height: 1.2;
     margin-top: 1.5mm;
   }
 
   .deployment__targets {
     display: grid;
     gap: 6mm;
-    grid-template-columns: 1.45fr 0.85fr 1fr;
+    grid-template-columns: 1.58fr 0.8fr 0.92fr;
     min-height: 0;
   }
 
@@ -608,7 +610,7 @@
 
   .deployment-target__header h3 {
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: 20pt;
+    font-size: 25pt;
     letter-spacing: -0.02em;
     line-height: 1.05;
   }
@@ -665,7 +667,7 @@
   .browser-options .browser-options__tagline {
     color: var(--ink);
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: var(--minimum-font-size);
+    font-size: 22pt;
     font-weight: 700;
     line-height: 1.1;
     margin-top: 4mm;
@@ -762,13 +764,15 @@
     align-content: start;
     background: var(--streamlit-soft);
     display: grid;
-    gap: 5mm;
-    grid-template-rows: 27mm 39mm 26mm;
-    padding: 8mm;
+    gap: 3mm;
+    grid-template-rows: auto auto auto;
+    padding: 6mm;
   }
 
   .use-cases__heading p {
-    margin-top: 2.5mm;
+    font-size: 22pt;
+    line-height: 1.2;
+    margin-top: 2mm;
   }
 
   .use-cases__list {
@@ -784,7 +788,7 @@
   .use-cases__list dt {
     color: #b3292f;
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: var(--minimum-font-size);
+    font-size: 22pt;
     font-weight: 700;
     line-height: 1.1;
   }
@@ -793,7 +797,7 @@
     color: var(--muted);
     font-size: var(--minimum-font-size);
     line-height: 1.35;
-    margin-top: 4mm;
+    margin-top: 2.5mm;
   }
 
   .use-cases__limits {
@@ -803,7 +807,7 @@
     display: flex;
     font-size: var(--minimum-font-size);
     line-height: 1.25;
-    padding: 4mm;
+    padding: 3mm;
   }
 
   .use-cases__limits strong {
@@ -827,7 +831,7 @@
 
   .poster-footer__lead strong {
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: 22pt;
+    font-size: 25pt;
     letter-spacing: -0.02em;
   }
 
@@ -859,7 +863,7 @@
   }
 
   .poster-footer .qr-link__copy strong {
-    font-size: var(--minimum-font-size);
+    font-size: 20pt;
     line-height: 1.12;
   }
 
