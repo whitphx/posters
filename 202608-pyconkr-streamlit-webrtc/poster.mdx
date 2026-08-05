@@ -276,7 +276,7 @@ webrtc_streamer(
         </title>
         <desc id="media-routing-description">
           {
-            "The frontend has one input and one output. On the Python backend, Sink, Filter, and Source are arranged in parallel. The input branches to Sink and Filter. Output from Filter and Source merges before returning to the frontend."
+            "WebRTC carries audio and video between the frontend and Python backend. The frontend has one input and one output. On the backend, Sink, Filter, and Source are arranged in parallel. The input branches to Sink and Filter. Output from Filter and Source merges before returning to the frontend."
           }
         </desc>
         <defs>
@@ -321,25 +321,28 @@ webrtc_streamer(
         <text className="media-routing__zone-label" x="354" y="25">
           {"BACKEND · PYTHON"}
         </text>
-        <line className="media-routing__boundary" x1="290" y1="8" x2="290" y2="260" />
+        <line className="media-routing__boundary" x1="280" y1="8" x2="280" y2="260" />
 
-        <rect className="media-routing__endpoint" x="24" y="48" width="210" height="40" rx="8" />
-        <text className="media-routing__endpoint-title" x="40" y="74">
+        <rect className="media-routing__endpoint" x="0" y="48" width="204" height="40" rx="8" />
+        <text className="media-routing__endpoint-title" x="16" y="74">
           {"INPUT"}
         </text>
-        <text className="media-routing__endpoint-detail" x="105" y="74">
+        <text className="media-routing__endpoint-detail" x="81" y="74">
           {"camera / mic"}
         </text>
 
-        <rect className="media-routing__endpoint" x="24" y="212" width="210" height="40" rx="8" />
-        <text className="media-routing__endpoint-title" x="40" y="238">
+        <rect className="media-routing__endpoint" x="0" y="212" width="204" height="40" rx="8" />
+        <text className="media-routing__endpoint-title" x="16" y="238">
           {"OUTPUT"}
         </text>
-        <text className="media-routing__endpoint-detail" x="120" y="238">
+        <text className="media-routing__endpoint-detail" x="96" y="238">
           {"player"}
         </text>
 
-        <path className="media-routing__input-path" d="M 234 68 H 320" />
+        <path className="media-routing__input-path" d="M 204 68 H 320" />
+        <text className="media-routing__transport-label" x="241" y="57" textAnchor="middle">
+          {"WebRTC"}
+        </text>
         <circle className="media-routing__input-junction" cx="320" cy="68" r="5" />
         <path className="media-routing__input-path" d="M 320 68 H 640" />
         <path className="media-routing__input-path media-routing__input-path--arrow" d="M 420 68 V 105" />
@@ -382,7 +385,10 @@ webrtc_streamer(
         <path className="media-routing__output-path media-routing__output-path--arrow" d="M 860 189 V 232" />
         <path className="media-routing__output-path" d="M 860 232 H 320" />
         <circle className="media-routing__output-junction" cx="320" cy="232" r="5" />
-        <path className="media-routing__output-path media-routing__output-path--arrow" d="M 320 232 H 234" />
+        <path className="media-routing__output-path media-routing__output-path--arrow" d="M 320 232 H 204" />
+        <text className="media-routing__transport-label" x="241" y="221" textAnchor="middle">
+          {"WebRTC"}
+        </text>
       </svg>
       <figcaption>
         {"Sink, filter, and source can be combined independently for audio and video."}
@@ -524,7 +530,7 @@ webrtc_streamer(
         />
       </a>
       <div className="example-card__body">
-        <h3>Paper molecules to 3D</h3>
+        <h3>Turn paper molecular models into 3D</h3>
         <p>
           Recognize a paper model, then show its 3D form and chemical
           properties.
@@ -583,7 +589,7 @@ webrtc_streamer(
         />
       </a>
       <div className="example-card__body">
-        <h3>Local real-time speech-to-text</h3>
+        <h3>Real-time speech-to-text without an external API</h3>
         <p>
           Stream microphone audio to a local speech recognizer and update the
           transcript.
@@ -613,7 +619,7 @@ webrtc_streamer(
         />
       </a>
       <div className="example-card__body">
-        <h3>Bite and eating-pace feedback</h3>
+        <h3>Real-time eating-pace feedback</h3>
         <p>
           Detect bites from webcam landmarks and report pace and session
           statistics.
@@ -643,7 +649,7 @@ webrtc_streamer(
         />
       </a>
       <div className="example-card__body">
-        <h3>SFU / MCU video chat</h3>
+        <h3>Multi-party video chat</h3>
         <p>
           Route peers separately or combine video into one view, with face
           filters before delivery.

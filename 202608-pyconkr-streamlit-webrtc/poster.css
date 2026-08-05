@@ -487,6 +487,14 @@
     stroke-width: 2;
   }
 
+  .media-routing__transport-label {
+    fill: var(--ink);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
   .media-routing__endpoint {
     fill: #f5f8fb;
     stroke: var(--line);
