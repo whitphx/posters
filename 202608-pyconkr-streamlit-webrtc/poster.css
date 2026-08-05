@@ -565,7 +565,7 @@
   .examples {
     display: flex;
     flex-direction: column;
-    flex: 0 0 285mm;
+    flex: 0 0 273mm;
     min-height: 0;
   }
 
