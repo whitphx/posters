@@ -13,19 +13,27 @@ status: draft
 import "./poster.css";
 import pyodideLogo from "./assets/pyodide-logo.svg";
 import pythonLogo from "./assets/python-logo.svg";
+import stliteLogo from "./assets/stlite-logo.svg";
 import streamlitMark from "./assets/streamlit-mark.svg";
 import { Icon } from "astro-icon/components";
 import QrLink from "../src/renderers/v1/QrLink.astro";
 
 <div className="stlite-poster">
   <header className="poster-title">
-    <h1>Stlite</h1>
-    <p className="poster-title__tagline">Streamlit-Lite, in-browser Streamlit.</p>
-    <p className="poster-title__summary">
-      {
-        "Run an interactive Streamlit app entirely on the visitor's device, powered by Pyodide and WebAssembly."
-      }
-    </p>
+    <h1><img src={stliteLogo.src} alt="Stlite" /></h1>
+    <div className="poster-title__copy">
+      <p className="poster-title__tagline">Streamlit-Lite, in-browser Streamlit.</p>
+      <p className="poster-title__summary">
+        {
+          "Run an interactive Streamlit app entirely on the visitor's device, powered by Pyodide and WebAssembly."
+        }
+      </p>
+    </div>
+    <aside className="technology-basis" aria-label="Streamlit on Pyodide">
+      <img className="technology-basis__streamlit" src={streamlitMark.src} alt="Streamlit" />
+      <span>ON</span>
+      <img className="technology-basis__pyodide" src={pyodideLogo.src} alt="Pyodide" />
+    </aside>
   </header>
 
   <main>
@@ -197,15 +205,24 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
 
           <div className="browser-options">
             <section>
-              <code>@stlite/browser</code>
+              <div className="browser-options__label">
+                <Icon name="lucide:code-xml" class="browser-options__icon" aria-hidden="true" />
+                <code>@stlite/browser</code>
+              </div>
               <p>Mount an app in static HTML. The simplest path to a working SPA.</p>
             </section>
             <section>
-              <code>@stlite/react</code>
+              <div className="browser-options__label">
+                <Icon name="lucide:component" class="browser-options__icon" aria-hidden="true" />
+                <code>@stlite/react</code>
+              </div>
               <p>Embed the Stlite runtime and app view in an existing React application.</p>
             </section>
             <section>
-              <strong>Stlite Sharing</strong>
+              <div className="browser-options__label">
+                <Icon name="lucide:share-2" class="browser-options__icon" aria-hidden="true" />
+                <strong>Stlite Sharing</strong>
+              </div>
               <p>Put app files in a URL fragment for the Sharing page to decode and run locally.</p>
             </section>
           </div>
@@ -223,7 +240,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
           </header>
 
           <div className="deployment-path deployment-path--desktop" aria-label="Electron contains the Stlite browser runtime">
-            <span>Electron shell</span>
+            <span><Icon name="lucide:app-window" class="deployment-path__icon" aria-hidden="true" />Electron shell</span>
             <span className="deployment-path__arrow" aria-hidden="true">contains</span>
             <span>Stlite browser runtime</span>
           </div>
@@ -247,7 +264,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
           <div className="deployment-path deployment-path--cloudflare" aria-label="The browser frontend communicates with a Streamlit server on Cloudflare Workers">
             <span>Browser frontend</span>
             <span className="deployment-path__arrow" aria-hidden="true">↕ WebSocket</span>
-            <span>Streamlit on Pyodide<br />in a Python Worker</span>
+            <span><Icon name="lucide:server-cog" class="deployment-path__icon" aria-hidden="true" />Streamlit on Pyodide<br />in a Python Worker</span>
           </div>
 
           <code className="deployment-target__package">@stlite/cloudflare</code>
@@ -313,7 +330,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
     />
     <p className="poster-footer__credits">
       {
-        "Streamlit logo used under its brand terms. Pyodide logo by the Pyodide project, CC BY 4.0. “Python” and the Python logo are trademarks of the Python Software Foundation."
+        "Stlite banner from the Stlite repository. Streamlit logo used under its brand terms. Pyodide logo by the Pyodide project, CC BY 4.0. “Python” and the Python logo are trademarks of the Python Software Foundation."
       }
     </p>
   </footer>

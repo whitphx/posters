@@ -45,39 +45,76 @@
   }
 
   .poster-title {
-    align-items: end;
+    align-items: start;
+    column-gap: 8mm;
     display: grid;
-    grid-template-columns: 0.62fr 1.38fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: 0.74fr 1.15fr 0.61fr;
     padding-bottom: 7mm;
   }
 
   .poster-title h1 {
-    font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: 76pt;
-    grid-row: 1 / 3;
-    letter-spacing: -0.045em;
-    line-height: 0.82;
+    line-height: 0;
+  }
+
+  .poster-title h1 img {
+    display: block;
+    height: 43.5mm;
+    width: auto;
+  }
+
+  .poster-title__copy {
+    min-width: 0;
+    padding-top: 10.0mm;
   }
 
   .poster-title__tagline {
-    align-self: end;
-    font-size: 28pt;
+    font-size: 58px;
     font-weight: 650;
     letter-spacing: -0.025em;
     line-height: 1;
-    grid-column: 2;
-    grid-row: 1;
   }
 
   .poster-title__summary {
     color: var(--muted);
-    font-size: 14pt;
-    grid-column: 2;
-    grid-row: 2;
+    font-size: 16pt;
     line-height: 1.28;
     margin-top: 3mm !important;
     max-width: 280mm;
+    white-space: nowrap;
+  }
+
+  .technology-basis {
+    align-items: center;
+    display: flex;
+    gap: 3mm;
+    justify-self: end;
+    padding-top: 2.6mm;
+    transform: translate(-20mm, 5mm);
+    white-space: nowrap;
+  }
+
+  .technology-basis span {
+    color: var(--muted);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 16pt;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+  }
+
+  .technology-basis img {
+    display: block;
+    flex: 0 0 auto;
+    object-fit: contain;
+  }
+
+  .technology-basis__streamlit {
+    height: 14mm;
+    width: 25mm;
+  }
+
+  .technology-basis__pyodide {
+    height: 18mm;
+    width: 18mm;
   }
 
   .stlite-poster main {
@@ -532,6 +569,20 @@
     line-height: 1.15;
   }
 
+  .browser-options__label {
+    align-items: center;
+    display: flex;
+    gap: 2mm;
+  }
+
+  .browser-options__icon {
+    color: var(--runtime);
+    flex: 0 0 auto;
+    height: 6mm;
+    stroke-width: 1.8;
+    width: 6mm;
+  }
+
   .browser-options p {
     margin-top: 2mm;
   }
@@ -545,9 +596,13 @@
   }
 
   .deployment-path > span:not(.deployment-path__arrow) {
+    align-items: center;
     background: var(--streamlit-soft);
     border: 0.5mm solid #f1b1aa;
+    display: flex;
     font-size: var(--minimum-font-size);
+    gap: 2mm;
+    justify-content: center;
     line-height: 1.2;
     padding: 2.5mm;
     width: 100%;
@@ -567,6 +622,23 @@
   .deployment-path--cloudflare > span:last-child {
     background: var(--runtime-soft);
     border-color: #aa94ca;
+  }
+
+  .deployment-path__icon {
+    flex: 0 0 auto;
+    height: 7mm;
+    stroke-width: 1.7;
+    width: 7mm;
+  }
+
+  .deployment-target--desktop .deployment-target__icon,
+  .deployment-path--desktop .deployment-path__icon {
+    color: #47848f;
+  }
+
+  .deployment-target--cloudflare .deployment-target__icon,
+  .deployment-path--cloudflare .deployment-path__icon {
+    color: #f48120;
   }
 
   .deployment-target__package {
@@ -654,7 +726,7 @@
     display: grid;
     gap: 3mm 12mm;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 18mm 52mm 8mm;
+    grid-template-rows: 16mm 50mm 12mm;
     padding: 8mm;
   }
 
