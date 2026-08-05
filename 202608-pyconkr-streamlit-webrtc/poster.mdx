@@ -31,6 +31,7 @@ import PostCitation from "./PostCitation.astro";
 <div className="streamlit-webrtc-poster">
 <header className="poster-header">
   <h1>Streamlit-WebRTC</h1>
+  <p className="poster-header__author">Yuichiro Tachibana (@whitphx)</p>
   <p className="poster-header__value">
     {"Build a complete real-time audio and video web app. Using only Python."}
   </p>
@@ -40,11 +41,21 @@ import PostCitation from "./PostCitation.astro";
     }
   </p>
   <figure className="poster-header__logos">
-    <img src={streamlitMark.src} alt="Streamlit logo" />
-    <span role="img" aria-label="combined with">
+    <img
+      className="poster-header__streamlit-logo"
+      src={streamlitMark.src}
+      alt="Streamlit logo"
+    />
+    <span
+      className="poster-header__heart"
+      role="img"
+      aria-label="combined with"
+    >
       ❤️
     </span>
-    <img src={webrtcLogo.src} alt="WebRTC logo" />
+    <span className="poster-header__webrtc-logo">
+      <img src={webrtcLogo.src} alt="WebRTC logo" />
+    </span>
   </figure>
 </header>
 

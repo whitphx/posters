@@ -43,11 +43,21 @@
     line-height: 0.9;
   }
 
+  .poster-header__author {
+    color: #536a80;
+    font-size: 28pt;
+    font-weight: 600;
+    position: absolute;
+    right: 3mm;
+    top: 1mm;
+    white-space: nowrap;
+  }
+
   .poster-header__value {
     font-size: 30pt;
     letter-spacing: -0.02em;
     line-height: 1.15;
-    padding-top: 5mm;
+    padding-top: 10mm;
   }
 
   .poster-header__abstract {
@@ -60,25 +70,34 @@
   .poster-header__logos {
     align-items: center;
     display: flex;
-    gap: 7mm;
-    height: 36mm;
+    gap: 5mm;
+    height: 26mm;
+    left: 50%;
     position: absolute;
-    right: 1mm;
     top: -1mm;
+    transform: translateX(-50%);
   }
 
-  .poster-header__logos img:first-child {
-    height: 28mm;
+  .poster-header__streamlit-logo {
+    height: 21mm;
     width: auto;
   }
 
-  .poster-header__logos span {
-    font-size: 42pt;
+  .poster-header__heart {
+    font-size: 30pt;
     line-height: 1;
   }
 
-  .poster-header__logos img:last-child {
-    height: 35mm;
+  .poster-header__webrtc-logo {
+    display: block;
+    height: 20mm;
+    overflow: hidden;
+    width: 21mm;
+  }
+
+  .poster-header__webrtc-logo img {
+    display: block;
+    height: 25mm;
     width: auto;
   }
 
