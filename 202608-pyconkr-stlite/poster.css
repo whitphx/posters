@@ -20,7 +20,7 @@
     display: grid;
     font-family: "IBM Plex Sans Variable", sans-serif;
     font-size: var(--minimum-font-size);
-    grid-template-rows: 60mm 656mm 100mm;
+    grid-template-rows: 68mm 648mm 100mm;
     height: 841mm;
     overflow: hidden;
     padding: 16mm 18mm 9mm;
@@ -51,6 +51,7 @@
     display: grid;
     grid-template-columns: 0.74fr 1.15fr 0.61fr;
     padding-bottom: 7mm;
+    position: relative;
   }
 
   .poster-title h1 {
@@ -60,37 +61,55 @@
   .poster-title h1 img {
     display: block;
     height: 43.5mm;
+    margin-left: -15mm;
     width: auto;
   }
 
   .poster-title__copy {
+    display: grid;
+    justify-items: center;
+    left: 50%;
     min-width: 0;
-    padding-top: 10.0mm;
+    padding-top: 1.5mm;
+    position: absolute;
+    text-align: center;
+    transform: translateX(-50%);
+    width: max-content;
   }
 
   .poster-title__tagline {
-    font-size: 58px;
-    font-weight: 650;
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-size: 80px;
+    font-weight: 700;
     letter-spacing: -0.025em;
     line-height: 1;
+    white-space: nowrap;
   }
 
   .poster-title__summary {
     color: var(--muted);
-    font-size: var(--minimum-font-size);
-    line-height: 1.28;
-    margin-top: 3mm !important;
-    max-width: 280mm;
-    white-space: nowrap;
+    font-size: 27pt;
+    line-height: 1.08;
+    margin-top: 2.5mm !important;
+    white-space: normal;
+    width: 300mm;
+  }
+
+  .poster-title__author {
+    font-size: 27pt;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-top: 1.5mm !important;
   }
 
   .technology-basis {
     align-items: center;
     display: flex;
     gap: 3mm;
+    grid-column: 3;
     justify-self: end;
     padding-top: 2.6mm;
-    transform: translate(-20mm, 5mm);
+    transform: translate(-10mm, 10mm);
     white-space: nowrap;
   }
 
@@ -121,7 +140,7 @@
   .stlite-poster main {
     display: grid;
     gap: 5mm;
-    grid-template-rows: 90mm 270mm 163mm 118mm;
+    grid-template-rows: 90mm 262mm 163mm 118mm;
   }
 
   .intro-showcase {
@@ -260,11 +279,11 @@
   }
 
   .architecture__column--standard {
-    grid-template-rows: 18mm 35mm 99mm 32mm 49mm;
+    grid-template-rows: 18mm 31mm 96mm 31mm 49mm;
   }
 
   .architecture__column--stlite {
-    grid-template-rows: 18mm 35mm 180mm;
+    grid-template-rows: 18mm 31mm 176mm;
   }
 
   .environment {
@@ -402,7 +421,7 @@
     display: grid;
     font-family: "IBM Plex Mono", monospace;
     font-size: var(--minimum-font-size);
-    grid-template-rows: 18mm 35mm 33mm 33mm 33mm 32mm 49mm;
+    grid-template-rows: 18mm 31mm 32mm 32mm 32mm 31mm 49mm;
     line-height: 1.15;
     padding-inline: 2mm;
     text-align: center;
@@ -494,7 +513,7 @@
 
   .environment--browser-full {
     display: grid;
-    grid-template-rows: 99mm 32mm 30mm;
+    grid-template-rows: 96mm 31mm 30mm;
   }
 
   .worker-boundary {
