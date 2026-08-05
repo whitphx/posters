@@ -202,7 +202,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
       <div className="section-heading section-heading--compact deployment__heading">
         <div className="section-number" aria-hidden="true">03</div>
         <div>
-          <h2 id="deployment-title">One Streamlit app, three deployment targets</h2>
+          <h2 id="deployment-title">Choose where Python runs</h2>
           <p>Choose where Python runs and how people open the app.</p>
         </div>
       </div>
@@ -271,7 +271,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
                 <h3>Cloudflare Workers</h3>
                 <span>Experimental</span>
               </div>
-              <p>Keep the familiar Streamlit client and server architecture.</p>
+              <p>Just as V8 brought browser-born JavaScript to the server, Cloudflare Workers bring Stlite’s browser-native stack full circle, running it server-side at the edge.</p>
             </div>
           </header>
 
@@ -316,7 +316,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
       </dl>
 
       <aside className="use-cases__limits">
-        <p><strong>Check first:</strong> packages need Pyodide-compatible builds, the initial download includes Python, CORS still applies, and bundled source cannot contain secrets.</p>
+        <p><strong>Check first:</strong> Pyodide-compatible packages · larger initial download · browser CPU, memory, threading, and API limits · CORS · never bundle secrets</p>
       </aside>
     </section>
 

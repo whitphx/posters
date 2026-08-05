@@ -572,9 +572,12 @@
     grid-template-rows: 32mm 1fr 14mm;
   }
 
-  .deployment-target--desktop,
-  .deployment-target--cloudflare {
+  .deployment-target--desktop {
     grid-template-rows: 34mm 1fr 12mm 12mm;
+  }
+
+  .deployment-target--cloudflare {
+    grid-template-rows: 44mm 1fr 10mm 10mm;
   }
 
   .deployment-target__header {
