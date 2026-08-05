@@ -14,6 +14,7 @@ import "./poster.css";
 import pyodideLogo from "./assets/pyodide-logo.svg";
 import pythonLogo from "./assets/python-logo.svg";
 import stliteLogo from "./assets/stlite-logo.svg";
+import streamlitHeroFrame from "./assets/streamlit-hero-24s.png";
 import streamlitMark from "./assets/streamlit-mark.svg";
 import { Icon } from "astro-icon/components";
 import QrLink from "../src/renderers/v1/QrLink.astro";
@@ -37,34 +38,46 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
   </header>
 
   <main>
-    <section className="standard-intro" aria-labelledby="standard-title">
-      <div className="section-number" aria-hidden="true">01</div>
-      <div>
-        <h2 id="standard-title">Streamlit turns a Python script into a web app</h2>
-        <p>
-          {
-            "With standard Streamlit, a Python server runs the app script. The browser sends widget events to that server and receives view updates. This client and server design lets developers build interactive apps using only Python."
-          }
-        </p>
+    <section className="intro-showcase" aria-label="From Streamlit to Stlite">
+      <div className="intro-showcase__copy">
+        <article className="intro-point intro-point--standard" aria-labelledby="standard-title">
+          <div className="section-number" aria-hidden="true">01</div>
+          <div>
+            <h2 id="standard-title">Streamlit turns a Python script into a web app</h2>
+            <p>
+              {
+                "A Python server runs the app script while the browser sends widget events and receives view updates."
+              }
+            </p>
+          </div>
+        </article>
+
+        <article className="intro-point intro-point--stlite" aria-labelledby="architecture-title">
+          <div className="section-number" aria-hidden="true">02</div>
+          <div>
+            <h2 id="architecture-title">Stlite moves the Python server into the browser</h2>
+            <p>
+              {
+                "Pyodide runs Streamlit locally, so the app keeps the familiar Python model without a remote application server."
+              }
+            </p>
+          </div>
+        </article>
       </div>
+
+      <figure className="streamlit-demo-frame">
+        <img
+          src={streamlitHeroFrame.src}
+          alt="Python code beside the Streamlit app it produces, with an interactive slider and sales forecast chart"
+        />
+        <figcaption>Streamlit homepage hero video, 00:24</figcaption>
+      </figure>
     </section>
 
-    <section className="architecture-section" aria-labelledby="architecture-title">
-      <div className="section-heading">
-        <div className="section-number" aria-hidden="true">02</div>
-        <div>
-          <h2 id="architecture-title">Stlite moves the Python server into the browser</h2>
-          <p>
-            {
-              "Stlite loads Pyodide, starts Streamlit inside a Web Worker, and connects the same frontend to that local runtime. Pyodide takes CPython's place while the app and Streamlit layers stay nearly the same. A remote server can still supply static files, but it no longer executes the app."
-            }
-          </p>
-        </div>
-      </div>
-
+    <section className="architecture-section" aria-labelledby="stack-title">
       <figure className="architecture">
         <figcaption>
-          <strong>Nearly the same Streamlit stack.</strong>
+          <h2 id="stack-title">Nearly the same Streamlit stack.</h2>
           <span>The runtime and transport change.</span>
         </figcaption>
 
@@ -330,7 +343,7 @@ import QrLink from "../src/renderers/v1/QrLink.astro";
     />
     <p className="poster-footer__credits">
       {
-        "Stlite banner from the Stlite repository. Streamlit logo used under its brand terms. Pyodide logo by the Pyodide project, CC BY 4.0. “Python” and the Python logo are trademarks of the Python Software Foundation."
+        "Stlite banner from the Stlite repository. Streamlit logo used under its brand terms. Demo frame from the official Streamlit homepage hero video. Pyodide logo by the Pyodide project, CC BY 4.0. “Python” and the Python logo are trademarks of the Python Software Foundation."
       }
     </p>
   </footer>

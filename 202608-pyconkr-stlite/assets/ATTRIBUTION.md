@@ -3,6 +3,7 @@
 The poster uses the following official project marks unchanged. The filenames were shortened for local use.
 
 - `stlite-logo.svg`: Stlite banner from [`whitphx/stlite`](https://github.com/whitphx/stlite/blob/main/docs/src/assets/logo.svg), included at the project author's direction.
+- `streamlit-hero-24s.png`: Frame at 00:24 from the [official Streamlit homepage hero video](https://static.streamlit.io/videos/hero-video.mp4), used with direct source attribution at the poster author's direction.
 - `streamlit-mark.svg`: Streamlit color mark from the [official Streamlit brand page](https://streamlit.io/brand), which permits use in visuals that truthfully refer to Streamlit.
 - `python-logo.svg`: Python logo device from the [Python Software Foundation](https://www.python.org/community/logos/), subject to the [PSF Trademark Usage Policy](https://www.python.org/psf/trademarks/). “Python” and the Python logo are trademarks of the Python Software Foundation.
 - `pyodide-logo.svg`: Pyodide light-background quadratic logo from [`pyodide/pyodide-artwork`](https://github.com/pyodide/pyodide-artwork/blob/main/logo-quadratic-light.svg), licensed under [CC BY 4.0](https://github.com/pyodide/pyodide-artwork/blob/main/LICENSE).

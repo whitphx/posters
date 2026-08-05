@@ -14,15 +14,16 @@
     --runtime-soft: #eee7fa;
     --bridge: #087f8c;
     --bridge-soft: #e2f4f3;
-    --minimum-font-size: 18px;
+    --minimum-font-size: 18pt;
     background: #fff;
     color: var(--ink);
     display: grid;
     font-family: "IBM Plex Sans Variable", sans-serif;
-    grid-template-rows: 60mm 651mm 100mm;
+    font-size: var(--minimum-font-size);
+    grid-template-rows: 60mm 656mm 100mm;
     height: 841mm;
     overflow: hidden;
-    padding: 16mm 18mm 14mm;
+    padding: 16mm 18mm 9mm;
     width: 594mm;
   }
 
@@ -76,7 +77,7 @@
 
   .poster-title__summary {
     color: var(--muted);
-    font-size: 16pt;
+    font-size: var(--minimum-font-size);
     line-height: 1.28;
     margin-top: 3mm !important;
     max-width: 280mm;
@@ -96,7 +97,7 @@
   .technology-basis span {
     color: var(--muted);
     font-family: "IBM Plex Mono", monospace;
-    font-size: 16pt;
+    font-size: var(--minimum-font-size);
     font-weight: 650;
     letter-spacing: 0.04em;
   }
@@ -120,25 +121,52 @@
   .stlite-poster main {
     display: grid;
     gap: 5mm;
-    grid-template-rows: 47mm 354mm 140mm 95mm;
+    grid-template-rows: 90mm 270mm 163mm 118mm;
   }
 
-  .standard-intro,
-  .section-heading {
+  .intro-showcase {
     display: grid;
-    grid-template-columns: 24mm 1fr;
+    gap: 8mm;
+    grid-template-columns: minmax(0, 1fr) 145mm;
+    min-height: 0;
   }
 
-  .standard-intro {
+  .intro-showcase__copy {
+    display: grid;
+    gap: 4mm;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    min-height: 0;
+    min-width: 0;
+  }
+
+  .intro-point {
     align-items: start;
+    display: grid;
+    grid-template-columns: 20mm 1fr;
+    padding: 6mm 7mm;
+  }
+
+  .intro-point--standard {
     background: var(--soft);
-    padding: 7mm 10mm 6mm 8mm;
+  }
+
+  .intro-point--stlite {
+    background: var(--streamlit-soft);
+  }
+
+  .intro-point .section-number {
+    font-size: 18pt;
+    padding-top: 2mm;
+  }
+
+  .intro-point h2 {
+    font-size: 34pt;
   }
 
   .section-number {
     color: var(--streamlit);
     font-family: "IBM Plex Mono", monospace;
-    font-size: 14pt;
+    font-size: var(--minimum-font-size);
     font-weight: 500;
     letter-spacing: 0.04em;
     line-height: 1.2;
@@ -152,31 +180,47 @@
     line-height: 1.02;
   }
 
-  .standard-intro p,
-  .section-heading p {
+  .intro-point p {
     color: var(--muted);
-    font-size: var(--minimum-font-size);
-    line-height: 1.34;
+    font-size: 22pt;
+    line-height: 1.3;
     margin-top: 3mm;
-    max-width: 420mm;
+  }
+
+  .streamlit-demo-frame {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) 9mm;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .streamlit-demo-frame img {
+    display: block;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .streamlit-demo-frame figcaption {
+    align-items: center;
+    background: var(--ink);
+    color: #fff;
+    display: flex;
+    font-size: var(--minimum-font-size);
+    padding: 0 3mm;
   }
 
   .architecture-section {
-    display: grid;
-    grid-template-rows: 43mm 1fr;
     min-height: 0;
-  }
-
-  .section-heading {
-    padding: 4mm 8mm 6mm;
   }
 
   .architecture {
     background: #fbfafc;
     display: grid;
-    grid-template-rows: 27mm 1fr;
+    grid-template-rows: 24mm 1fr;
     min-height: 0;
-    padding: 8mm 9mm 9mm;
+    padding: 6mm 9mm 7mm;
   }
 
   .architecture figcaption {
@@ -185,7 +229,7 @@
     gap: 4mm;
   }
 
-  .architecture figcaption strong {
+  .architecture figcaption h2 {
     font-family: "IBM Plex Sans Condensed", sans-serif;
     font-size: 22pt;
     letter-spacing: -0.02em;
@@ -216,11 +260,11 @@
   }
 
   .architecture__column--standard {
-    grid-template-rows: 19mm 47mm 111mm 36mm 49mm;
+    grid-template-rows: 18mm 35mm 99mm 32mm 49mm;
   }
 
   .architecture__column--stlite {
-    grid-template-rows: 19mm 47mm 196mm;
+    grid-template-rows: 18mm 35mm 180mm;
   }
 
   .environment {
@@ -358,7 +402,7 @@
     display: grid;
     font-family: "IBM Plex Mono", monospace;
     font-size: var(--minimum-font-size);
-    grid-template-rows: 19mm 47mm 37mm 37mm 37mm 36mm 49mm;
+    grid-template-rows: 18mm 35mm 33mm 33mm 33mm 32mm 49mm;
     line-height: 1.15;
     padding-inline: 2mm;
     text-align: center;
@@ -387,7 +431,7 @@
   }
 
   .mapping-label::after {
-    right: -2mm;
+    right: 0;
   }
 
   .mapping-label--same-one {
@@ -419,7 +463,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 0 17mm 7mm;
+    margin: 0 17mm 5mm;
     position: relative;
     text-align: center;
   }
@@ -440,9 +484,9 @@
   }
 
   .static-host__arrow {
-    bottom: -8mm;
+    bottom: -6mm;
     color: var(--muted) !important;
-    font-size: 17pt !important;
+    font-size: var(--minimum-font-size) !important;
     line-height: 1 !important;
     margin: 0 !important;
     position: absolute;
@@ -450,7 +494,7 @@
 
   .environment--browser-full {
     display: grid;
-    grid-template-rows: 111mm 36mm 30mm;
+    grid-template-rows: 99mm 32mm 30mm;
   }
 
   .worker-boundary {
@@ -477,8 +521,8 @@
   .deployment {
     background: var(--soft);
     display: grid;
-    grid-template-rows: 25mm 1fr;
-    padding: 7mm 8mm;
+    grid-template-rows: 33mm 1fr;
+    padding: 8mm;
   }
 
   .section-heading--compact {
@@ -502,16 +546,16 @@
     border: 0.5mm solid var(--line);
     display: grid;
     min-width: 0;
-    padding: 5mm;
+    padding: 6mm;
   }
 
   .deployment-target--browser {
-    grid-template-rows: 25mm 1fr 10mm;
+    grid-template-rows: 32mm 1fr 14mm;
   }
 
   .deployment-target--desktop,
   .deployment-target--cloudflare {
-    grid-template-rows: 29mm 1fr 11mm 10mm;
+    grid-template-rows: 34mm 1fr 12mm 12mm;
   }
 
   .deployment-target__header {
@@ -674,13 +718,13 @@
     align-content: start;
     background: var(--streamlit-soft);
     display: grid;
-    gap: 3mm;
-    grid-template-rows: 24mm 22mm 18mm;
+    gap: 5mm;
+    grid-template-rows: 27mm 39mm 26mm;
     padding: 8mm;
   }
 
   .use-cases__heading p {
-    margin-top: 1.5mm;
+    margin-top: 2.5mm;
   }
 
   .use-cases__list {
@@ -696,16 +740,16 @@
   .use-cases__list dt {
     color: #b3292f;
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: 16pt;
+    font-size: var(--minimum-font-size);
     font-weight: 700;
-    line-height: 1.05;
+    line-height: 1.1;
   }
 
   .use-cases__list dd {
     color: var(--muted);
     font-size: var(--minimum-font-size);
-    line-height: 1.25;
-    margin-top: 2mm;
+    line-height: 1.35;
+    margin-top: 4mm;
   }
 
   .use-cases__limits {
@@ -715,7 +759,7 @@
     display: flex;
     font-size: var(--minimum-font-size);
     line-height: 1.25;
-    padding: 0 4mm;
+    padding: 4mm;
   }
 
   .use-cases__limits strong {
@@ -726,7 +770,7 @@
     display: grid;
     gap: 3mm 12mm;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 16mm 50mm 12mm;
+    grid-template-rows: 16mm 46mm 16mm;
     padding: 8mm;
   }
 
