@@ -237,15 +237,17 @@
   .architecture {
     background: #fbfafc;
     display: grid;
-    grid-template-rows: 24mm 1fr;
+    grid-template-rows: 16mm 1fr;
     min-height: 0;
-    padding: 6mm 9mm 7mm;
+    padding: 4mm 9mm 7mm;
   }
 
   .architecture figcaption {
     align-items: baseline;
     display: flex;
     gap: 4mm;
+    justify-content: center;
+    text-align: center;
   }
 
   .architecture figcaption h2 {
@@ -272,22 +274,22 @@
 
   .architecture__column h3 {
     font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: 18pt;
+    font-size: 22pt;
     letter-spacing: -0.01em;
     line-height: 1;
     text-align: center;
   }
 
   .architecture__column--standard {
-    grid-template-rows: 18mm 31mm 96mm 31mm 49mm;
+    grid-template-rows: 12mm 28mm 104mm 34mm 57mm;
   }
 
   .architecture__column--stlite {
-    grid-template-rows: 18mm 31mm 176mm;
+    grid-template-rows: 12mm 28mm 195mm;
   }
 
   .environment {
-    border: 0.6mm solid var(--line);
+    border: 0.8mm solid var(--line);
     padding: 12mm 7mm 7mm;
     position: relative;
   }
@@ -372,7 +374,7 @@
   .stack-layer--app,
   .stack-layer--streamlit {
     background: var(--streamlit-soft);
-    border: 0.5mm solid #f1b1aa;
+    border: 0.7mm solid #f1b1aa;
   }
 
   .stack-layer--app {
@@ -382,7 +384,7 @@
   .stack-layer--runtime,
   .stack-layer--pyodide {
     background: var(--runtime-soft);
-    border: 0.5mm solid #aa94ca;
+    border: 0.7mm solid #aa94ca;
   }
 
   .stack-layer--runtime strong,
@@ -412,7 +414,7 @@
 
   .frontend-layer {
     background: #fff;
-    border: 0.5mm solid #aba5ae;
+    border: 0.7mm solid #aba5ae;
     height: 100%;
   }
 
@@ -421,7 +423,7 @@
     display: grid;
     font-family: "IBM Plex Mono", monospace;
     font-size: var(--minimum-font-size);
-    grid-template-rows: 18mm 31mm 32mm 32mm 32mm 31mm 49mm;
+    grid-template-rows: 12mm 28mm 35mm 35mm 34mm 34mm 57mm;
     line-height: 1.15;
     padding-inline: 2mm;
     text-align: center;
@@ -439,7 +441,7 @@
   .mapping-label::after {
     background: currentColor;
     content: "";
-    height: 0.35mm;
+    height: 0.55mm;
     position: absolute;
     top: 50%;
     width: 7mm;
@@ -478,7 +480,7 @@
   .static-host {
     align-items: center;
     background: #fff;
-    border: 0.5mm solid var(--line);
+    border: 0.7mm solid var(--line);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -513,11 +515,11 @@
 
   .environment--browser-full {
     display: grid;
-    grid-template-rows: 96mm 31mm 30mm;
+    grid-template-rows: 104mm 34mm 38mm;
   }
 
   .worker-boundary {
-    border: 0.5mm dashed #a69ca9;
+    border: 0.7mm dashed #a69ca9;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     padding: 11mm 6mm 6mm;
@@ -526,7 +528,7 @@
 
   .transport--bridge {
     background: var(--bridge-soft);
-    border-inline: 0.5mm solid #8dc6c5;
+    border-inline: 0.7mm solid #8dc6c5;
   }
 
   .transport--bridge .transport__arrow {
