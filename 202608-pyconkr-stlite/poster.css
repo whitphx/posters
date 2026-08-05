@@ -141,7 +141,7 @@
   .stlite-poster main {
     display: grid;
     gap: 5mm;
-    grid-template-rows: 100mm 276mm 177mm 80mm;
+    grid-template-rows: 100mm 276mm 175mm 82mm;
   }
 
   .intro-showcase {
@@ -628,7 +628,7 @@
   }
 
   .deployment-target--desktop .deployment-target__header p {
-    margin-top: 3mm;
+    margin-top: 4.5mm;
   }
 
   .browser-options {
@@ -764,15 +764,15 @@
     align-content: start;
     background: var(--streamlit-soft);
     display: grid;
-    gap: 3mm;
+    gap: 4mm;
     grid-template-rows: auto auto auto;
-    padding: 6mm;
+    padding: 6mm 6mm 8mm;
   }
 
   .use-cases__heading p {
     font-size: 22pt;
     line-height: 1.2;
-    margin-top: 2mm;
+    margin-top: 2.5mm;
   }
 
   .use-cases__list {
@@ -797,7 +797,7 @@
     color: var(--muted);
     font-size: var(--minimum-font-size);
     line-height: 1.35;
-    margin-top: 2.5mm;
+    margin-top: 3mm;
   }
 
   .use-cases__limits {
