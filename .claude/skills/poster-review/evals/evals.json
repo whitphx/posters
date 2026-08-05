@@ -1,0 +1,48 @@
+{
+  "skill_name": "poster-review",
+  "evals": [
+    {
+      "id": 1,
+      "name": "print-readiness-review-webrtc",
+      "prompt": "I'm sending the Streamlit-WebRTC poster to the print shop this week. Can you go over it and tell me if anything is going to bite me? Don't change any files yet, I just want to know what you find.",
+      "assertions": [
+        "Opens with a short ranked list of the worst problems before the detailed findings",
+        "Reports that callout boxes paint over hero code lines, making the Python read as broken",
+        "Reports that the footer spends the poster root's declared 15mm bottom padding down to under 2mm",
+        "Reports the ~11pt MacWindow titlebar as below the legibility floor",
+        "Reports that the heart glyph is drawn by a host font rather than a package-locked family",
+        "Reports that an arrow glyph in the media-routing diagram falls back to a host font",
+        "States explicitly which checks came back clean rather than only listing problems",
+        "Modified no repository file outside its own outputs directory"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "svg-diagram-label-size",
+      "prompt": "Something's been bugging me about the media routing diagram on the streamlit-webrtc poster. The little labels under SINK/FILTER/SOURCE feel too small to me but the CSS says 18px and 21px which should be fine right? Can you check whether they actually clear our legibility floor at A1. Read-only please.",
+      "assertions": [
+        "States that SVG font-size is in user units rather than CSS pixels, so the declared px values do not convert directly to points",
+        "Gives a measured printed size for the labels in the 16.5-17.5pt range",
+        "Does NOT claim the 18px label equals 13.5pt (the naive px-to-pt conversion)",
+        "Concludes the labels fall below the 18pt floor, correcting the user's assumption",
+        "Measured the rendered poster rather than only reading CSS",
+        "Modified no repository file outside its own outputs directory"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "stlite-pre-final-review",
+      "prompt": "I think the Stlite poster is done. Before I mark it final, give it a once-over for print problems. Please don't edit anything.",
+      "assertions": [
+        "Opens with a short ranked list or clear verdict before the detailed findings",
+        "States that no text falls below the 18pt floor and nothing is clipped",
+        "Reports the full-sheet white background fill that survives into the PDF",
+        "Reports that .transport__arrow names a font family that is not package-locked, so its text falls back to a host font",
+        "Reports that an arrow glyph in the ASGI layer label is drawn by a host font",
+        "Does NOT report the deliberate -15mm logo margin or the cropped logo box as defects",
+        "Surfaces the brief's open decisions as the author's to make rather than resolving them",
+        "Modified no repository file outside its own outputs directory"
+      ]
+    }
+  ]
+}
