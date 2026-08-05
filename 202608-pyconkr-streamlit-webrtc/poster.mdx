@@ -37,7 +37,7 @@ import PostCitation from "./PostCitation.astro";
   </p>
   <p className="poster-header__abstract">
     {
-      "Add live camera and microphone input to a Streamlit app, process it in Python, and return video, audio, text, or other results. Everything lives in one Python script, with no frontend code. Streamlit-WebRTC supplies the browser component and handles WebRTC transport."
+      "Add live camera and microphone input to a Streamlit app, process the media in Python, and return transformed video or audio through WebRTC. Display text, metadata, and metrics with Streamlit elements. Everything lives in one Python script, with no frontend code. Streamlit-WebRTC supplies the browser component and handles WebRTC transport."
     }
   </p>
   <figure className="poster-header__logos">
@@ -153,7 +153,7 @@ webrtc_streamer(
         <strong>Pass callbacks to the streamer</strong>
         <span className="code-callout__detail">
           The component handles browser capture, WebRTC transport, and returning
-          the result.
+          the resulting media.
         </span>
       </aside>
       <svg
@@ -260,8 +260,9 @@ webrtc_streamer(
             Turn Python models into user-facing apps without adding a second
             language or implementing WebRTC.
           </strong>{" "}
-          Use input-only apps to return metadata or text, transform and return
-          live streams, generate output-only media, or combine both directions.
+          Use incoming media to compute text, metadata, or metrics for Streamlit
+          elements; transform and return live streams; generate output-only
+          media; or combine both directions.
         </>
       }
     </p>
@@ -452,7 +453,7 @@ webrtc_streamer(
           Read face and hand landmarks, classify emotion, and recommend music.
         </p>
         <div className="example-card__tags">
-          <span>VIDEO · FILTER</span>
+          <span>VIDEO · FILTER + SIDE OUTPUT</span>
         </div>
         <PostCitation
           href="https://x.com/P1kumarMhaske/status/1785549913800990776"
