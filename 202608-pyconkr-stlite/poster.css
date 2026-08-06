@@ -15,7 +15,7 @@
     --bridge: #087f8c;
     --bridge-soft: #e2f4f3;
     --minimum-font-size: 18pt;
-    background: #fff;
+    background: transparent;
     color: var(--ink);
     display: grid;
     font-family: "IBM Plex Sans Variable", sans-serif;
@@ -399,7 +399,7 @@
 
   .transport__arrow {
     color: var(--bridge);
-    font-family: "IBM Plex Sans", sans-serif;
+    font-family: "IBM Plex Sans Variable", sans-serif;
     font-size: 25pt;
     font-weight: 650;
     line-height: 0.8;

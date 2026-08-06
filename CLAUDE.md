@@ -1,17 +1,11 @@
 # Project instructions
 
-## Poster design
+Before changing poster content, layout, rendering, or export behavior, read [DESIGN.md](./DESIGN.md) and the affected poster's `poster-brief.md`.
 
-- Every visual element must communicate content, hierarchy, grouping, a relationship, or a flow. When an element has no informational purpose, omit it.
-- Do not add decorative kicker text, rules, rails, patterns, shapes, or marks solely to create visual interest or fill space.
-- Do not use a line as a substitute for clear typography and spacing. Add one only when it separates content, defines a container, or expresses a relationship.
-
-## Poster production
-
-- Treat the physical paper as the default white page. Do not add a full-page background fill unless a poster brief explicitly requires one. Preview paper colors must not appear in print output.
-- Use section numbering only when order or sequence carries semantic meaning. Do not add 01/02/03-style markers as decoration.
-- Keep screenshot placeholders as local, individually replaceable assets. Do not print asset replacement notes or placeholder explanations on the poster.
-- Size body text, code, labels, URLs, and screenshots for reading at conference-poster distance.
-- Use window or device frames only when the poster brief explicitly requests them.
-- Do not use box shadows on printable poster elements. Some print pipelines render semi-transparent shadows as solid fills; use borders or spacing when separation is necessary. Preview-only shadows are acceptable when print styles remove them explicitly.
-- Validate the final poster for its declared physical dimensions, one-page output, overflow, font loading, image loading, and visual legibility.
+- `DESIGN.md` is the source of truth for repository architecture and durable poster design, editorial, attribution, print, and validation standards.
+- Each `poster-brief.md` is the source of truth for that poster's audience, message, required content, reading order, format, and open decisions.
+- The brief may make a deliberate poster-specific choice within the repository standards. Do not generalize that choice to other posters.
+- Keep all visible poster copy in `poster.mdx`; keep poster-specific geometry and visual identity in `poster.css`; keep replaceable assets local to the poster.
+- Preserve official capitalization and spelling from the brief or primary sources. Do not normalize product names from memory.
+- Treat unresolved questions in a brief as decisions for the author. Do not silently resolve them while implementing unrelated work.
+- After changing a poster, run the repository checks and inspect the rendered output at its declared physical size. Automated checks do not replace visual review.

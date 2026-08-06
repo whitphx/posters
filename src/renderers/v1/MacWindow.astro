@@ -44,10 +44,13 @@ const { title, class: className } = Astro.props;
     padding: 0 4mm;
   }
 
+  /* The titlebar imitates window chrome, but on paper it is caption text a
+     reader has to make out at poster distance, so it takes the legibility floor
+     in DESIGN.md rather than the small size a real window would use. */
   .mac-window__titlebar strong {
     color: #3f4a56;
     font-family: "IBM Plex Sans Variable", sans-serif;
-    font-size: 11pt;
+    font-size: 18pt;
     font-weight: 600;
     white-space: nowrap;
   }
