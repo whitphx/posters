@@ -201,6 +201,8 @@ Stable output requires policy as well as code:
 6. CI rebuilds every poster and compares finalized posters with approved reference previews.
 7. A finalized release preserves the PDF, preview PNG, source commit, and checksum.
 
+A poster presented at more than one event gets one directory per event. The editions are expected to stay close, but each is printed, exported, and archived against its own event, so a change made for one must not alter the artifact already approved for the other.
+
 Reproducible source and archived output solve different problems. The versioned renderer lets the source continue to build; the approved PDF preserves the artifact even if the toolchain eventually becomes unavailable.
 
 Pinning fonts governs the typefaces a poster loads, not every character it sets. The packaged Plex subsets omit most arrows and pictographs, so marks such as → and ❤️ are drawn by whatever font the exporting machine supplies. Accept that substitution. These are punctuation-scale characters that carry no product identity, and the alternatives cost more than they protect: rewording copy to avoid a glyph distorts the sentence, and importing an icon set to replace one adds a dependency and an attribution obligation. The archived PDF is what fixes their appearance, because it embeds the glyphs actually used, so confirm them there with `pdffonts` and a visual pass before a release rather than treating a substitution as a defect. A family named in CSS that no package supplies is a different matter and remains a defect, because every character of that element falls back rather than one.

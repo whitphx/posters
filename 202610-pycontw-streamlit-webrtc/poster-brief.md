@@ -2,7 +2,9 @@
 
 ## Relationship to the PyCon Korea edition
 
-This is the PyCon TW 2026 edition of the poster first prepared for PyCon Korea 2026 in `202608-pyconkr-streamlit-webrtc`. The subject, message, and design are the same, so the two directories are expected to stay close. They are separate posters because each one is printed, exported, and archived for its own event, and a later change made for one event must not alter the artifact already approved for the other.
+This is the PyCon TW 2026 edition of the poster first prepared for PyCon Korea 2026 in `202608-pyconkr-streamlit-webrtc`. Its copy, layout, and assets are the same, and the two editions are expected to stay close.
+
+The runnable source for the hero snippet is `202608-pyconkr-streamlit-webrtc/demo/app.py`, which both editions share rather than duplicate. That directory becomes a preserved artifact once the PyCon Korea edition is finalized, so a third edition, or any change to the snippet after that point, is the moment to move `demo/` above the poster directories.
 
 ## Audience
 
@@ -33,7 +35,7 @@ Build a complete real-time audio and video web app using only Python. A small am
 
 ### Hero
 
-Show approximately twenty lines of Python beside a real-time YOLO object detection application. Keep Streamlit's built-in model dropdown and the full callback contract visible: the `av.VideoFrame` argument, conversion to an image array, model invocation, annotated frame conversion, return value, and `video_frame_callback` registration. Use arrowed callouts to connect explanations directly to the built-in Streamlit elements, the freely programmable frame callback, and the callback registration that lets Streamlit-WebRTC handle media exchange. Continue each callout across to its visible result: built-in elements point to the screenshot's dropdown, while the callback and streamer point to the live-video region. The runnable source for this snippet is `202608-pyconkr-streamlit-webrtc/demo/app.py`, which both editions share; it remains aligned with the poster snippet and closely follows the two examples in `whitphx/ultralytics-streamlit-realtime`. This comparison should make the leverage explicit: a small amount of application code, one language, a native Streamlit widget, and a complete user-facing result.
+Show approximately twenty lines of Python beside a real-time YOLO object detection application. Keep Streamlit's built-in model dropdown and the full callback contract visible: the `av.VideoFrame` argument, conversion to an image array, model invocation, annotated frame conversion, return value, and `video_frame_callback` registration. Use arrowed callouts to connect explanations directly to the built-in Streamlit elements, the freely programmable frame callback, and the callback registration that lets Streamlit-WebRTC handle media exchange. Continue each callout across to its visible result: built-in elements point to the screenshot's dropdown, while the callback and streamer point to the live-video region. `demo/app.py` remains aligned with the poster snippet and closely follows the two examples in `whitphx/ultralytics-streamlit-realtime`. This comparison should make the leverage explicit: a small amount of application code, one language, a native Streamlit widget, and a complete user-facing result.
 
 ### Get started
 
@@ -51,10 +53,8 @@ Use a three-column by three-row grid for nine real projects shown through media 
 
 Include QR codes and readable URLs for the project repository and documentation.
 
-## Open decisions
+## Decisions still open
 
 - Whether A1 portrait suits the PyCon TW poster boards. The size carries over from the PyCon Korea edition and has not been checked against this event's published requirements.
-
-## Assets still required
-
-- Confirmed event print-shop requirements
+- Whether the poster stays in English for this audience. English also carries over rather than having been chosen for PyCon TW.
+- PyCon TW print-shop requirements

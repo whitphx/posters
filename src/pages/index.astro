@@ -90,6 +90,12 @@ const posters = await getCollection("posters");
         margin: 1rem 0 0.65rem;
       }
 
+      .event {
+        color: #2e5579;
+        font-weight: 600;
+        margin: 0 0 0.65rem;
+      }
+
       .summary {
         color: #51657b;
         line-height: 1.5;
@@ -130,6 +136,7 @@ const posters = await getCollection("posters");
                 <a href={`/posters/${slug}/`}>
                   <span class="status">{poster.data.status}</span>
                   <h2>{poster.data.title}</h2>
+                  <p class="event">{poster.data.event}</p>
                   <p class="summary">{poster.data.summary}</p>
                   <p class="format">
                     {poster.data.paper.size} {poster.data.paper.orientation} ·{" "}
