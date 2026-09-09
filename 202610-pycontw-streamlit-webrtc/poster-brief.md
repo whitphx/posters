@@ -53,8 +53,6 @@ Use a three-column by three-row grid for nine real projects shown through media 
 
 Include QR codes and readable URLs for the project repository and documentation.
 
-## Decisions still open
+## Assets still required
 
-- Whether A1 portrait suits the PyCon TW poster boards. The size carries over from the PyCon Korea edition and has not been checked against this event's published requirements.
-- Whether the poster stays in English for this audience. English also carries over rather than having been chosen for PyCon TW.
-- PyCon TW print-shop requirements
+- Confirmed event print-shop requirements
