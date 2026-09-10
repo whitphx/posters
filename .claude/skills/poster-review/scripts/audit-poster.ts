@@ -357,14 +357,36 @@ async function measure(
        * it, a number a CSS grep cannot predict. The screen CTM resolves that.
        * HTML font-size is already in CSS pixels, needing only the frame scale.
        */
+      /**
+       * CSS `zoom` multiplies the lengths an element is drawn with, but
+       * computed `font-size` and border widths still report the value from
+       * before that multiplication. A poster that enlarges a finished layout
+       * onto a larger sheet would otherwise measure as though it had never
+       * been enlarged, and every type size would read low by the zoom factor.
+       */
+      function zoomScale(element: Element): number {
+        let scale = 1;
+        for (
+          let current: Element | null = element;
+          current && current !== frame;
+          current = current.parentElement
+        ) {
+          const zoom = Number.parseFloat(getComputedStyle(current).zoom);
+          if (Number.isFinite(zoom) && zoom > 0) scale *= zoom;
+        }
+
+        return scale;
+      }
+
       function fontScale(element: Element): number {
         const svg = element as SVGGraphicsElement;
         if (typeof svg.getScreenCTM === "function") {
+          // A screen CTM already carries every enclosing zoom.
           const ctm = svg.getScreenCTM();
           if (ctm) return Math.hypot(ctm.b, ctm.d) || frameScale;
         }
 
-        return frameScale;
+        return frameScale * zoomScale(element);
       }
 
       const textCarriers = new Map<Element, string>();
@@ -887,7 +909,7 @@ async function measure(
           }
 
           const group = borderScale.get(used) ?? {
-            pt: Math.round(toPt(used) * 100) / 100,
+            pt: Math.round(toPt(used * zoomScale(element)) * 100) / 100,
             selectors: [],
           };
           const selector = describe(element);

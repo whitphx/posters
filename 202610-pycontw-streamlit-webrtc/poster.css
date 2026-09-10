@@ -11,6 +11,16 @@
     --minimum-text-size: 18pt;
     --streamlit: #ff4b4b;
     --video: #2d70e2;
+
+    /* Every length and type size below is drawn on the A1 canvas this poster
+       was designed for. PyCon TW specifies a larger sheet, so the finished
+       layout is enlarged onto it rather than redrawn, which also lifts the
+       smallest type clear of the legibility floor. The factor is the sheet
+       height over the design height, 1090 / 841. Enlarging by height keeps
+       the composition proportional, and because the sheet is slightly wider
+       than that leaves the poster, the remainder is split into equal side
+       margins instead of stretching the layout into it. */
+    --print-scale: 1.29608;
     background: transparent;
     color: var(--ink);
     display: flex;
@@ -18,9 +28,11 @@
     font-family: "IBM Plex Sans Variable", sans-serif;
     gap: 6mm;
     height: 841mm;
+    margin: 0 auto;
     overflow: hidden;
     padding: 17mm 18mm 15mm;
     width: 594mm;
+    zoom: var(--print-scale);
   }
 
   .streamlit-webrtc-poster h1,

@@ -126,10 +126,7 @@ const posters = await getCollection("posters");
         {
           posters.map((poster) => {
             const slug = poster.id.replace(/\/poster$/, "");
-            const dimensions = getPaperDimensions(
-              poster.data.paper.size,
-              poster.data.paper.orientation,
-            );
+            const dimensions = getPaperDimensions(poster.data.paper);
 
             return (
               <li>
@@ -139,7 +136,8 @@ const posters = await getCollection("posters");
                   <p class="event">{poster.data.event}</p>
                   <p class="summary">{poster.data.summary}</p>
                   <p class="format">
-                    {poster.data.paper.size} {poster.data.paper.orientation} ·{" "}
+                    {"size" in poster.data.paper &&
+                      `${poster.data.paper.size} ${poster.data.paper.orientation} · `}
                     {dimensions.widthMm} x {dimensions.heightMm} mm
                   </p>
                 </a>

@@ -1,5 +1,5 @@
 ---
-import type { Orientation, PaperSize } from "../../lib/paper";
+import type { Paper } from "../../lib/paper";
 import { getPaperDimensions } from "../../lib/paper";
 import "./foundation.css";
 
@@ -7,14 +7,11 @@ interface Props {
   title: string;
   slug: string;
   language: string;
-  paper: {
-    size: PaperSize;
-    orientation: Orientation;
-  };
+  paper: Paper;
 }
 
 const { title, slug, language, paper } = Astro.props;
-const { widthMm, heightMm } = getPaperDimensions(paper.size, paper.orientation);
+const { widthMm, heightMm } = getPaperDimensions(paper);
 const widthPx = (widthMm * 96) / 25.4;
 const heightPx = (heightMm * 96) / 25.4;
 const pageCss = `@page { size: ${widthMm}mm ${heightMm}mm; margin: 0; }`;
