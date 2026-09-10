@@ -10,11 +10,11 @@ const posters = defineCollection({
     event: z.string().min(1),
     renderer: z.literal("v1"),
     paper: z.union([
-      z.object({
+      z.strictObject({
         size: z.enum(["A1", "A2", "A3"]),
         orientation: z.enum(["portrait", "landscape"]),
       }),
-      z.object({
+      z.strictObject({
         widthMm: z.number().positive(),
         heightMm: z.number().positive(),
       }),

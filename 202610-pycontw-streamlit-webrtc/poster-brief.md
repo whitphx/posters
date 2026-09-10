@@ -4,7 +4,7 @@
 
 This is the PyCon TW 2026 edition of the poster first prepared for PyCon Korea 2026 in `202608-pyconkr-streamlit-webrtc`. Its copy, layout, and assets are the same, and the two editions are expected to stay close.
 
-The sheets differ. PyCon Korea's edition is A1; this one is 780 x 1090 mm. The layout is not redrawn for it. `poster.css` enlarges the A1 composition by 1090 / 841, which is why its lengths and type sizes are still written against the A1 canvas, and the 10 mm the wider sheet leaves over becomes equal side margins. Every type size is therefore about 30 percent larger in print than the same declaration in the PyCon Korea edition.
+The sheets differ. PyCon Korea's edition is A1; this one is 780 x 1090 mm. The layout is enlarged onto it rather than redrawn, so its lengths and type sizes are still written against the A1 canvas and each one prints about 30 percent larger than the same declaration in the PyCon Korea edition.
 
 The runnable source for the hero snippet is `202608-pyconkr-streamlit-webrtc/demo/app.py`, which both editions share rather than duplicate. That directory becomes a preserved artifact once the PyCon Korea edition is finalized, so a third edition, or any change to the snippet after that point, is the moment to move `demo/` above the poster directories.
 

@@ -350,19 +350,14 @@ async function measure(
       }
 
       /**
-       * Screen pixels per unit of the element's own font-size.
-       *
-       * SVG font-size is expressed in user units, so a `font-size: 20px` label
-       * inside a viewBox prints at whatever the viewBox-to-layout ratio makes
-       * it, a number a CSS grep cannot predict. The screen CTM resolves that.
-       * HTML font-size is already in CSS pixels, needing only the frame scale.
-       */
-      /**
        * CSS `zoom` multiplies the lengths an element is drawn with, but
-       * computed `font-size` and border widths still report the value from
-       * before that multiplication. A poster that enlarges a finished layout
-       * onto a larger sheet would otherwise measure as though it had never
-       * been enlarged, and every type size would read low by the zoom factor.
+       * computed styles keep reporting the values from before that
+       * multiplication. A poster that enlarges a finished layout onto a larger
+       * sheet would otherwise measure as though it had never been enlarged,
+       * and every size would read low by the zoom factor. Rects do not need
+       * this: `getBoundingClientRect` already reports zoomed geometry, so
+       * mixing a raw computed length with a rect silently compares two
+       * different scales.
        */
       function zoomScale(element: Element): number {
         let scale = 1;
@@ -378,6 +373,19 @@ async function measure(
         return scale;
       }
 
+      /** A computed length in the scale its element is actually drawn at. */
+      function usedPx(element: Element, length: string): number {
+        return (Number.parseFloat(length) || 0) * zoomScale(element);
+      }
+
+      /**
+       * Screen pixels per unit of the element's own font-size.
+       *
+       * SVG font-size is expressed in user units, so a `font-size: 20px` label
+       * inside a viewBox prints at whatever the viewBox-to-layout ratio makes
+       * it, a number a CSS grep cannot predict. The screen CTM resolves that.
+       * HTML font-size is already in CSS pixels, needing only the frame scale.
+       */
       function fontScale(element: Element): number {
         const svg = element as SVGGraphicsElement;
         if (typeof svg.getScreenCTM === "function") {
@@ -694,10 +702,10 @@ async function measure(
         const rect = element.getBoundingClientRect();
         const style = getComputedStyle(element);
         const pad = {
-          top: Number.parseFloat(style.paddingTop) || 0,
-          right: Number.parseFloat(style.paddingRight) || 0,
-          bottom: Number.parseFloat(style.paddingBottom) || 0,
-          left: Number.parseFloat(style.paddingLeft) || 0,
+          top: usedPx(element, style.paddingTop),
+          right: usedPx(element, style.paddingRight),
+          bottom: usedPx(element, style.paddingBottom),
+          left: usedPx(element, style.paddingLeft),
         };
 
         // Signed distance from the outermost descendant to each border edge:
@@ -899,7 +907,7 @@ async function measure(
         const style = getComputedStyle(element);
 
         for (const side of ["Top", "Right", "Bottom", "Left"] as const) {
-          const used = Number.parseFloat(style[`border${side}Width`]);
+          const used = usedPx(element, style[`border${side}Width`]);
           if (
             !used ||
             style[`border${side}Style`] === "none" ||
@@ -909,7 +917,7 @@ async function measure(
           }
 
           const group = borderScale.get(used) ?? {
-            pt: Math.round(toPt(used * zoomScale(element)) * 100) / 100,
+            pt: Math.round(toPt(used) * 100) / 100,
             selectors: [],
           };
           const selector = describe(element);
