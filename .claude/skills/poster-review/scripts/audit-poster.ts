@@ -12,7 +12,9 @@
  *
  * Options:
  *   --floor <pt>       Legibility floor. Default 18, per DESIGN.md.
- *   --min-dpi <n>      Raster image resolution floor. Default 150.
+ *   --min-dpi <n>      Raster image resolution floor. Default 150, a print
+ *                      convention rather than a project requirement; SKILL.md
+ *                      explains how viewing distance settles the finding.
  *   --out <dir>        Screenshot and JSON destination. Default tmp/poster-review.
  *   --clip <selector>  Also screenshot matching regions at full print
  *                      resolution. Repeatable.
@@ -862,7 +864,7 @@ async function measure(
           findings.push({
             kind: "image-below-dpi",
             selector: describe(image),
-            detail: `${Math.round(dpi)} DPI at ${Math.round(rect.width * mmPerPx)}mm wide, below the ${limits.minDpi} DPI floor (source is ${image.naturalWidth}px)`,
+            detail: `${Math.round(dpi)} DPI at ${Math.round(rect.width * mmPerPx)}mm wide, below the ${limits.minDpi} DPI default (source is ${image.naturalWidth}px)`,
           });
         }
       }

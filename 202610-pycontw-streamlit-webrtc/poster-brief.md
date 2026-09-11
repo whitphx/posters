@@ -32,6 +32,7 @@ Build a complete real-time audio and video web app using only Python. A small am
 - Designed for reading at conference-poster distance
 - Unprinted white paper background with no decorative page rails
 - RGB browser PDF unless the printer specifies a different prepress format
+- The hero screenshot prints at 126 DPI, below the review script's 150 DPI default, and that is accepted rather than outstanding. 1770 px is the most the source display can capture, and one arcminute of arc, the 20/20 acuity limit, subtends about 0.29 mm at a metre, or roughly 87 DPI, so the shortfall is finer than a reader resolves at the distance above.
 
 ## Required content
 
@@ -57,4 +58,4 @@ Include QR codes and readable URLs for the project repository and documentation.
 
 ## Assets still required
 
-- A replacement `assets/hero-yolo-detection.png` of at least 2400 px wide. The current capture is 1770 px, which prints at 126 DPI once enlarged onto this sheet, below the 150 DPI floor. Its `width` and `height` attributes in `poster.mdx` also describe a different image than the file and need correcting with it.
+- Confirmed event print-shop requirements
