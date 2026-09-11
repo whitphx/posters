@@ -12,7 +12,7 @@
  *
  * Options:
  *   --floor <pt>       Legibility floor. Default 18, per DESIGN.md.
- *   --min-dpi <n>      Raster image resolution floor. Default 150, a print
+ *   --min-dpi <n>      Raster image resolution default. 150, a print
  *                      convention rather than a project requirement; SKILL.md
  *                      explains how viewing distance settles the finding.
  *   --out <dir>        Screenshot and JSON destination. Default tmp/poster-review.

@@ -28,6 +28,8 @@ Read the poster's `poster-brief.md` first, then the parts of `DESIGN.md` your ch
 
 Note the brief's reading order and its open decisions. You will need the reading order to judge the layout, and the open decisions are the author's to make. Surface them; do not settle them while doing something else.
 
+When the author accepts a finding rather than fixing it, ask that the brief record it, naming the finding kind and the reasoning. That is what turns the rule above into something a later run can use: the next reviewer reads a decision instead of rediscovering an unfixed defect and arguing it again.
+
 ## 2. Measure
 
 ```sh
@@ -54,6 +56,8 @@ Every measurement runs under print media emulation and is calibrated from the fr
 | `print-box-shadow`        | A shadow survives print media. Some pipelines flatten a semi-transparent shadow into a solid fill.                                                                                   |
 | `paper-background-filled` | Some element covers the whole sheet with a fill, so the PDF carries a painted rectangle instead of bare paper. The poster's own root is the usual culprit, not the renderer's frame. |
 
+`image-below-dpi` needs deciding rather than obeying. The 150 DPI default is a large-format print convention built into this script; `DESIGN.md` sets no resolution requirement, and no printer has asked for one. What settles it is viewing distance. One arcminute, the Snellen 20/20 acuity limit, subtends about 0.29 mm at one metre, and that figure scales with distance, so multiply it by the metres the brief gives and divide 25.4 by the result. A metre back that is roughly 87 DPI, half a metre about 175. The convention is one source pixel per arcminute, the same one behind the familiar 300 DPI at arm's length; read it as line pairs instead and every figure here doubles. An image that clears the bar for its stated distance is fine however the default reads. Raise the finding anyway when the image is the one carrying the argument, when a better source exists at no cost, or when readers will lean in. An accepted shortfall goes in the brief, per section 1; `--min-dpi` takes one number for the whole run, so it is worth passing only when you are measuring the single poster the decision belongs to.
+
 The JSON also carries inventories worth reading even when nothing fails.
 
 `typeScale` is sorted ascending. A hierarchy that steps evenly from body to title is visible in it, and so is one where every text role has drifted to the same size, which is the flattening `DESIGN.md` warns about.
@@ -61,8 +65,6 @@ The JSON also carries inventories worth reading even when nothing fails.
 `substitutions` lists glyphs drawn by a face the project does not package, with the face that drew each one. **These are not defects.** The packaged Plex subsets omit most arrows and pictographs, so a character like `→` or `❤️` comes from the exporting machine, and `DESIGN.md`'s archival section accepts that rather than paying for it with reworded copy or an icon dependency. Report the list as context and say where it gets confirmed: `pdffonts output/pdf/<slug>.pdf` shows the same faces embedded, and the archived PDF is what fixes their appearance. Do not propose replacing these characters unless the author raises it.
 
 The line worth acting on is the other one: a family named in CSS that no package supplies, which surfaces as `font-family-not-shipped` because the whole element falls back rather than one glyph.
-
-`image-below-dpi` needs deciding rather than obeying. The 150 DPI default is a large-format print convention built into this script; `DESIGN.md` sets no resolution requirement, and no printer has asked for one. What settles it is viewing distance. One arcminute of arc, the 20/20 acuity limit, subtends about 0.29 mm at one metre, so a reader standing a metre back resolves no more than roughly 87 DPI, and about 175 DPI at half a metre. Divide 25.4 by the arcminute figure for the distance the brief says the poster is read from, and compare. An image that clears that bar is fine however the default reads; raise the finding when the image is the one carrying the argument, when a better source exists at no cost, or when readers will lean in. Where the author accepts a shortfall, record it in the brief with the reasoning, so the next run reads as a decision rather than an unfixed defect, and pass `--min-dpi` to match if you want the report quiet.
 
 `borders` lists the border weights as they actually print. Chromium resolves a border width to whole pixels, so `0.35mm` and `0.5mm` can land on the same printed weight and a design that leans on borders to rank or separate things can lose that distinction without any declaration changing. Read it when borders carry meaning; there is no threshold check here, because what counts as too thin depends on the stock and the press.
 
