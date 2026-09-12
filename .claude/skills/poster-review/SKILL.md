@@ -28,6 +28,8 @@ Read the poster's `poster-brief.md` first, then the parts of `DESIGN.md` your ch
 
 Note the brief's reading order and its open decisions. You will need the reading order to judge the layout, and the open decisions are the author's to make. Surface them; do not settle them while doing something else.
 
+When the author accepts a finding rather than fixing it, ask that the brief record it, naming the finding kind and the reasoning. That is what turns the rule above into something a later run can use: the next reviewer reads a decision instead of rediscovering an unfixed defect and arguing it again.
+
 ## 2. Measure
 
 ```sh
@@ -49,10 +51,12 @@ Every measurement runs under print media emulation and is calibrated from the fr
 | `text-occluded`           | Something opaque is painted over text, so it is present in the DOM and invisible on paper. Named by the covering element.                                                            |
 | `padding-encroached`      | Content reaches into a container's own declared padding, spending the separation `DESIGN.md` asks you to check per side.                                                             |
 | `font-family-not-shipped` | Nothing in an element's font stack is packaged with the project, usually a misspelled family, so every character of it is drawn by a host font rather than one symbol.               |
-| `image-below-dpi`         | A raster image is stretched below the resolution floor, so it will look soft at print scale.                                                                                         |
+| `image-below-dpi`         | A raster image is stretched below the resolution default, so it may look soft at print scale. A prompt for the judgment below, not a failed requirement.                             |
 | `image-not-loaded`        | An image failed to load and will print as a hole.                                                                                                                                    |
 | `print-box-shadow`        | A shadow survives print media. Some pipelines flatten a semi-transparent shadow into a solid fill.                                                                                   |
 | `paper-background-filled` | Some element covers the whole sheet with a fill, so the PDF carries a painted rectangle instead of bare paper. The poster's own root is the usual culprit, not the renderer's frame. |
+
+`image-below-dpi` needs deciding rather than obeying. The 150 DPI default is a large-format print convention built into this script; `DESIGN.md` sets no resolution requirement, and no printer has asked for one. What settles it is viewing distance. One arcminute, the Snellen 20/20 acuity limit, subtends about 0.29 mm at one metre, and that figure scales with distance, so multiply it by the metres the brief gives and divide 25.4 by the result. A metre back that is roughly 87 DPI, half a metre about 175. The convention is one source pixel per arcminute, the same one behind the familiar 300 DPI at arm's length; read it as line pairs instead and every figure here doubles. An image that clears the bar for its stated distance is fine however the default reads. Raise the finding anyway when the image is the one carrying the argument, when a better source exists at no cost, or when readers will lean in. An accepted shortfall goes in the brief, per section 1; `--min-dpi` takes one number for the whole run, so it is worth passing only when you are measuring the single poster the decision belongs to.
 
 The JSON also carries inventories worth reading even when nothing fails.
 

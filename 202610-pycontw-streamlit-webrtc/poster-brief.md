@@ -4,6 +4,8 @@
 
 This is the PyCon TW 2026 edition of the poster first prepared for PyCon Korea 2026 in `202608-pyconkr-streamlit-webrtc`. Its copy, layout, and assets are the same, and the two editions are expected to stay close.
 
+The sheets differ. PyCon Korea's edition is A1; this one is 780 x 1090 mm. The layout is enlarged onto it rather than redrawn, so its lengths and type sizes are still written against the A1 canvas and each one prints about 30 percent larger than the same declaration in the PyCon Korea edition.
+
 The runnable source for the hero snippet is `202608-pyconkr-streamlit-webrtc/demo/app.py`, which both editions share rather than duplicate. That directory becomes a preserved artifact once the PyCon Korea edition is finalized, so a third edition, or any change to the snippet after that point, is the moment to move `demo/` above the poster directories.
 
 ## Audience
@@ -25,11 +27,12 @@ Build a complete real-time audio and video web app using only Python. A small am
 
 ## Format
 
-- A1 portrait
+- 780 x 1090 mm portrait, the sheet PyCon TW specifies
 - English
-- Designed for reading at conference-poster distance
+- Designed for reading at conference-poster distance, about a metre and further
 - Unprinted white paper background with no decorative page rails
 - RGB browser PDF unless the printer specifies a different prepress format
+- The hero screenshot prints at 126 DPI, below the review script's 150 DPI default, and that `image-below-dpi` finding is accepted rather than outstanding. The same file clears the default at A1 in the PyCon Korea edition, so the shortfall is this sheet's enlargement rather than a poor capture, and 1770 px is the most the source display can produce. One arcminute, the Snellen 20/20 acuity limit, subtends about 0.29 mm at a metre, or roughly 87 DPI, so the shortfall is finer than a reader resolves at the distance above.
 
 ## Required content
 

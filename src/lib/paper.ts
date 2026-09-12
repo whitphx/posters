@@ -7,10 +7,18 @@ export const paperSizes = {
 export type PaperSize = keyof typeof paperSizes;
 export type Orientation = "portrait" | "landscape";
 
-export function getPaperDimensions(size: PaperSize, orientation: Orientation) {
-  const dimensions = paperSizes[size];
+export type Paper =
+  | { size: PaperSize; orientation: Orientation }
+  | { widthMm: number; heightMm: number };
 
-  return orientation === "portrait"
+export function getPaperDimensions(paper: Paper) {
+  if ("widthMm" in paper) {
+    return { widthMm: paper.widthMm, heightMm: paper.heightMm };
+  }
+
+  const dimensions = paperSizes[paper.size];
+
+  return paper.orientation === "portrait"
     ? dimensions
     : { widthMm: dimensions.heightMm, heightMm: dimensions.widthMm };
 }

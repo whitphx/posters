@@ -6,10 +6,7 @@ export const prerender = true;
 export async function GET() {
   const posters = await getCollection("posters");
   const manifest = posters.map((poster) => {
-    const dimensions = getPaperDimensions(
-      poster.data.paper.size,
-      poster.data.paper.orientation,
-    );
+    const dimensions = getPaperDimensions(poster.data.paper);
 
     return {
       slug: poster.id.replace(/\/poster$/, ""),

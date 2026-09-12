@@ -15,7 +15,7 @@ Visible copy belongs in `poster.mdx`. Poster-specific geometry and visual identi
 ## Goals
 
 - Keep visible poster copy in one Markdown-based source file.
-- Support A1, A2, and A3 paper in portrait or landscape orientation.
+- Support A1, A2, and A3 paper in portrait or landscape orientation, and explicit dimensions for a sheet outside that set.
 - Give every poster its own visual identity without duplicating print infrastructure.
 - Produce a browser preview and a one-page PDF from the same source.
 - Preserve finalized posters when shared rendering code evolves.
@@ -44,7 +44,7 @@ Visible copy belongs in `poster.mdx`. Poster-specific geometry and visual identi
 
 ### Typography and spatial hierarchy
 
-- Treat 18 pt as the default minimum for body text, code, captions, labels, URLs, and diagram copy on an A1 poster unless its brief requires a larger floor.
+- Treat 18 pt as the default minimum for body text, code, captions, labels, URLs, and diagram copy unless a poster's brief requires a larger floor. The floor follows reading distance rather than sheet size, so printing a poster larger does not raise it.
 - Spend available space on titles, section headings, subheadings, and section subtitles before enlarging dense body paragraphs. Keep the hierarchy visibly stepped instead of scaling every text role together.
 - Allocate section height according to information density. Reclaim unused fixed-height space from sparse sections for content that benefits from larger type or clearer structure.
 - Preserve enough separation between a section's heading, content groups, checklist or caveat block, and outer edges for each level to remain legible. Check top and bottom padding independently.
@@ -137,6 +137,8 @@ language: en
 status: draft
 ```
 
+A poster whose event specifies a sheet that is not an ISO size declares `widthMm` and `heightMm` in place of `size` and `orientation`.
+
 Astro's content collection discovers `20*/poster.mdx`, validates this metadata, and creates one static route per poster. MDX may import semantic components from its declared renderer version. Components encode relationships such as a QR destination or media path; poster-specific geometry remains in local CSS.
 
 ## Repository structure
@@ -216,6 +218,10 @@ The shared paper map uses ISO dimensions:
 | A1   | 594 x 841 mm | 841 x 594 mm |
 | A2   | 420 x 594 mm | 594 x 420 mm |
 | A3   | 297 x 420 mm | 420 x 297 mm |
+
+Events do not always specify one of these. A poster may instead declare its sheet in millimeters, and every check that applies to a named size applies to it, including the exported PDF measuring the dimensions it declares.
+
+A poster already designed for one sheet can be enlarged onto a larger one with a scale in its own CSS rather than redrawn. This keeps a composition that has been reviewed and approved, and it raises every type size by the same factor. Enlarge by a single factor so the proportions hold, and give the leftover to the margins when the sheets differ in aspect ratio; a separate horizontal and vertical scale distorts circles, strokes, and letterforms.
 
 Poster designs may use backgrounds inside meaningful content regions, such as code panels or grouped containers. The shared preview's paper colors are inspection aids and are forced to transparent during print export.
 

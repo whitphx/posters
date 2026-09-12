@@ -12,7 +12,9 @@
  *
  * Options:
  *   --floor <pt>       Legibility floor. Default 18, per DESIGN.md.
- *   --min-dpi <n>      Raster image resolution floor. Default 150.
+ *   --min-dpi <n>      Raster image resolution default. 150, a print
+ *                      convention rather than a project requirement; SKILL.md
+ *                      explains how viewing distance settles the finding.
  *   --out <dir>        Screenshot and JSON destination. Default tmp/poster-review.
  *   --clip <selector>  Also screenshot matching regions at full print
  *                      resolution. Repeatable.
@@ -350,6 +352,35 @@ async function measure(
       }
 
       /**
+       * CSS `zoom` multiplies the lengths an element is drawn with, but
+       * computed styles keep reporting the values from before that
+       * multiplication. A poster that enlarges a finished layout onto a larger
+       * sheet would otherwise measure as though it had never been enlarged,
+       * and every size would read low by the zoom factor. Rects do not need
+       * this: `getBoundingClientRect` already reports zoomed geometry, so
+       * mixing a raw computed length with a rect silently compares two
+       * different scales.
+       */
+      function zoomScale(element: Element): number {
+        let scale = 1;
+        for (
+          let current: Element | null = element;
+          current && current !== frame;
+          current = current.parentElement
+        ) {
+          const zoom = Number.parseFloat(getComputedStyle(current).zoom);
+          if (Number.isFinite(zoom) && zoom > 0) scale *= zoom;
+        }
+
+        return scale;
+      }
+
+      /** A computed length in the scale its element is actually drawn at. */
+      function usedPx(element: Element, length: string): number {
+        return (Number.parseFloat(length) || 0) * zoomScale(element);
+      }
+
+      /**
        * Screen pixels per unit of the element's own font-size.
        *
        * SVG font-size is expressed in user units, so a `font-size: 20px` label
@@ -360,11 +391,12 @@ async function measure(
       function fontScale(element: Element): number {
         const svg = element as SVGGraphicsElement;
         if (typeof svg.getScreenCTM === "function") {
+          // A screen CTM already carries every enclosing zoom.
           const ctm = svg.getScreenCTM();
           if (ctm) return Math.hypot(ctm.b, ctm.d) || frameScale;
         }
 
-        return frameScale;
+        return frameScale * zoomScale(element);
       }
 
       const textCarriers = new Map<Element, string>();
@@ -672,10 +704,10 @@ async function measure(
         const rect = element.getBoundingClientRect();
         const style = getComputedStyle(element);
         const pad = {
-          top: Number.parseFloat(style.paddingTop) || 0,
-          right: Number.parseFloat(style.paddingRight) || 0,
-          bottom: Number.parseFloat(style.paddingBottom) || 0,
-          left: Number.parseFloat(style.paddingLeft) || 0,
+          top: usedPx(element, style.paddingTop),
+          right: usedPx(element, style.paddingRight),
+          bottom: usedPx(element, style.paddingBottom),
+          left: usedPx(element, style.paddingLeft),
         };
 
         // Signed distance from the outermost descendant to each border edge:
@@ -832,7 +864,7 @@ async function measure(
           findings.push({
             kind: "image-below-dpi",
             selector: describe(image),
-            detail: `${Math.round(dpi)} DPI at ${Math.round(rect.width * mmPerPx)}mm wide, below the ${limits.minDpi} DPI floor (source is ${image.naturalWidth}px)`,
+            detail: `${Math.round(dpi)} DPI at ${Math.round(rect.width * mmPerPx)}mm wide, below the ${limits.minDpi} DPI default (source is ${image.naturalWidth}px)`,
           });
         }
       }
@@ -877,7 +909,7 @@ async function measure(
         const style = getComputedStyle(element);
 
         for (const side of ["Top", "Right", "Bottom", "Left"] as const) {
-          const used = Number.parseFloat(style[`border${side}Width`]);
+          const used = usedPx(element, style[`border${side}Width`]);
           if (
             !used ||
             style[`border${side}Style`] === "none" ||
