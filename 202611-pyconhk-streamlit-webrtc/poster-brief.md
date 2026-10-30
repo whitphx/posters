@@ -13,7 +13,7 @@ The runnable source for the hero snippet is `202608-pyconkr-streamlit-webrtc/dem
 Visitors at PyCon TW asked two questions often enough that this edition answers them on the poster:
 
 - **What do Streamlit and Streamlit-WebRTC each do?** Visitors who did not already know Streamlit could not follow the poster without its basic idea: you write a Python script, Streamlit runs it, and it becomes an interactive web app. The header abstract now opens with that idea, and Get started shows it as a flow from Python script to `streamlit run` to web app.
-- **Which library does which part of the demo?** The demo combines Streamlit for the app and its widgets, Streamlit-WebRTC for real-time video, and Ultralytics YOLO for detection, and visitors wanted the boundaries shown. The hero now attributes every library-owned line of the snippet, each callout, and each region of the screenshot to one library by colour, with a legend in the code panel's title bar.
+- **Which library does which part of the demo?** The demo combines Streamlit for the app and its widgets, Streamlit-WebRTC for real-time video, and Ultralytics YOLO for detection, and visitors wanted the boundaries shown. The hero now attributes every library-owned line of the snippet, and each callout and its arrows to one library by colour, with a legend in the code panel's title bar.
 
 These are content decisions for this edition only. The PyCon Korea and PyCon TW editions are already exhibited and stay as they are.
 
@@ -50,10 +50,10 @@ Build a complete real-time audio and video web app using only Python. A small am
 
 Show approximately twenty lines of Python beside a real-time YOLO object detection application. Keep Streamlit's built-in model dropdown and the full callback contract visible: the `av.VideoFrame` argument, conversion to an image array, model invocation, annotated frame conversion, return value, and `video_frame_callback` registration. Use arrowed callouts to connect explanations directly to the built-in Streamlit elements, the freely programmable frame callback, and the callback registration that lets Streamlit-WebRTC handle media exchange. Continue each callout across to its visible result: built-in elements point to the screenshot's dropdown, the callback points to the detections drawn into the live video, and the streamer points to the video component's controls.
 
-Make the division of labour explicit with one colour per party, used consistently across a legend in the code panel's title bar, a gutter bar and tint on each line, the callouts and their arrows, and outlines on the screenshot:
+Make the division of labour explicit with one colour per party, used consistently across a legend in the code panel's title bar, a gutter bar and tint on each line, and the callouts with their arrows and endpoints. Do not outline regions of the screenshot; the author judged library-labelled frames over it too heavy, so the callout arrows alone carry each library to its result:
 
-- Streamlit, in Streamlit red: the `streamlit` import and the `st.selectbox` and `st.spinner` calls. It builds the app and every widget outside the video from plain Python. The screenshot outline covers the model dropdown.
-- Streamlit-WebRTC, in purple: its import and the `webrtc_streamer` call. One call adds the video component, which handles browser capture, WebRTC transport, and playback of the returned frames. The screenshot outline covers the video and its controls.
+- Streamlit, in Streamlit red: the `streamlit` import and the `st.selectbox` and `st.spinner` calls. It builds the app and every widget outside the video from plain Python. Its callout points to the model dropdown.
+- Streamlit-WebRTC, in purple: its import and the `webrtc_streamer` call. One call adds the video component, which handles browser capture, WebRTC transport, and playback of the returned frames. Its callout points to the component's STOP control.
 - Your Python, here Ultralytics YOLO, in amber: the `av` and `ultralytics` imports, model loading, and the frame callback. Any library can run in the callback.
 
 Each callout title names its party, so the strength each one contributes is readable without the legend. `demo/app.py` remains aligned with the poster snippet and closely follows the two examples in `whitphx/ultralytics-streamlit-realtime`. This comparison should make the leverage explicit: a small amount of application code, one language, a native Streamlit widget, and a complete user-facing result.

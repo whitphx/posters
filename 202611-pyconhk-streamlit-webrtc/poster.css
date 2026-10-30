@@ -271,8 +271,7 @@
   .code-callout__arrow--builtins-preview,
   .code-callout__endpoint--builtins-selectbox,
   .code-callout__endpoint--builtins-spinner,
-  .code-callout__endpoint--builtins-preview,
-  .screen-region--streamlit {
+  .code-callout__endpoint--builtins-preview {
     --library: var(--streamlit);
     --library-ink: var(--streamlit-ink);
   }
@@ -282,8 +281,7 @@
   .code-callout__arrow--streamer,
   .code-callout__arrow--streamer-preview,
   .code-callout__endpoint--streamer-code,
-  .code-callout__endpoint--streamer-preview,
-  .screen-region--webrtc {
+  .code-callout__endpoint--streamer-preview {
     --library: var(--webrtc);
     --library-ink: var(--webrtc-ink);
   }
@@ -452,62 +450,10 @@
   }
 
   .code-callout__arrow--streamer-preview {
-    height: 20.2mm;
-    left: 316.3mm;
+    height: 24.9mm;
+    left: 313.6mm;
     top: 192.2mm;
     width: 10mm;
-  }
-
-  .hero-window .mac-window__content {
-    position: relative;
-  }
-
-  /* Outlines mark which library draws each part of the screenshot. They are
-     placed in percentages of the image from the source file's own geometry:
-     the dropdown spans rows 44-167 and the video with its controls rows
-     216-1361 of 1416, and both span about 9 to 90.5 percent of the width,
-     with roughly one percent of clearance. */
-  .screen-region {
-    border: 0.8mm solid var(--library);
-    border-radius: 2mm;
-    box-sizing: border-box;
-    left: 7.9%;
-    position: absolute;
-    width: 84%;
-    z-index: 1;
-  }
-
-  .screen-region--streamlit {
-    height: 11%;
-    top: 2%;
-  }
-
-  .screen-region--webrtc {
-    height: 83.3%;
-    top: 14.3%;
-  }
-
-  .screen-region__label {
-    background: var(--library-ink);
-    border-radius: 1mm;
-    color: #fff;
-    font-family: "IBM Plex Sans Condensed", sans-serif;
-    font-size: var(--minimum-text-size);
-    font-weight: 700;
-    line-height: 1;
-    padding: 0.6mm 1.6mm;
-    position: absolute;
-  }
-
-  .screen-region--streamlit .screen-region__label {
-    right: 1.5mm;
-    top: 0.6mm;
-  }
-
-  .screen-region--webrtc .screen-region__label {
-    bottom: 2mm;
-    left: 50%;
-    transform: translateX(-50%);
   }
 
   .hero-window {
