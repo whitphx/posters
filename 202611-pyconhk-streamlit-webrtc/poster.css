@@ -62,7 +62,7 @@
 
   .poster-header__author {
     color: #536a80;
-    font-size: 28pt;
+    font-size: 42pt;
     font-weight: 600;
     position: absolute;
     right: 3mm;
@@ -303,7 +303,7 @@
     color: var(--ink);
     padding: 3.5mm 4mm;
     position: absolute;
-    z-index: 2;
+    z-index: 3;
   }
 
   .code-callout--builtins {
@@ -426,8 +426,10 @@
     top: 176mm;
   }
 
+  /* Above the screenshot, which these arrows cross, but under the callouts
+     they leave, so a rounded line cap never shows over a callout's edge. */
   .code-callout__arrow--preview {
-    z-index: 3;
+    z-index: 2;
   }
 
   .code-callout__arrow--builtins-preview {
