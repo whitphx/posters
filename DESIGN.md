@@ -15,7 +15,7 @@ Visible copy belongs in `poster.mdx`. Poster-specific geometry and visual identi
 ## Goals
 
 - Keep visible poster copy in one Markdown-based source file.
-- Support A1, A2, and A3 paper in portrait or landscape orientation, and explicit dimensions for a sheet outside that set.
+- Support A0, A1, A2, and A3 paper in portrait or landscape orientation, and explicit dimensions for a sheet outside that set.
 - Give every poster its own visual identity without duplicating print infrastructure.
 - Produce a browser preview and a one-page PDF from the same source.
 - Preserve finalized posters when shared rendering code evolves.
@@ -213,11 +213,12 @@ Pinning fonts governs the typefaces a poster loads, not every character it sets.
 
 The shared paper map uses ISO dimensions:
 
-| Size | Portrait     | Landscape    |
-| ---- | ------------ | ------------ |
-| A1   | 594 x 841 mm | 841 x 594 mm |
-| A2   | 420 x 594 mm | 594 x 420 mm |
-| A3   | 297 x 420 mm | 420 x 297 mm |
+| Size | Portrait      | Landscape     |
+| ---- | ------------- | ------------- |
+| A0   | 841 x 1189 mm | 1189 x 841 mm |
+| A1   | 594 x 841 mm  | 841 x 594 mm  |
+| A2   | 420 x 594 mm  | 594 x 420 mm  |
+| A3   | 297 x 420 mm  | 420 x 297 mm  |
 
 Events do not always specify one of these. A poster may instead declare its sheet in millimeters, and every check that applies to a named size applies to it, including the exported PDF measuring the dimensions it declares.
 
