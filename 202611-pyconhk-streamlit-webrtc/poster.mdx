@@ -37,7 +37,7 @@ import PostCitation from "./PostCitation.astro";
   </p>
   <p className="poster-header__abstract">
     {
-      "Add live camera and microphone input to a Streamlit app, process the media in Python, and return transformed video or audio through WebRTC. Display text, metadata, and metrics with Streamlit elements. Everything lives in one Python script, with no frontend code. Streamlit-WebRTC supplies the browser component and handles WebRTC transport."
+      "Streamlit turns a Python script into an interactive web app. Streamlit-WebRTC adds real-time camera and microphone streams to it: the component handles browser capture and WebRTC transport, and passes each frame to your Python code, where any library, such as a YOLO model, can process it. Everything lives in one script, with no frontend code."
     }
   </p>
   <figure className="poster-header__logos">
@@ -71,7 +71,17 @@ import PostCitation from "./PostCitation.astro";
       <figure className="code-panel">
         <div className="panel-bar">
           <span>app.py</span>
-          <span>Python</span>
+          <ul className="library-legend" aria-label="Who implements each line">
+            <li className="library-legend__item library-legend__item--streamlit">
+              Streamlit
+            </li>
+            <li className="library-legend__item library-legend__item--webrtc">
+              Streamlit-WebRTC
+            </li>
+            <li className="library-legend__item library-legend__item--python">
+              Your Python (YOLO)
+            </li>
+          </ul>
         </div>
 
 ```python
@@ -106,10 +116,10 @@ webrtc_streamer(
       </figure>
 
       <aside className="code-callout code-callout--builtins">
-        <strong>Use built-in Streamlit widgets</strong>
+        <strong>Streamlit builds the app and its widgets</strong>
         <span className="code-callout__detail">
-          Build the app with Streamlit's standard widgets, then add real-time
-          media with Streamlit-WebRTC.
+          Plain Python calls such as <code>st.selectbox</code> draw the page
+          around the video, with no HTML or JavaScript.
         </span>
       </aside>
       <svg
@@ -131,9 +141,9 @@ webrtc_streamer(
       />
 
       <aside className="code-callout code-callout--callback">
-        <strong>Process each frame with a Python callback</strong>
+        <strong>Your Python code runs YOLO on each frame</strong>
         <span className="code-callout__detail">
-          Receive a frame, run any Python code, and return a frame.
+          Receive a frame, run any library, and return a frame.
         </span>
       </aside>
       <svg
@@ -150,10 +160,10 @@ webrtc_streamer(
       />
 
       <aside className="code-callout code-callout--streamer">
-        <strong>Use the callback as a media filter</strong>
+        <strong>Streamlit-WebRTC streams the camera in real time</strong>
         <span className="code-callout__detail">
-          Pass it to the streamer. The component handles browser capture, WebRTC
-          transport, and returning the transformed media.
+          One call adds the video component. It handles browser capture, WebRTC
+          transport, and playing back the returned frames.
         </span>
       </aside>
       <svg
@@ -189,18 +199,23 @@ webrtc_streamer(
       >
         <path d="M 0 20 C 40 20, 60 70.69, 100 70.69" />
       </svg>
+      <span
+        className="code-callout__endpoint code-callout__endpoint--media-preview"
+        aria-hidden="true"
+      />
       <svg
         className="code-callout__arrow code-callout__arrow--preview code-callout__arrow--streamer-preview"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <path d="M 0 82 C 40 82, 60 1.87, 100 1.87" />
+        <path d="M 50 0 V 100" />
       </svg>
       <span
-        className="code-callout__endpoint code-callout__endpoint--media-preview"
+        className="code-callout__endpoint code-callout__endpoint--streamer-preview"
         aria-hidden="true"
       />
+
 
       <MacWindow title="Real-time object detection" class="hero-window">
         <img
@@ -210,6 +225,15 @@ webrtc_streamer(
           height="1416"
           alt="Streamlit application showing YOLO model selection and object detection boxes over a live webcam feed"
         />
+          <div
+            className="screen-region screen-region--streamlit"
+            aria-hidden="true"
+          >
+            <span className="screen-region__label">Streamlit</span>
+          </div>
+          <div className="screen-region screen-region--webrtc" aria-hidden="true">
+            <span className="screen-region__label">Streamlit-WebRTC</span>
+          </div>
       </MacWindow>
     </div>
 
@@ -225,13 +249,26 @@ webrtc_streamer(
       <div>
         <dt>What is Streamlit?</dt>
         <dd>
-          A Python web UI framework for building interactive apps without
-          frontend code.
+          A Python framework that turns a script into an interactive web app.
+          Each <code className="inline-code">st.*</code> call draws a UI element,
+          with no frontend code.
+        </dd>
+        <dd>
+          <ol className="get-started__flow" aria-label="How Streamlit runs a script">
+            <li>Python script</li>
+            <li>
+              <code>streamlit run</code>
+            </li>
+            <li>Web app</li>
+          </ol>
         </dd>
       </div>
       <div>
         <dt>What is Streamlit-WebRTC?</dt>
-        <dd>A custom component that plugs into an existing Streamlit app.</dd>
+        <dd>
+          A component that adds real-time camera and microphone streams to a
+          Streamlit app and passes each frame to your Python code.
+        </dd>
       </div>
       <div>
         <dt>Install</dt>

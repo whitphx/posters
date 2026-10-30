@@ -9,8 +9,13 @@
     --ink: #102a43;
     --line: #c6d5e3;
     --minimum-text-size: 18pt;
+    --python: #e39b17;
+    --python-ink: #8f5600;
     --streamlit: #ff4b4b;
+    --streamlit-ink: #c92f3d;
     --video: #2d70e2;
+    --webrtc: #7b5cd6;
+    --webrtc-ink: #5b3fb5;
 
     background: transparent;
     color: var(--ink);
@@ -193,11 +198,19 @@
     font-family: "IBM Plex Mono", monospace;
   }
 
+  /* Each line is tinted by the library that implements it, with a solid
+     gutter bar so the attribution survives a pale print. The line numbers
+     follow the snippet in poster.mdx. */
+  .code-panel pre.astro-code .line:nth-child(-n + 4),
   .code-panel pre.astro-code .line:nth-child(n + 6):nth-child(-n + 9),
-  .code-panel pre.astro-code .line:nth-child(11),
+  .code-panel pre.astro-code .line:nth-child(n + 11):nth-child(-n + 12),
   .code-panel pre.astro-code .line:nth-child(n + 14):nth-child(-n + 20),
   .code-panel pre.astro-code .line:nth-child(n + 22):nth-child(-n + 26) {
-    background: rgba(255, 75, 75, 0.13);
+    background: linear-gradient(
+      to right,
+      var(--library) 0 1.6mm,
+      var(--library-tint) 1.6mm
+    );
     box-sizing: border-box;
     display: inline-block;
     margin-left: -5mm;
@@ -205,9 +218,89 @@
     width: calc(100% + 10mm);
   }
 
+  .code-panel pre.astro-code .line:nth-child(2),
+  .code-panel pre.astro-code .line:nth-child(n + 6):nth-child(-n + 9),
+  .code-panel pre.astro-code .line:nth-child(11) {
+    --library: var(--streamlit);
+    --library-tint: rgba(255, 75, 75, 0.15);
+  }
+
+  .code-panel pre.astro-code .line:nth-child(3),
+  .code-panel pre.astro-code .line:nth-child(n + 22):nth-child(-n + 26) {
+    --library: var(--webrtc);
+    --library-tint: rgba(123, 92, 214, 0.26);
+  }
+
+  .code-panel pre.astro-code .line:nth-child(1),
+  .code-panel pre.astro-code .line:nth-child(4),
+  .code-panel pre.astro-code .line:nth-child(12),
+  .code-panel pre.astro-code .line:nth-child(n + 14):nth-child(-n + 20) {
+    --library: var(--python);
+    --library-tint: rgba(227, 155, 23, 0.15);
+  }
+
+  .library-legend {
+    display: flex;
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 700;
+    gap: 5mm;
+    letter-spacing: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .library-legend__item {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    gap: 1.8mm;
+  }
+
+  .library-legend__item::before {
+    background: var(--library);
+    border-radius: 0.8mm;
+    content: "";
+    height: 4.5mm;
+    width: 4.5mm;
+  }
+
+  .library-legend__item--streamlit,
+  .code-callout--builtins,
+  .code-callout__arrow--builtins,
+  .code-callout__arrow--builtins-preview,
+  .code-callout__endpoint--builtins-selectbox,
+  .code-callout__endpoint--builtins-spinner,
+  .code-callout__endpoint--builtins-preview,
+  .screen-region--streamlit {
+    --library: var(--streamlit);
+    --library-ink: var(--streamlit-ink);
+  }
+
+  .library-legend__item--webrtc,
+  .code-callout--streamer,
+  .code-callout__arrow--streamer,
+  .code-callout__arrow--streamer-preview,
+  .code-callout__endpoint--streamer-code,
+  .code-callout__endpoint--streamer-preview,
+  .screen-region--webrtc {
+    --library: var(--webrtc);
+    --library-ink: var(--webrtc-ink);
+  }
+
+  .library-legend__item--python,
+  .code-callout--callback,
+  .code-callout__arrow--callback,
+  .code-callout__arrow--callback-preview,
+  .code-callout__endpoint--callback-code,
+  .code-callout__endpoint--media-preview {
+    --library: var(--python);
+    --library-ink: var(--python-ink);
+  }
+
   .code-callout {
     background: #fff;
-    border: 0.6mm solid var(--streamlit);
+    border: 0.6mm solid var(--library);
     border-radius: 2.5mm;
     color: var(--ink);
     padding: 3.5mm 4mm;
@@ -234,7 +327,7 @@
   }
 
   .code-callout strong {
-    color: #c92f3d;
+    color: var(--library-ink);
     display: block;
     font-family: "IBM Plex Sans Condensed", sans-serif;
     font-size: var(--minimum-text-size);
@@ -249,12 +342,17 @@
     margin-top: 1.5mm;
   }
 
+  .code-callout__detail code {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: var(--minimum-text-size);
+  }
+
   .code-callout__arrow {
     fill: none;
     overflow: visible;
     pointer-events: none;
     position: absolute;
-    stroke: var(--streamlit);
+    stroke: var(--library);
     stroke-linecap: round;
     stroke-width: 10;
     z-index: 1;
@@ -265,7 +363,7 @@
   }
 
   .code-callout__endpoint {
-    background: var(--streamlit);
+    background: var(--library);
     border-radius: 50%;
     box-sizing: border-box;
     height: 5.25mm;
@@ -348,11 +446,68 @@
     width: 30.1mm;
   }
 
+  .code-callout__endpoint--streamer-preview {
+    left: 318.6mm;
+    top: 217.1mm;
+  }
+
   .code-callout__arrow--streamer-preview {
-    height: 69.4mm;
-    left: 344mm;
-    top: 119.2mm;
-    width: 8.1mm;
+    height: 20.2mm;
+    left: 316.3mm;
+    top: 192.2mm;
+    width: 10mm;
+  }
+
+  .hero-window .mac-window__content {
+    position: relative;
+  }
+
+  /* Outlines mark which library draws each part of the screenshot. They are
+     placed in percentages of the image from the source file's own geometry:
+     the dropdown spans rows 44-167 and the video with its controls rows
+     216-1361 of 1416, and both span about 9 to 90.5 percent of the width,
+     with roughly one percent of clearance. */
+  .screen-region {
+    border: 0.8mm solid var(--library);
+    border-radius: 2mm;
+    box-sizing: border-box;
+    left: 7.9%;
+    position: absolute;
+    width: 84%;
+    z-index: 1;
+  }
+
+  .screen-region--streamlit {
+    height: 11%;
+    top: 2%;
+  }
+
+  .screen-region--webrtc {
+    height: 83.3%;
+    top: 14.3%;
+  }
+
+  .screen-region__label {
+    background: var(--library-ink);
+    border-radius: 1mm;
+    color: #fff;
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-size: var(--minimum-text-size);
+    font-weight: 700;
+    line-height: 1;
+    padding: 0.6mm 1.6mm;
+    position: absolute;
+  }
+
+  .screen-region--streamlit .screen-region__label {
+    right: 1.5mm;
+    top: 0.6mm;
+  }
+
+  .screen-region--webrtc .screen-region__label {
+    bottom: 2mm;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .hero-window {
@@ -446,6 +601,50 @@
     font-size: var(--minimum-text-size);
     padding: 2mm 2.5mm;
     white-space: nowrap;
+  }
+
+  .get-started__answers .inline-code {
+    background: none;
+    border-radius: 0;
+    color: var(--ink);
+    display: inline;
+    padding: 0;
+  }
+
+  .get-started__flow {
+    align-items: center;
+    display: flex;
+    gap: 7mm;
+    list-style: none;
+    margin: 2.5mm 0 0;
+    padding: 0;
+  }
+
+  .get-started__flow li {
+    align-items: center;
+    border: 0.4mm solid var(--line);
+    border-radius: 1.5mm;
+    color: var(--ink);
+    display: flex;
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 700;
+    min-height: 10mm;
+    padding: 0 2.5mm;
+    position: relative;
+    white-space: nowrap;
+  }
+
+  .get-started__flow li + li::before {
+    color: var(--ink);
+    content: "→";
+    font-family: "IBM Plex Sans Variable", sans-serif;
+    left: -6mm;
+    position: absolute;
+  }
+
+  .get-started__flow code {
+    padding: 0 !important;
+    background: none !important;
   }
 
   .under-the-hood {

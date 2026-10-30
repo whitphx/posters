@@ -2,11 +2,20 @@
 
 ## Relationship to the other editions
 
-This is the PyCon Hong Kong 2026 edition of the poster first prepared for PyCon Korea 2026 in `202608-pyconkr-streamlit-webrtc` and shown again at PyCon TW 2026 in `202610-pycontw-streamlit-webrtc`. It was copied from the PyCon TW edition, which carries the corrected image dimensions and the third-party notice for the hero snippet. Its copy, layout, and assets are the same, and the editions are expected to stay close.
+This is the PyCon Hong Kong 2026 edition of the poster first prepared for PyCon Korea 2026 in `202608-pyconkr-streamlit-webrtc` and shown again at PyCon TW 2026 in `202610-pycontw-streamlit-webrtc`. It was copied from the PyCon TW edition, which carries the corrected image dimensions and the third-party notice for the hero snippet. Its layout and assets are the same, and the editions are expected to stay close apart from the content changes recorded below.
 
 The sheets differ. PyCon Korea's edition is A1, PyCon TW's is 780 x 1090 mm, and this one is A0. The layout is enlarged onto A0 rather than redrawn, so its lengths and type sizes are still written against the A1 canvas and each one prints about 41 percent larger than the same declaration in the PyCon Korea edition. A0 and A1 share an aspect ratio, so the enlargement fills the sheet apart from about 1 mm of width left over from ISO rounding.
 
 The runnable source for the hero snippet is `202608-pyconkr-streamlit-webrtc/demo/app.py`, which the editions share rather than duplicate. This is the third edition, the point the PyCon TW brief named for moving `demo/` above the poster directories; that move is left for the author because it changes the preserved PyCon Korea directory.
+
+## Changes from the PyCon TW edition
+
+Visitors at PyCon TW asked two questions often enough that this edition answers them on the poster:
+
+- **What do Streamlit and Streamlit-WebRTC each do?** Visitors who did not already know Streamlit could not follow the poster without its basic idea: you write a Python script, Streamlit runs it, and it becomes an interactive web app. The header abstract now opens with that idea, and Get started shows it as a flow from Python script to `streamlit run` to web app.
+- **Which library does which part of the demo?** The demo combines Streamlit for the app and its widgets, Streamlit-WebRTC for real-time video, and Ultralytics YOLO for detection, and visitors wanted the boundaries shown. The hero now attributes every library-owned line of the snippet, each callout, and each region of the screenshot to one library by colour, with a legend in the code panel's title bar.
+
+These are content decisions for this edition only. The PyCon Korea and PyCon TW editions are already exhibited and stay as they are.
 
 ## Audience
 
@@ -20,7 +29,7 @@ Build a complete real-time audio and video web app using only Python. A small am
 
 1. Product name and primary message
 2. Python example beside its application result
-3. What the component is, what Streamlit is, and how to install it
+3. What Streamlit is, how a script becomes an app, what the component adds, and how to install it
 4. Browser-to-Python media path
 5. Real projects shared by Streamlit-WebRTC users
 6. Project and documentation QR codes
@@ -39,11 +48,19 @@ Build a complete real-time audio and video web app using only Python. A small am
 
 ### Hero
 
-Show approximately twenty lines of Python beside a real-time YOLO object detection application. Keep Streamlit's built-in model dropdown and the full callback contract visible: the `av.VideoFrame` argument, conversion to an image array, model invocation, annotated frame conversion, return value, and `video_frame_callback` registration. Use arrowed callouts to connect explanations directly to the built-in Streamlit elements, the freely programmable frame callback, and the callback registration that lets Streamlit-WebRTC handle media exchange. Continue each callout across to its visible result: built-in elements point to the screenshot's dropdown, while the callback and streamer point to the live-video region. `demo/app.py` remains aligned with the poster snippet and closely follows the two examples in `whitphx/ultralytics-streamlit-realtime`. This comparison should make the leverage explicit: a small amount of application code, one language, a native Streamlit widget, and a complete user-facing result.
+Show approximately twenty lines of Python beside a real-time YOLO object detection application. Keep Streamlit's built-in model dropdown and the full callback contract visible: the `av.VideoFrame` argument, conversion to an image array, model invocation, annotated frame conversion, return value, and `video_frame_callback` registration. Use arrowed callouts to connect explanations directly to the built-in Streamlit elements, the freely programmable frame callback, and the callback registration that lets Streamlit-WebRTC handle media exchange. Continue each callout across to its visible result: built-in elements point to the screenshot's dropdown, the callback points to the detections drawn into the live video, and the streamer points to the video component's controls.
+
+Make the division of labour explicit with one colour per party, used consistently across a legend in the code panel's title bar, a gutter bar and tint on each line, the callouts and their arrows, and outlines on the screenshot:
+
+- Streamlit, in Streamlit red: the `streamlit` import and the `st.selectbox` and `st.spinner` calls. It builds the app and every widget outside the video from plain Python. The screenshot outline covers the model dropdown.
+- Streamlit-WebRTC, in purple: its import and the `webrtc_streamer` call. One call adds the video component, which handles browser capture, WebRTC transport, and playback of the returned frames. The screenshot outline covers the video and its controls.
+- Your Python, here Ultralytics YOLO, in amber: the `av` and `ultralytics` imports, model loading, and the frame callback. Any library can run in the callback.
+
+Each callout title names its party, so the strength each one contributes is readable without the legend. `demo/app.py` remains aligned with the poster snippet and closely follows the two examples in `whitphx/ultralytics-streamlit-realtime`. This comparison should make the leverage explicit: a small amount of application code, one language, a native Streamlit widget, and a complete user-facing result.
 
 ### Get started
 
-Explain that Streamlit-WebRTC is a custom component for existing Streamlit apps. Define Streamlit as a Python web UI framework for building interactive applications without frontend code. Show `uv add streamlit streamlit-webrtc` as the installation command, while leaving detailed setup to the linked documentation.
+Introduce Streamlit before the component, for readers who have not used it: it turns a Python script into an interactive web app, each `st.*` call draws a UI element, and no frontend code is involved. Show that idea as a short flow from a Python script through `streamlit run` to a web app. Then explain that Streamlit-WebRTC is a component that adds real-time camera and microphone streams to a Streamlit app and passes each frame to the reader's Python code. Show `uv add streamlit streamlit-webrtc` as the installation command and `uv run streamlit run app.py` as the run command, while leaving detailed setup to the linked documentation.
 
 ### How it works
 
