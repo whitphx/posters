@@ -1,4 +1,5 @@
 export const paperSizes = {
+  A0: { widthMm: 841, heightMm: 1189 },
   A1: { widthMm: 594, heightMm: 841 },
   A2: { widthMm: 420, heightMm: 594 },
   A3: { widthMm: 297, heightMm: 420 },
