@@ -313,9 +313,9 @@
   }
 
   .code-callout--callback {
-    left: 148mm;
+    left: 177mm;
     top: 85mm;
-    width: 174mm;
+    width: 157mm;
   }
 
   .code-callout--streamer {
@@ -441,9 +441,9 @@
 
   .code-callout__arrow--callback-preview {
     height: 38.9mm;
-    left: 322mm;
+    left: 334mm;
     top: 93mm;
-    width: 30.1mm;
+    width: 18.1mm;
   }
 
   .code-callout__endpoint--streamer-preview {
